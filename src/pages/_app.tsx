@@ -3,12 +3,15 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 
 import GlobalStyles from '@/components/GlobalStyles';
+import ReactQueryProvider from '@/components/providers/ReactQuery';
+import Seo from '@/components/Seo';
 
 const ExternalScript = dynamic(() => import('@/components/ExternalScript'), {
   ssr: false,
 });
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const { seo, dehydratedState } = pageProps;
   return (
     <>
       <Head>
@@ -18,9 +21,12 @@ const App = ({ Component, pageProps }: AppProps) => {
         />
       </Head>
       <ExternalScript />
-      <GlobalStyles>
-        <Component {...pageProps} />
-      </GlobalStyles>
+      <Seo seo={seo} />
+      <ReactQueryProvider dehydratedState={dehydratedState}>
+        <GlobalStyles>
+          <Component {...pageProps} />
+        </GlobalStyles>
+      </ReactQueryProvider>
     </>
   );
 };
