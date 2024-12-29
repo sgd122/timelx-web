@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
   },
   output: 'standalone',
   swcMinify: true,
+  compiler: {
+    emotion: true,
+  },
 };
 
 export default nextConfig;

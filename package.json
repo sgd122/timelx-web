@@ -10,11 +10,12 @@
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
-    "@radix-ui/react-popover": "1.1.4",
     "@tanstack/react-query": "^5.62.8",
     "@tanstack/react-query-devtools": "^5.62.8",
+    "axios": "^1.7.9",
     "emotion-reset": "^3.0.1",
     "next": "15.1.2",
+    "next-auth": "^4.24.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
