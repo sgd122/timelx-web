@@ -24,6 +24,7 @@ const style = (theme: Theme) => css`
 
   body {
     font-family: Pretendard, Noto Serif KR, Malgun Gothic, Helvetica Neue, sans-serif;
+  background: var(--color-panel-solid);
   }
 
   #__next {
