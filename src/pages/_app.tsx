@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { SessionProvider } from 'next-auth/react';
 
 import GlobalStyles from '@/components/GlobalStyles';
+import JotaiProvider from '@/components/providers/Jotai';
 import ReactQueryProvider from '@/components/providers/ReactQuery';
 import Seo from '@/components/Seo';
 import Layout from '@/layout';
@@ -32,15 +33,17 @@ const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
       <ExternalScript />
       <Seo seo={seo} />
       <Toaster />
-      <ReactQueryProvider dehydratedState={dehydratedState}>
-        <SessionProvider session={session}>
-          <GlobalStyles>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </GlobalStyles>
-        </SessionProvider>
-      </ReactQueryProvider>
+      <JotaiProvider>
+        <ReactQueryProvider dehydratedState={dehydratedState}>
+          <SessionProvider session={session}>
+            <GlobalStyles>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </GlobalStyles>
+          </SessionProvider>
+        </ReactQueryProvider>
+      </JotaiProvider>
     </>
   );
 };
