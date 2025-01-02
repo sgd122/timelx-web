@@ -6,6 +6,7 @@ import { LeftContainer, RightContainer } from '@/layout/styles';
 
 const Layout = ({ children }: PropsWithChildren) => {
   const { maxWidth } = LAYOUT;
+
   return (
     <Box
       maxWidth={maxWidth}

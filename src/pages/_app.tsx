@@ -9,14 +9,16 @@ import ReactQueryProvider from '@/components/providers/ReactQuery';
 import Seo from '@/components/Seo';
 import Layout from '@/layout';
 
+import '@/styles/globals.css';
+
 const Toaster = dynamic(
-  () => import('@/components/Toaster').then((c) => c.Toaster),
+  () => import('@/components/ui/Toaster').then((c) => c.Toaster),
   {
     ssr: false,
   }
 );
 
-const ExternalScript = dynamic(() => import('@/components/ExternalScript'), {
+const ExternalScript = dynamic(() => import('@/components/scripts'), {
   ssr: false,
 });
 
