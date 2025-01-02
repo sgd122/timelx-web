@@ -18,9 +18,11 @@
     "next": "15.1.2",
     "next-auth": "^4.24.11",
     "next-seo": "^6.6.0",
+    "nextjs-progressbar": "^0.0.16",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.54.2"
+    "react-hook-form": "^7.54.2",
+    "react-hot-toast": "^2.5.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
