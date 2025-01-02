@@ -1,7 +1,8 @@
-import { Box, Container } from '@radix-ui/themes';
+import { Box } from '@radix-ui/themes';
 import type { PropsWithChildren } from 'react';
 
 import { LAYOUT } from '@/constants/size';
+import { LeftContainer, RightContainer } from '@/layout/styles';
 
 const Layout = ({ children }: PropsWithChildren) => {
   const { maxWidth } = LAYOUT;
@@ -10,9 +11,14 @@ const Layout = ({ children }: PropsWithChildren) => {
       maxWidth={maxWidth}
       style={{
         margin: '0 auto',
+        display: 'flex',
+        alignItems: 'center',
       }}
     >
-      <Container size="1" align={'right'}>
+      <LeftContainer size="1" align={'left'}>
+        test
+      </LeftContainer>
+      <RightContainer size="1">
         <Box
           style={{
             background: 'var(--gray-a2)',
@@ -20,9 +26,19 @@ const Layout = ({ children }: PropsWithChildren) => {
           }}
           minHeight={'100vh'}
         >
+          <Box
+            style={{
+              background: 'var(--gray-5)',
+              borderRadius: 'var(--radius-3)',
+              margin: '10px',
+              padding: '10px',
+            }}
+          >
+            1234
+          </Box>
           {children}
         </Box>
-      </Container>
+      </RightContainer>
     </Box>
   );
 };
