@@ -7,7 +7,7 @@ import { fetchMainSectionLocal } from '@/api/domains/main';
  * @param
  * @returns
  */
-export const useFetchMainSectionLocal = (locale: string | undefined) =>
+export const useFetchMainSectionLocal = () =>
   useQuery({
     queryKey: ['fetchMainSectionLocal'],
     queryFn: () => fetchMainSectionLocal(),
