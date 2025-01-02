@@ -26,16 +26,6 @@ const Layout = ({ children }: PropsWithChildren) => {
           }}
           minHeight={'100vh'}
         >
-          <Box
-            style={{
-              background: 'var(--gray-5)',
-              borderRadius: 'var(--radius-3)',
-              margin: '10px',
-              padding: '10px',
-            }}
-          >
-            1234
-          </Box>
           {children}
         </Box>
       </RightContainer>
