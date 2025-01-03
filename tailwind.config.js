@@ -11,6 +11,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        'max-layout': `calc(1160px - 1px)`,
+        'min-layout': '1160px',
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',

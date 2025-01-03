@@ -1,8 +1,7 @@
-import { Box } from '@radix-ui/themes';
+import { Box, Container } from '@radix-ui/themes';
 import type { PropsWithChildren } from 'react';
 
 import { LAYOUT } from '@/constants/size';
-import { LeftContainer, RightContainer } from '@/layout/styles';
 
 const Layout = ({ children }: PropsWithChildren) => {
   const { maxWidth } = LAYOUT;
@@ -16,10 +15,10 @@ const Layout = ({ children }: PropsWithChildren) => {
         alignItems: 'center',
       }}
     >
-      <LeftContainer size="1" align={'left'}>
+      <Container size="1" align={'left'} className="hidden max-layout:block">
         test
-      </LeftContainer>
-      <RightContainer size="1">
+      </Container>
+      <Container size="1" className="flex items-center min-layout:items-end">
         <Box
           style={{
             background: 'var(--gray-a2)',
@@ -29,7 +28,7 @@ const Layout = ({ children }: PropsWithChildren) => {
         >
           {children}
         </Box>
-      </RightContainer>
+      </Container>
     </Box>
   );
 };

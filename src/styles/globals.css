@@ -59,6 +59,7 @@
 @layer base {
   * {
     @apply border-border;
+    font-family: Pretendard, Noto Serif KR, Malgun Gothic, Helvetica Neue, sans-serif;
   }
   body {
     @apply bg-background text-foreground;
