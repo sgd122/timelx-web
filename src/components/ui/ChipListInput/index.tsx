@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 
 interface ChipListInputProps {
   placeholder?: string;
+  maxChips?: number;
   onChange?: (values: string[]) => void;
   className?: string;
   chipClassName?: string;
@@ -23,6 +24,7 @@ interface ChipListInputProps {
  */
 const ChipListInput = ({
   placeholder,
+  maxChips = Infinity,
   onChange,
   className,
   chipClassName,
@@ -32,6 +34,7 @@ const ChipListInput = ({
 
   const addChip = (newValue: string) => {
     if (!newValue.trim()) return;
+    if (chips.length >= maxChips) return;
 
     const newChips = [...chips, newValue.trim()];
     setChips(newChips);
@@ -78,11 +81,13 @@ const ChipListInput = ({
           onChange={handler}
           onKeyDown={handleKeyDown}
           placeholder={chips.length === 0 ? placeholder : ''}
+          disabled={chips.length >= maxChips}
           className={cn(
             'flex-1',
             'outline-none',
             'bg-transparent',
-            'placeholder:text-white placeholder:font-bold'
+            'placeholder:text-white placeholder:font-bold',
+            chips.length >= maxChips && 'cursor-not-allowed'
           )}
         />
       </div>
