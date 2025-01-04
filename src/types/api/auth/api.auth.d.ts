@@ -8,4 +8,12 @@ declare module '@api/user' {
     nick_name: string | null;
     email: string;
   }
+
+  export interface UserStatus {
+    type: string;
+    status: string;
+    data: {
+      user: IUser;
+    };
+  }
 }
