@@ -1,8 +1,8 @@
 import { css } from '@emotion/react';
 import emotionReset from 'emotion-reset';
 
+import { utils } from '@/assets/styles/utils';
 import type theme from '@/lib/theme';
-import { utils } from '@/styles/utils';
 
 type Theme = typeof theme;
 

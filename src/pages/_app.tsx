@@ -9,7 +9,7 @@ import ReactQueryProvider from '@/components/providers/ReactQuery';
 import Seo from '@/components/Seo';
 import Layout from '@/layout';
 
-import '@/styles/globals.css';
+import '@/assets/styles/globals.css';
 
 const Toaster = dynamic(
   () => import('@/components/ui/Toaster').then((c) => c.Toaster),

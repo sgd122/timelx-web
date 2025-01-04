@@ -1,32 +1,38 @@
 import { Box, Container } from '@radix-ui/themes';
 import type { PropsWithChildren } from 'react';
 
-import { LAYOUT } from '@/constants/size';
+import LeftContainer from '@/layout/_components/LeftContainer';
+import Footer from '@/layout/footer';
+import Header from '@/layout/header';
 
 const Layout = ({ children }: PropsWithChildren) => {
-  const { maxWidth } = LAYOUT;
-
   return (
     <Box
-      maxWidth={maxWidth}
+      maxWidth={'1536px'}
       style={{
         margin: '0 auto',
         display: 'flex',
         alignItems: 'center',
       }}
     >
-      <Container size="1" align={'left'} className="hidden max-layout:block">
-        test
-      </Container>
-      <Container size="1" className="flex items-center min-layout:items-end">
+      <div className="hidden max-layout:block mr-14">
+        <LeftContainer />
+      </div>
+      <Container
+        size="1"
+        className="flex items-center min-layout:items-start  min-layout:w-[448px]"
+      >
         <Box
           style={{
             background: 'var(--gray-a2)',
             borderRadius: 'var(--radius-3)',
+            position: 'relative',
           }}
           minHeight={'100vh'}
         >
+          <Header />
           {children}
+          <Footer />
         </Box>
       </Container>
     </Box>
