@@ -7,7 +7,6 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   output: 'standalone',
-  swcMinify: true,
   compiler: {
     emotion: true,
   },
