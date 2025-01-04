@@ -1,5 +1,5 @@
 declare module '@seo' {
-  import { NextSeoProps } from 'next-seo';
+  import type { NextSeoProps } from 'next-seo';
 
   export interface JsonLDProps {
     context: string;
