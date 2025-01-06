@@ -70,7 +70,7 @@ const InputField: React.FC<InputFieldProps> = (props) => {
       {label && (
         <label className="text-tx-gray-10">
           {label}
-          {isRequired && <span className="400"> *</span>}
+          {isRequired && <span className="text-red-400"> *</span>}
         </label>
       )}
 
