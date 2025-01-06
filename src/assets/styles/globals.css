@@ -67,5 +67,6 @@
   }
   a, input, textarea, button {
     font-family: inherit;
+    outline: none !important;
   }
 }
