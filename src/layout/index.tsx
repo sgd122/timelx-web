@@ -15,7 +15,7 @@ const Layout = ({ children }: PropsWithChildren) => {
         alignItems: 'center',
       }}
     >
-      <div className="hidden max-layout:block mr-14">
+      <div className="hidden max-layout:block mx-14">
         <LeftContainer />
       </div>
       <Container

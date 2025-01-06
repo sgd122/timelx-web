@@ -1,3 +1,5 @@
+import plugin from 'tailwindcss/plugin';
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
@@ -21,6 +23,10 @@ module.exports = {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
+        'neutral-light-darkest': '#C5C6CC',
+        'bg-color': '#EAF2FF',
+        'neutral-dark-darkest': '#191B1A',
+        'grey-41': '#626971',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -64,5 +70,17 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    require('tailwindcss-animate'),
+    plugin(({ addComponents }) => {
+      addComponents({
+        '.input-text-light > input::placeholder': {
+          color: '#000',
+        },
+        '.input-text-light': {
+          outline: 'none',
+        },
+      });
+    }),
+  ],
 };
