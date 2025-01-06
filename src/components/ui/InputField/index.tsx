@@ -1,26 +1,74 @@
 import { Box, TextField } from '@radix-ui/themes';
 import type React from 'react';
 
-interface InputFieldProps
-  extends React.ComponentPropsWithoutRef<typeof TextField.Root> {
-  placeholder?: string;
+import ChipListInput from '@/components/ui/ChipListInput';
+
+export type FieldType = 'input' | 'chip';
+
+interface BaseProps {
+  label?: string;
+  isRequired?: boolean;
   wrapperProps?: React.ComponentProps<typeof Box>;
 }
 
-const InputField: React.FC<InputFieldProps> = ({
-  placeholder,
-  wrapperProps = {},
-  ...props
-}) => {
+type InputFieldProps =
+  | (BaseProps & {
+      fieldType: 'input';
+      inputProps?: React.ComponentProps<typeof TextField.Root>;
+    })
+  | (BaseProps & {
+      fieldType: 'chip';
+      chipProps?: React.ComponentProps<typeof ChipListInput>;
+    });
+
+/**
+ * @example
+ * ```tsx
+ * <InputField
+ *   fieldType={'input'}
+ *   inputProps={{ placeholder: 'placeholder 설명하기!' }}
+ *   label={'label'}
+ *   isRequired={true}
+ * />
+ *
+ * <InputField
+ *   fieldType={'chip'}
+ *   chipProps={{ placeholder: 'placeholder 설명하기!' }}
+ *   label={'label'}
+ *   isRequired={true}
+ * />
+ * ```
+ */
+
+const InputField: React.FC<InputFieldProps> = (props) => {
+  const { label, isRequired, fieldType, wrapperProps } = props;
+
+  const renderField = () => {
+    if (fieldType === 'input') {
+      return (
+        <TextField.Root
+          variant="soft"
+          className="bg-tx-gray-50 text-tx-gray-10 input-text-light"
+          {...props.inputProps}
+        />
+      );
+    } else if (fieldType === 'chip') {
+      return <ChipListInput {...props.chipProps} />;
+    }
+    return null;
+  };
+
   return (
-    <Box {...wrapperProps}>
-      <TextField.Root
-        placeholder={placeholder}
-        variant="soft"
-        className="bg-tx-gray-50 text-tx-gray-10 input-text-light"
-        {...props}
-      />
-    </Box>
+    <div className="flex flex-col px-6 py-2 border rounded-md bg-tx-gray-50">
+      {label && (
+        <label className="text-tx-gray-10">
+          {label}
+          {isRequired && <span className="400"> *</span>}
+        </label>
+      )}
+
+      <Box {...wrapperProps}>{renderField()}</Box>
+    </div>
   );
 };
 
