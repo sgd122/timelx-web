@@ -120,7 +120,7 @@ const LeftContainer = () => {
             color={'gray'}
             className="text-gray-900 font-bold bg-white hover:bg-gray-200"
           >
-            🧐 타임렉스 팀이 궁금하신가요?
+            🧐 타임럭스 팀이 궁금하신가요?
           </Button>
           <Link href={'https://forms.gle/FTxscDvBVyaucoaeA'} target={'_blank'}>
             <Button
