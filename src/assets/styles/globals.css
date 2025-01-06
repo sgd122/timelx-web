@@ -62,11 +62,17 @@
     font-family: Pretendard, Noto Serif KR, Malgun Gothic, Helvetica Neue, sans-serif;
     --default-font-family: Pretendard, Noto Serif KR, Malgun Gothic, Helvetica Neue, sans-serif;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   a, input, textarea, button {
     font-family: inherit;
     outline: none !important;
   }
+}
+
+.rt-TextFieldInput {
+  text-indent: 0;
 }
