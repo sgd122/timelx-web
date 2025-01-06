@@ -1,10 +1,11 @@
-import { Box, Button, TextField } from '@radix-ui/themes';
+import { Box, Button } from '@radix-ui/themes';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import Gemini from '@/assets/icon/gemini.png';
 import LogoTitle from '@/assets/icon/title.png';
 import ChipListInput from '@/components/ui/ChipListInput';
+import InputField from '@/components/ui/InputField';
 
 const LeftContainer = () => {
   const fields = [
@@ -72,11 +73,7 @@ const LeftContainer = () => {
               {/* 필드 컴포넌트 */}
               <Box maxWidth="170px">
                 {field.component === 'TextField' && (
-                  <TextField.Root
-                    placeholder={field.placeholder}
-                    variant="soft"
-                    className="bg-tx-gray-50 text-tx-gray-10 input-text-light"
-                  />
+                  <InputField placeholder={field.placeholder} />
                 )}
                 {field.component === 'ChipListInput' && (
                   <ChipListInput
