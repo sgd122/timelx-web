@@ -4,6 +4,7 @@ import type { PropsWithChildren } from 'react';
 import LeftContainer from '@/layout/_components/LeftContainer';
 import Footer from '@/layout/footer';
 import Header from '@/layout/header';
+import FramerMotion from '@/widgets/FramerMotion';
 
 const Layout = ({ children }: PropsWithChildren) => {
   return (
@@ -31,7 +32,7 @@ const Layout = ({ children }: PropsWithChildren) => {
           minHeight={'100vh'}
         >
           <Header />
-          {children}
+          <FramerMotion>{children}</FramerMotion>
           <Footer />
         </Box>
       </Container>
