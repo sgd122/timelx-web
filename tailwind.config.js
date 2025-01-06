@@ -23,10 +23,14 @@ module.exports = {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
-        'neutral-light-darkest': '#C5C6CC',
-        'bg-color': '#EAF2FF',
-        'neutral-dark-darkest': '#191B1A',
-        'grey-41': '#626971',
+        'tx-white': '#FFFFFF',
+        'tx-black': '#000000',
+        'tx-gray-10': '#191B1A',
+        'tx-gray-20': '#404040',
+        'tx-blue-50': '#006FFD',
+        'tx-yellow-50': '#FFC107',
+        'tx-red-50': '#FF0000',
+        'tx-gray-50': '#EAF2FF',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

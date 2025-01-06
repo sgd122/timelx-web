@@ -61,10 +61,10 @@ const LeftContainer = () => {
           {fields.map((field) => (
             <div
               key={field.id}
-              className="flex flex-col px-6 py-2 border rounded-md bg-bg-color"
+              className="flex flex-col px-6 py-2 border rounded-md bg-tx-gray-50"
             >
               {/* 필드 레이블 */}
-              <span className="text-neutral-dark-darkest">
+              <span className="text-tx-gray-10">
                 {field.label}{' '}
                 {field.isRequired && <span className="text-red-400">*</span>}
               </span>
@@ -75,7 +75,7 @@ const LeftContainer = () => {
                   <TextField.Root
                     placeholder={field.placeholder}
                     variant="soft"
-                    className="bg-bg-color text-neutral-dark-darkest input-text-light"
+                    className="bg-tx-gray-50 text-tx-gray-10 input-text-light"
                   />
                 )}
                 {field.component === 'ChipListInput' && (
