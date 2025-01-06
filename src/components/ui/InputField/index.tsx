@@ -2,13 +2,15 @@ import { Box, TextField } from '@radix-ui/themes';
 import type React from 'react';
 
 import ChipListInput from '@/components/ui/ChipListInput';
+import { cn } from '@/lib/utils';
 
 export type FieldType = 'input' | 'chip';
 
 interface BaseProps {
   label?: string;
   isRequired?: boolean;
-  wrapperProps?: React.ComponentProps<typeof Box>;
+  wrapperClassName?: string;
+  innerProps?: React.ComponentProps<typeof Box>;
 }
 
 type InputFieldProps =
@@ -41,7 +43,7 @@ type InputFieldProps =
  */
 
 const InputField: React.FC<InputFieldProps> = (props) => {
-  const { label, isRequired, fieldType, wrapperProps } = props;
+  const { label, isRequired, fieldType, wrapperClassName, innerProps } = props;
 
   const renderField = () => {
     if (fieldType === 'input') {
@@ -59,7 +61,12 @@ const InputField: React.FC<InputFieldProps> = (props) => {
   };
 
   return (
-    <div className="flex flex-col px-6 py-2 border rounded-md bg-tx-gray-50">
+    <div
+      className={cn(
+        'flex flex-col px-6 py-2 border rounded-md bg-tx-gray-50',
+        wrapperClassName
+      )}
+    >
       {label && (
         <label className="text-tx-gray-10">
           {label}
@@ -67,7 +74,7 @@ const InputField: React.FC<InputFieldProps> = (props) => {
         </label>
       )}
 
-      <Box {...wrapperProps}>{renderField()}</Box>
+      <Box {...innerProps}>{renderField()}</Box>
     </div>
   );
 };

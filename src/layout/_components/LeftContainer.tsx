@@ -72,7 +72,7 @@ const LeftContainer = () => {
               inputProps={{ placeholder: field.placeholder }}
               label={field.label}
               isRequired={field.isRequired}
-              wrapperProps={{ maxWidth: '170px' }}
+              innerProps={{ maxWidth: '170px' }}
             />
           ))}
 
