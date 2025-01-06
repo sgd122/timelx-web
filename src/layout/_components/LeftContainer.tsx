@@ -73,7 +73,10 @@ const LeftContainer = () => {
               {/* 필드 컴포넌트 */}
               <Box maxWidth="170px">
                 {field.component === 'TextField' && (
-                  <InputField placeholder={field.placeholder} />
+                  <InputField
+                    placeholder={field.placeholder}
+                    wrapperProps={{ maxWidth: '170px' }}
+                  />
                 )}
                 {field.component === 'ChipListInput' && (
                   <ChipListInput

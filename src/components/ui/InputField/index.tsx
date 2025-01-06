@@ -4,18 +4,16 @@ import type React from 'react';
 interface InputFieldProps
   extends React.ComponentPropsWithoutRef<typeof TextField.Root> {
   placeholder?: string;
-  maxWidth?: string;
-  wrapperClassName?: string;
+  wrapperProps?: React.ComponentProps<typeof Box>;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
   placeholder,
-  maxWidth = '170px',
-  wrapperClassName,
+  wrapperProps = {},
   ...props
 }) => {
   return (
-    <Box maxWidth={maxWidth} className={wrapperClassName}>
+    <Box {...wrapperProps}>
       <TextField.Root
         placeholder={placeholder}
         variant="soft"
