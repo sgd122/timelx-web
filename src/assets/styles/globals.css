@@ -60,8 +60,12 @@
   * {
     @apply border-border;
     font-family: Pretendard, Noto Serif KR, Malgun Gothic, Helvetica Neue, sans-serif;
+    --default-font-family: Pretendard, Noto Serif KR, Malgun Gothic, Helvetica Neue, sans-serif;
   }
   body {
     @apply bg-background text-foreground;
+  }
+  a, input, textarea, button {
+    font-family: inherit;
   }
 }
