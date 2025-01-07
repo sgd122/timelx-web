@@ -16,7 +16,9 @@ const Header = () => {
       <Link href="/">
         <FaHome size={'24'} />
       </Link>
-      <Image src={LogoTitle} alt={'logo'} height={24} />
+      <h1>
+        <Image src={LogoTitle} alt={'timelx'} height={24} />
+      </h1>
       <FaPlus size={'24'} />
     </Flex>
   );
