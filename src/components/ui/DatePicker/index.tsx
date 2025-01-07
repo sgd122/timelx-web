@@ -54,10 +54,14 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   formatStr = 'PPP',
 }) => {
   const [date, setDate] = React.useState<Date | undefined>(value);
+  const stableValue = React.useMemo(() => value, [JSON.stringify(value)]);
 
   React.useEffect(() => {
-    setDate(value);
-  }, [value]);
+    // NOTE: lodash.isEqual 또는 getTime을 이용해 비교하는게 효과적일수 있음.
+    if (stableValue !== date) {
+      setDate(stableValue);
+    }
+  }, [stableValue, date]);
 
   return (
     <Popover.Root>
