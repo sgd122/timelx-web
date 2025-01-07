@@ -69,10 +69,9 @@ const LeftContainer = () => {
             <InputField
               key={field.id}
               fieldType={field.component}
-              inputProps={{ placeholder: field.placeholder }}
               label={field.label}
               isRequired={field.isRequired}
-              innerProps={{ maxWidth: '170px' }}
+              inputProps={{ placeholder: field.placeholder }}
             />
           ))}
 

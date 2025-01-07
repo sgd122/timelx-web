@@ -10,6 +10,7 @@ interface BaseProps {
   label?: string;
   isRequired?: boolean;
   wrapperClassName?: string;
+  icon?: React.ReactNode;
   innerProps?: React.ComponentProps<typeof Box>;
 }
 
@@ -43,7 +44,8 @@ type InputFieldProps =
  */
 
 const InputField: React.FC<InputFieldProps> = (props) => {
-  const { label, isRequired, fieldType, wrapperClassName, innerProps } = props;
+  const { label, isRequired, fieldType, icon, wrapperClassName, innerProps } =
+    props;
 
   const renderField = () => {
     if (fieldType === 'input') {
@@ -63,7 +65,7 @@ const InputField: React.FC<InputFieldProps> = (props) => {
   return (
     <div
       className={cn(
-        'flex flex-col px-6 py-2 border rounded-md bg-tx-gray-50',
+        'relative flex flex-col px-6 py-2 border rounded-md bg-tx-gray-50',
         wrapperClassName
       )}
     >
@@ -74,7 +76,15 @@ const InputField: React.FC<InputFieldProps> = (props) => {
         </label>
       )}
 
-      <Box {...innerProps}>{renderField()}</Box>
+      <Box className={icon ? 'w-full pr-4' : ''} {...innerProps}>
+        {renderField()}
+      </Box>
+
+      {icon && (
+        <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center">
+          {icon}
+        </div>
+      )}
     </div>
   );
 };
