@@ -1,4 +1,4 @@
-import { Box, TextField } from '@radix-ui/themes';
+import { Box, Text, TextField } from '@radix-ui/themes';
 import type React from 'react';
 
 import ChipListInput from '@/components/ui/ChipListInput';
@@ -71,7 +71,7 @@ const InputField: React.FC<InputFieldProps> = (props) => {
     >
       {label && (
         <label className="text-tx-gray-10">
-          {label}
+          <Text size="2">{label}</Text>
           {isRequired && <span className="text-red-400"> *</span>}
         </label>
       )}
