@@ -7,6 +7,20 @@ import { cn } from '@/lib/utils';
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
+/**
+ * @example
+ * ```tsx
+ * <Calendar
+ *   mode="single"
+ *   selected={field.value}
+ *   onSelect={field.onChange}
+ *   disabled={(date) =>
+ *     date > new Date() || date < new Date("1900-01-01")
+ *   }
+ *   initialFocus
+ * />
+ * ```
+ */
 const Calendar = ({
   className,
   classNames,
@@ -69,6 +83,5 @@ const Calendar = ({
     />
   );
 };
-Calendar.displayName = 'Calendar';
 
-export { Calendar };
+export default Calendar;
