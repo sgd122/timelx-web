@@ -54,3 +54,5 @@ node_modules/
 
 # playwrite
 text-results/
+
+.codegpt
