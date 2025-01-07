@@ -12,6 +12,16 @@ interface DatePickerProps {
   placeholder?: string;
   formatStr?: string;
 }
+
+/**
+ * @example
+ * ```tsx
+ * <DatePicker
+ *   placeholder='Pick a date'
+ *   formatStr='PPP'
+ * />
+ * ```
+ */
 export const DatePicker: React.FC<DatePickerProps> = ({
   value,
   onChange,
