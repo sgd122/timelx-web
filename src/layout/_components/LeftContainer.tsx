@@ -1,40 +1,47 @@
-import { Box, Button, TextField } from '@radix-ui/themes';
+import { Button } from '@radix-ui/themes';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import Gemini from '@/assets/icon/gemini.png';
 import LogoTitle from '@/assets/icon/title.png';
-import ChipListInput from '@/components/ui/ChipListInput';
+import type { FieldType } from '@/components/ui/InputField';
+import InputField from '@/components/ui/InputField';
 
 const LeftContainer = () => {
-  const fields = [
+  const fields: {
+    id: string;
+    label: string;
+    placeholder: string;
+    isRequired: boolean;
+    component: FieldType;
+  }[] = [
     {
       id: 'date',
       label: '날짜 선택',
       placeholder: '날짜 입력',
       isRequired: true,
-      component: 'TextField',
+      component: 'input',
     },
     {
       id: 'location',
       label: '지역 입력',
       placeholder: '지역 입력',
       isRequired: false,
-      component: 'TextField',
+      component: 'input',
     },
     {
       id: 'time',
       label: '시간 선택',
       placeholder: '17:00 - 21:00',
       isRequired: false,
-      component: 'TextField',
+      component: 'input',
     },
     {
       id: 'keywords',
       label: '키워드 입력',
       placeholder: '#축제 #강연 #할인행사',
       isRequired: false,
-      component: 'TextField',
+      component: 'input',
     },
   ];
 
@@ -59,35 +66,13 @@ const LeftContainer = () => {
         {/* Filters */}
         <div className="flex justify-center gap-4 mt-8">
           {fields.map((field) => (
-            <div
+            <InputField
               key={field.id}
-              className="flex flex-col px-6 py-2 border rounded-md bg-tx-gray-50"
-            >
-              {/* 필드 레이블 */}
-              <span className="text-tx-gray-10">
-                {field.label}{' '}
-                {field.isRequired && <span className="text-red-400">*</span>}
-              </span>
-
-              {/* 필드 컴포넌트 */}
-              <Box maxWidth="170px">
-                {field.component === 'TextField' && (
-                  <TextField.Root
-                    placeholder={field.placeholder}
-                    variant="soft"
-                    className="bg-tx-gray-50 text-tx-gray-10 input-text-light"
-                  />
-                )}
-                {field.component === 'ChipListInput' && (
-                  <ChipListInput
-                    placeholder={field.placeholder}
-                    onChange={(values) =>
-                      console.log(`Current tags for ${field.id}:`, values)
-                    }
-                  />
-                )}
-              </Box>
-            </div>
+              fieldType={field.component}
+              label={field.label}
+              isRequired={field.isRequired}
+              inputProps={{ placeholder: field.placeholder }}
+            />
           ))}
 
           <Button
