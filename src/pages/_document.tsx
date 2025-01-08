@@ -1,7 +1,7 @@
 import { Head, Html, Main, NextScript } from 'next/document';
 
 const Document = () => (
-  <Html lang="en">
+  <Html lang="ko">
     <Head>
       <link
         rel="preload"

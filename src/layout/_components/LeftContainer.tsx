@@ -1,6 +1,7 @@
 import { Button } from '@radix-ui/themes';
 import Image from 'next/image';
 import Link from 'next/link';
+import type React from 'react';
 
 import Gemini from '@/assets/icon/gemini.png';
 import LogoTitle from '@/assets/icon/title.png';

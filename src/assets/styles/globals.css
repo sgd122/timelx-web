@@ -28,6 +28,14 @@
     --chart-4: hsl(43 74% 66%);
     --chart-5: hsl(27 87% 67%);
     --radius: 0.5rem;
+    --tx-white: '#FFFFFF';
+    --tx-black: '#000000';
+    --tx-gray-10: '#191B1A';
+    --tx-gray-20: '#404040';
+    --tx-blue-50: '#006FFD';
+    --tx-yellow-50: '#FFC107';
+    --tx-red-50: '#FF0000';
+    --tx-gray-50: '#EAF2FF';
   }
   .dark {
     --background: hsl(0 0% 3.9%);
@@ -54,6 +62,14 @@
     --chart-3: hsl(30 80% 55%);
     --chart-4: hsl(280 65% 60%);
     --chart-5: hsl(340 75% 55%);
+    --tx-white: #FFFFFF;
+    --tx-black: #000000;
+    --tx-gray-10: #191B1A;
+    --tx-gray-20: #404040;
+    --tx-blue-50: #006FFD;
+    --tx-yellow-50: #FFC107;
+    --tx-red-50: #FF0000;
+    --tx-gray-50: #EAF2FF;
   }
 }
 @layer base {

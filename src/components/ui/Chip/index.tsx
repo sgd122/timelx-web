@@ -1,4 +1,4 @@
-import { X } from 'lucide-react';
+import { FiX } from 'react-icons/fi';
 
 import { cn } from '@/lib/utils';
 
@@ -46,7 +46,7 @@ const Chip = ({ label, onDelete, className }: ChipProps) => {
           )}
           aria-label={`Remove ${label}`}
         >
-          <X size={12} />
+          <FiX size={12} />
         </button>
       )}
     </div>

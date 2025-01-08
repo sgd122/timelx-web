@@ -1,14 +1,15 @@
 import { Button, Popover } from '@radix-ui/themes';
 import { format } from 'date-fns';
-import { CalendarIcon } from 'lucide-react';
-import * as React from 'react';
+import { ko } from 'date-fns/locale';
+import type * as React from 'react';
+import { CiCalendar } from 'react-icons/ci';
 
 import Calendar from '@/components/ui/Calendar';
 import { cn } from '@/lib/utils';
 
 interface DatePickerProps {
-  value?: Date;
-  onChange?: (date?: Date) => void;
+  value: Date | undefined;
+  onChange: (date?: Date) => void;
   placeholder?: string;
   formatStr?: string;
 }
@@ -48,21 +49,11 @@ interface DatePickerProps {
  * - `Popover`: 캘린더 드롭다운을 감싸는 래퍼 컴포넌트입니다.
  */
 export const DatePicker: React.FC<DatePickerProps> = ({
-  value,
+  value = new Date(),
   onChange,
   placeholder = 'Pick a date',
   formatStr = 'PPP',
 }) => {
-  const [date, setDate] = React.useState<Date | undefined>(value);
-  const stableValue = React.useMemo(() => value, [JSON.stringify(value)]);
-
-  React.useEffect(() => {
-    // NOTE: lodash.isEqual 또는 getTime을 이용해 비교하는게 효과적일수 있음.
-    if (stableValue !== date) {
-      setDate(stableValue);
-    }
-  }, [stableValue, date]);
-
   return (
     <Popover.Root>
       <Popover.Trigger>
@@ -70,21 +61,22 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           variant={'outline'}
           className={cn(
             'w-[240px] justify-start text-left font-normal',
-            !date && 'text-muted-foreground'
+            !value && 'text-muted-foreground'
           )}
         >
-          <CalendarIcon />
-          {date ? format(date, formatStr) : <span>{placeholder}</span>}
+          <CiCalendar size="24" />
+          {value ? (
+            format(value, formatStr, { locale: ko })
+          ) : (
+            <span>{placeholder}</span>
+          )}
         </Button>
       </Popover.Trigger>
       <Popover.Content className="w-auto p-0" align="start">
         <Calendar
           mode="single"
-          selected={date}
-          onSelect={(_date) => {
-            setDate(_date);
-            onChange && onChange(_date);
-          }}
+          selected={value}
+          onSelect={onChange}
           initialFocus={true}
         />
       </Popover.Content>
