@@ -7,7 +7,6 @@ import GlobalStyles from '@/components/GlobalStyles';
 import JotaiProvider from '@/components/providers/Jotai';
 import ReactQueryProvider from '@/components/providers/ReactQuery';
 import Seo from '@/components/Seo';
-import { useMocks } from '@/hooks/useMocks';
 import Layout from '@/layout';
 
 import '@/assets/styles/globals.css';
@@ -25,8 +24,6 @@ const ExternalScript = dynamic(() => import('@/components/scripts'), {
 
 const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
   const { seo, dehydratedState } = pageProps;
-
-  useMocks();
 
   return (
     <>
