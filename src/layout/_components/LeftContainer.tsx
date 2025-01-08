@@ -6,8 +6,13 @@ import Gemini from '@/assets/icon/gemini.png';
 import LogoTitle from '@/assets/icon/title.png';
 import type { FieldType } from '@/components/ui/InputField';
 import InputField from '@/components/ui/InputField';
+import { cn } from '@/lib/utils';
 
-const LeftContainer = () => {
+interface LeftContainerProps {
+  className?: string;
+}
+
+const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
   const fields: {
     id: string;
     label: string;
@@ -46,7 +51,12 @@ const LeftContainer = () => {
   ];
 
   return (
-    <div className="flex flex-col justify-between min-h-screen py-10">
+    <div
+      className={cn(
+        'flex flex-col justify-between min-h-screen py-10',
+        className
+      )}
+    >
       {/* Header */}
       <div className="flex items-center text-center">
         <Image src={LogoTitle} alt={'logo'} height={20} />
