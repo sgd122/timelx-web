@@ -68,7 +68,7 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
       </div>
 
       {/* Main Content */}
-      <main className="mt-12 ml-6">
+      <div className="ml-6">
         <p className="text-lg font-medium">AI time search engine</p>
         <span className="text-5xl font-bold leading-tight mt-2">
           시간을 밝히다<span className="text-yellow-500">.</span>
@@ -106,7 +106,7 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
           width={170}
           height={63}
         />
-      </main>
+      </div>
 
       {/* Footer */}
       <div className="mt-12 text-center">

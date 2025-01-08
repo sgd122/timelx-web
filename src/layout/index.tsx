@@ -16,7 +16,7 @@ const Layout = ({ children }: PropsWithChildren) => {
         alignItems: 'center',
       }}
     >
-      <LeftContainer className="hidden max-layout:block mx-14" />
+      <LeftContainer className="hidden max-layout:flex mx-14" />
       <Container
         size="1"
         className="flex items-center min-layout:items-start  min-layout:w-[448px]"
