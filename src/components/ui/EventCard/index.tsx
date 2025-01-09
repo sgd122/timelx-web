@@ -64,18 +64,14 @@ const EventCard: React.FC<EventCardProps> = ({
   };
 
   return (
-    <div
-      className={cn(
-        'flex items-center gap-4 p-4 bg-accent text-white rounded-lg shadow-md'
-      )}
-    >
+    <div className={cn('flex items-center gap-4')}>
       {/* 이미지 */}
       <Image
         src={image}
         alt={title}
         width={60}
         height={60}
-        className="w-16 h-16 rounded-lg object-cover"
+        className="w-[60px] h-[60px] rounded-lg object-cover"
       />
 
       {/* 텍스트 컨텐츠 */}
