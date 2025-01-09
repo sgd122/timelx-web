@@ -1,4 +1,4 @@
-import { Button, Popover } from '@radix-ui/themes';
+import { Button, Popover, Select } from '@radix-ui/themes';
 import type * as React from 'react';
 import { CiClock1 } from 'react-icons/ci';
 
@@ -61,41 +61,50 @@ export const TimePicker: React.FC<TimePickerProps> = ({
       <Popover.Content className="w-auto p-0" align="start">
         <div className="flex p-2 gap-2 bg-accent">
           {/* 시간 선택 */}
-          <select
-            className="border rounded p-1 bg-accent outline-0"
-            onChange={(e) =>
-              onChange &&
-              onChange(`${e.target.value}:${value?.split(':')[1] || '00'}`)
-            }
+          <Select.Root
             value={value?.split(':')[0] || ''}
-          >
-            <option value="" disabled={true}>
-              Hour
-            </option>
-            {hours.map((hour) => (
-              <option key={hour} value={hour}>
-                {hour}
-              </option>
-            ))}
-          </select>
-          {/* 분 선택 */}
-          <select
-            className="border rounded p-1 bg-accent outline-0"
-            onChange={(e) =>
-              onChange &&
-              onChange(`${value?.split(':')[0] || '00'}:${e.target.value}`)
+            onValueChange={(hour) =>
+              onChange && onChange(`${hour}:${value?.split(':')[1] || '00'}`)
             }
-            value={value?.split(':')[1] || ''}
           >
-            <option value="" disabled={true}>
-              Minute
-            </option>
-            {minutes.map((minute) => (
-              <option key={minute} value={minute}>
-                {minute}
-              </option>
-            ))}
-          </select>
+            <Select.Trigger
+              className="w-[80px] border rounded p-1 bg-accent text-left outline-0 shadow-none"
+              placeholder="Hour"
+            />
+            <Select.Content color="gray">
+              <Select.Group>
+                <Select.Label>Hour</Select.Label>
+                {hours.map((hour) => (
+                  <Select.Item key={hour} value={hour} className="p-1">
+                    {hour}
+                  </Select.Item>
+                ))}
+              </Select.Group>
+            </Select.Content>
+          </Select.Root>
+
+          {/* 분 선택 */}
+          <Select.Root
+            value={value?.split(':')[1] || ''}
+            onValueChange={(minute) =>
+              onChange && onChange(`${value?.split(':')[0] || '00'}:${minute}`)
+            }
+          >
+            <Select.Trigger
+              className="w-[80px] border rounded p-1 bg-accent text-left outline-0 shadow-none"
+              placeholder="Minute"
+            />
+            <Select.Content color="gray">
+              <Select.Group>
+                <Select.Label>Minute</Select.Label>
+                {minutes.map((minute) => (
+                  <Select.Item key={minute} value={minute} className="p-1">
+                    {minute}
+                  </Select.Item>
+                ))}
+              </Select.Group>
+            </Select.Content>
+          </Select.Root>
         </div>
       </Popover.Content>
     </Popover.Root>
