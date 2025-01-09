@@ -10,6 +10,14 @@ const nextConfig: NextConfig = {
   compiler: {
     emotion: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'aaa.bbb.com',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

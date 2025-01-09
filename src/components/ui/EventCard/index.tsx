@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import * as React from 'react';
 import { FiHeart } from 'react-icons/fi';
 
@@ -69,11 +70,13 @@ const EventCard: React.FC<EventCardProps> = ({
       )}
     >
       {/* 이미지 */}
-      <div
-        className="w-16 h-16 flex-shrink-0 rounded-lg bg-cover bg-center"
-        style={{ backgroundImage: `url(${image})` }}
-        aria-label={title}
-      ></div>
+      <Image
+        src={image}
+        alt={title}
+        width={60}
+        height={60}
+        className="w-16 h-16 rounded-lg object-cover"
+      />
 
       {/* 텍스트 컨텐츠 */}
       <div className="flex flex-col flex-1">
