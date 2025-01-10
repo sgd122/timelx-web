@@ -4,24 +4,26 @@ import { FiEdit2 } from 'react-icons/fi';
 
 interface ProfileAvatarProps {
   src: string;
+  isEditing?: boolean; // 편집 여부
   onClick?: () => void;
 }
 
 /**
  * `ProfileAvatar` 컴포넌트
  *
- * 사용자 프로필 아바타를 렌더링하며, 하단에 편집 아이콘을 표시합니다.
+ * 사용자 프로필 아바타를 렌더링하며, 편집 모드일 경우 하단에 편집 아이콘을 표시합니다.
  * 아이콘을 클릭하면 편집 동작을 트리거할 수 있습니다.
  *
  * ---
  * 🌟 **주요 기능**:
  * - 사용자 프로필 아바타 표시.
- * - 아바타 하단 우측에 편집 아이콘(`FiEdit2`) 표시.
+ * - 아바타 하단 우측에 편집 아이콘(`FiEdit2`) 표시 (편집 모드일 경우).
  * - 편집 아이콘 클릭 시 이벤트 트리거(`onClick`).
  *
  * ---
  * 📋 **Props**:
  * - `src` (필수): 아바타 이미지 경로.
+ * - `isEditing` (선택): 편집 모드 여부. 기본값은 `false`.
  * - `onClick` (선택): 편집 아이콘 클릭 시 호출되는 콜백 함수.
  *
  * ---
@@ -29,20 +31,29 @@ interface ProfileAvatarProps {
  * ```tsx
  * <ProfileAvatar
  *   src="/path/to/avatar.jpg"
+ *   isEditing={true}
  *   onClick={() => console.log('편집 아이콘 클릭!')}
  * />
  * ```
  */
-const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ src, onClick }) => {
+const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
+  src,
+  isEditing = false,
+  onClick,
+}) => {
   return (
     <Box className="relative w-fit">
+      {/* Avatar */}
       <Avatar size="6" radius="full" src={src} fallback="A" />
-      <Box
-        className="absolute bottom-0 right-0 bg-blue-500 text-white rounded-full p-2 cursor-pointer shadow-md hover:bg-blue-600 transition-colors"
-        onClick={onClick}
-      >
-        <FiEdit2 size={10} />
-      </Box>
+      {/* Edit Icon (조건부 렌더링) */}
+      {isEditing && (
+        <Box
+          className="absolute bottom-0 right-0 bg-blue-500 text-white rounded-full p-2 cursor-pointer shadow-md hover:bg-blue-600 transition-colors"
+          onClick={onClick}
+        >
+          <FiEdit2 size={16} />
+        </Box>
+      )}
     </Box>
   );
 };
