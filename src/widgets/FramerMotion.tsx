@@ -1,24 +1,18 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import type { PropsWithChildren } from 'react';
-import { useEffect, useState } from 'react';
 
 const FramerMotion = ({ children }: PropsWithChildren) => {
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
   const router = useRouter();
 
-  useEffect(() => {
-    setIsFirstLoad(false);
-  }, []);
-
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={router.pathname}
-        initial={isFirstLoad ? false : { x: '100%' }} // 처음 로드 시 애니메이션 생략
-        animate={{ x: 0 }}
-        exit={{ x: '-100%' }}
-        transition={{ duration: 0.5 }}
+        initial={{ x: '100%' }} // 들어오는 페이지: 오른쪽에서 시작
+        animate={{ x: 0 }} // 중앙으로 이동
+        exit={{ x: '-100%' }} // 나가는 페이지: 왼쪽으로 나감
+        transition={{ duration: 0.5, ease: 'easeInOut' }}
       >
         {children}
       </motion.div>

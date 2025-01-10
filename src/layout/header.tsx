@@ -8,7 +8,7 @@ import LogoTitle from '@/assets/icon/title.png';
 const Header = () => {
   return (
     <Flex
-      className={'mx-7'}
+      className={'mx-6'}
       justify={'between'}
       height={'56px'}
       align={'center'}

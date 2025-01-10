@@ -1,14 +1,26 @@
-import { Button, Flex, Text } from '@radix-ui/themes';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
+import type { GetServerSideProps } from 'next';
+
+import HomeContainer from '@/views/home';
 
 const Home = () => {
-  return (
-    <>
-      <Flex direction="column" gap="2">
-        <Text>Hello from Radix Themes :)</Text>
-        <Button>go</Button>
-      </Flex>
-    </>
-  );
+  return <HomeContainer />;
 };
 
 export default Home;
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const queryClient = new QueryClient();
+
+  // NOTE: Example code
+  // await queryClient.prefetchQuery({
+  //   queryKey: ['fetchMainSectionLocal'],
+  //   queryFn: () => fetchMainSectionLocal(req),
+  // });
+
+  return {
+    props: {
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+    },
+  };
+};

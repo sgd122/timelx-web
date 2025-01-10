@@ -26,11 +26,16 @@ const Layout = ({ children }: PropsWithChildren) => {
             background: 'var(--gray-a2)',
             borderRadius: 'var(--radius-3)',
             position: 'relative',
+            overflow: 'hidden',
           }}
           minHeight={'100vh'}
         >
           <Header />
-          <FramerMotion>{children}</FramerMotion>
+
+          <FramerMotion>
+            <Box className="mx-6">{children}</Box>
+          </FramerMotion>
+
           <Footer />
         </Box>
       </Container>
