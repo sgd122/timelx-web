@@ -1,3 +1,4 @@
+import { Button } from '@radix-ui/themes';
 import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
@@ -60,7 +61,8 @@ const EventCard: React.FC<EventCardProps> = ({
 }) => {
   const [favorite, setFavorite] = React.useState(isFavorite);
 
-  const handleToggle = () => {
+  const handleToggle = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    e.preventDefault();
     const newValue = !favorite;
     setFavorite(newValue);
     onFavoriteToggle?.(newValue);
@@ -85,7 +87,12 @@ const EventCard: React.FC<EventCardProps> = ({
       </div>
 
       {/* 찜 버튼 */}
-      <button onClick={handleToggle} className="p-1" aria-label="찜하기">
+      <Button
+        variant="outline"
+        onClick={handleToggle}
+        className="p-1 shadow-none"
+        aria-label="찜하기"
+      >
         <FiHeart
           size={24}
           className={cn(
@@ -95,7 +102,7 @@ const EventCard: React.FC<EventCardProps> = ({
               : 'text-gray-400 fill-transparent'
           )}
         />
-      </button>
+      </Button>
     </Link>
   );
 };
