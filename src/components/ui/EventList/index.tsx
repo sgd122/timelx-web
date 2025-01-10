@@ -39,6 +39,7 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
       {events.map((event, index) => (
         <EventCard
           key={event.id}
+          id={event.id}
           image={event.image}
           title={event.title}
           date={event.date}

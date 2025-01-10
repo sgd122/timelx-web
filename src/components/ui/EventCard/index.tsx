@@ -1,10 +1,12 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import * as React from 'react';
 import { FiHeart } from 'react-icons/fi';
 
 import { cn } from '@/lib/utils';
 
 interface EventCardProps {
+  id: number;
   image: string;
   title: string;
   date: string;
@@ -48,6 +50,7 @@ interface EventCardProps {
  * ```
  */
 const EventCard: React.FC<EventCardProps> = ({
+  id,
   image,
   title,
   date,
@@ -64,7 +67,7 @@ const EventCard: React.FC<EventCardProps> = ({
   };
 
   return (
-    <div className={cn('flex items-center gap-4')}>
+    <Link href={`/event/${id}`} className={cn('flex items-center gap-4')}>
       {/* 이미지 */}
       <Image
         src={image}
@@ -93,7 +96,7 @@ const EventCard: React.FC<EventCardProps> = ({
           )}
         />
       </button>
-    </div>
+    </Link>
   );
 };
 
