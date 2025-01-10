@@ -2,10 +2,17 @@ import styled from '@emotion/styled';
 import { Tabs } from '@radix-ui/themes';
 import { useAtom } from 'jotai/react';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { FaCog, FaHeart, FaLightbulb } from 'react-icons/fa';
 
 import { activeTabAtom } from '@/store/navigationAtom';
 import type { NavigateTab } from '@/types/navigate';
+
+enum TabsEnum {
+  Discover = 'discover',
+  Saved = 'saved',
+  Settings = 'settings',
+}
 
 const Footer = () => {
   const router = useRouter();
@@ -25,22 +32,45 @@ const Footer = () => {
 
   const onRouter = (path: NavigateTab) => {
     switch (path) {
-      case 'discover':
+      case TabsEnum.Discover:
         router.push('/');
         break;
-      case 'saved':
-        router.push('/');
+      case TabsEnum.Saved:
+        router.push('/saved');
         break;
-      case 'settings':
-        router.push('/');
+      case TabsEnum.Settings:
+        router.push('/settings');
         break;
     }
   };
 
+  const determineActiveTab = (pathname: string): TabsEnum | null => {
+    if (
+      ['/', '/search'].includes(pathname) ||
+      pathname.startsWith('/search/result') ||
+      pathname.startsWith('/event/')
+    ) {
+      return TabsEnum.Discover;
+    }
+    if (pathname.startsWith('/saved')) {
+      return TabsEnum.Saved;
+    }
+    if (pathname.startsWith('/settings')) {
+      return TabsEnum.Settings;
+    }
+    return null;
+  };
+
+  useEffect(() => {
+    const { pathname } = router;
+    const activeTab = determineActiveTab(pathname);
+    setActiveTab(activeTab as NavigateTab);
+  }, [router.pathname]);
+
   return (
     <Tabs.Root
       className="absolute bottom-0 w-full"
-      defaultValue="discover"
+      defaultValue={determineActiveTab(router.pathname) || undefined}
       onValueChange={(value) => {
         setActiveTab(value as NavigateTab);
         onRouter(value as NavigateTab);
@@ -54,7 +84,9 @@ const Footer = () => {
         <TabTriggerOverride value="discover">
           <FaLightbulb
             className={
-              'discover' === activeTab ? 'text-yellow-400' : 'text-gray-500'
+              TabsEnum.Discover === activeTab
+                ? 'text-yellow-400'
+                : 'text-gray-500'
             }
             size={24}
           />
@@ -63,7 +95,7 @@ const Footer = () => {
         <TabTriggerOverride value="saved">
           <FaHeart
             className={
-              'saved' === activeTab ? 'text-yellow-400' : 'text-gray-500'
+              TabsEnum.Saved === activeTab ? 'text-yellow-400' : 'text-gray-500'
             }
             size={24}
           />
@@ -72,7 +104,9 @@ const Footer = () => {
         <TabTriggerOverride value="settings">
           <FaCog
             className={
-              'settings' === activeTab ? 'text-yellow-400' : 'text-gray-500'
+              TabsEnum.Settings === activeTab
+                ? 'text-yellow-400'
+                : 'text-gray-500'
             }
             size={24}
           />
