@@ -21,7 +21,7 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
     placeholder: string;
     isRequired: boolean;
     component: FieldType;
-    type: InputType;
+    type?: InputType;
   }[] = [
     {
       id: 'date',
