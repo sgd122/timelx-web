@@ -139,6 +139,14 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         async authorize(credentials): Promise<IUser | null> {
+          return {
+            id: 1,
+            name: '홍길동',
+            nick_name: '홍길동',
+            email: 'aaa@gmail.com',
+            accessToken: 'plainTextToken',
+          };
+
           const tokenResponse = await fetch(`${BACKEND_API}/login`, {
             method: 'POST',
             body: JSON.stringify(credentials),

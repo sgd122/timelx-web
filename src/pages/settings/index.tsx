@@ -1,5 +1,7 @@
+import SettingContainer from '@/views/settings';
+
 const Settings = () => {
-  return <>Settings Page</>;
+  return <SettingContainer />;
 };
 
 export default Settings;
