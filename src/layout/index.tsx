@@ -1,4 +1,4 @@
-import { Box, Container } from '@radix-ui/themes';
+import { Box, Container, ScrollArea } from '@radix-ui/themes';
 import type { PropsWithChildren } from 'react';
 
 import LeftContainer from '@/layout/_components/LeftContainer';
@@ -19,7 +19,7 @@ const Layout = ({ children }: PropsWithChildren) => {
       <LeftContainer className="hidden max-layout:flex mx-14" />
       <Container
         size="1"
-        className="flex items-center min-layout:items-start  min-layout:w-[448px]"
+        className="flex items-center min-layout:items-start min-layout:w-[448px]"
       >
         <Box
           style={{
@@ -27,15 +27,23 @@ const Layout = ({ children }: PropsWithChildren) => {
             borderRadius: 'var(--radius-3)',
             position: 'relative',
             overflow: 'hidden',
+            height: '100vh',
           }}
-          minHeight={'100vh'}
+          height={'100vh'}
         >
           <Header />
-
-          <FramerMotion>
-            <Box className="mx-6">{children}</Box>
-          </FramerMotion>
-
+          <Box
+            style={{
+              height: 'calc(100vh - 128px)',
+              overflow: 'hidden',
+            }}
+          >
+            <ScrollArea type="hover" scrollbars="vertical">
+              <FramerMotion>
+                <Box className="mx-6 my-4">{children}</Box>
+              </FramerMotion>
+            </ScrollArea>
+          </Box>
           <Footer />
         </Box>
       </Container>

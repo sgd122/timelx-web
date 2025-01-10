@@ -1,15 +1,16 @@
-import { Button, Flex, Text } from '@radix-ui/themes';
+import { Button } from '@radix-ui/themes';
 import Link from 'next/link';
+
+import EventList from '@/components/ui/EventList';
+import { events } from '@/views/home/dummy';
 
 const HomeContainer = () => {
   return (
     <>
-      <Flex direction="column" gap="2">
-        <Text>Home Page :)</Text>
-        <Link href="/search">
-          <Button>go search</Button>
-        </Link>
-      </Flex>
+      <EventList events={events} />
+      <Link href="/search">
+        <Button>go search</Button>
+      </Link>
     </>
   );
 };
