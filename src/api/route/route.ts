@@ -28,18 +28,15 @@ const urlGenerator = (apiUrl: string, params?: URLParams) => {
 export const mainRoute = <K extends ApiRouteKey>(params: ApiRouteParams<K>) => {
   switch (params.key) {
     case 'main.sections':
-      return urlGenerator(
-        `${VERSION['V3']}/main/sections`,
-        params.searchParams
-      );
+      return urlGenerator(`/main/sections`, params.searchParams);
     case 'main.catalogs':
-      return urlGenerator(`${VERSION['V3']}/main/catalogs`);
+      return urlGenerator(`/main/catalogs`);
     case 'main.featureHotels':
-      return urlGenerator(`${VERSION['V3']}/main/feature-hotels`);
+      return urlGenerator(`/main/feature-hotels`);
     case 'main.faqs':
-      return urlGenerator(`${VERSION['V3']}/main/faqs`);
+      return urlGenerator(`/main/faqs`);
     case 'main.reviews':
-      return urlGenerator(`${VERSION['V3']}/main/reviews`);
+      return urlGenerator(`/main/reviews`);
     default:
       return '';
   }
