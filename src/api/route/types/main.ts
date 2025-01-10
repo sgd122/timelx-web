@@ -12,6 +12,6 @@ export type MainKeys =
 export type MainApiRouteKey = Subset<MainKeys, 'main.sections'>;
 
 export type MainApiRouteParams<K extends MainApiRouteKey> =
-  K extends 'main.sections'
+  K extends 'home.sections'
     ? ApiRouteParamsWithSearchParams<K, { index: number }>
     : never;
