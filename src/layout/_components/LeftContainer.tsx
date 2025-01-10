@@ -8,6 +8,7 @@ import LogoTitle from '@/assets/icon/title.png';
 import type { FieldType } from '@/components/ui/InputField';
 import InputField from '@/components/ui/InputField';
 import { cn } from '@/lib/utils';
+import type { InputType } from '@/types/input-type';
 
 interface LeftContainerProps {
   className?: string;
@@ -20,6 +21,7 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
     placeholder: string;
     isRequired: boolean;
     component: FieldType;
+    type: InputType;
   }[] = [
     {
       id: 'date',
@@ -27,6 +29,7 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
       placeholder: '날짜 입력',
       isRequired: true,
       component: 'input',
+      type: 'date',
     },
     {
       id: 'location',
@@ -34,6 +37,7 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
       placeholder: '지역 입력',
       isRequired: false,
       component: 'input',
+      type: 'text',
     },
     {
       id: 'time',
@@ -41,6 +45,7 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
       placeholder: '17:00 - 21:00',
       isRequired: false,
       component: 'input',
+      type: 'time',
     },
     {
       id: 'keywords',
@@ -48,6 +53,7 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
       placeholder: '#축제 #강연 #할인행사',
       isRequired: false,
       component: 'input',
+      type: 'text',
     },
   ];
 
@@ -82,7 +88,10 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
               fieldType={field.component}
               label={field.label}
               isRequired={field.isRequired}
-              inputProps={{ placeholder: field.placeholder }}
+              inputProps={{
+                placeholder: field.placeholder,
+                type: field.type,
+              }}
             />
           ))}
 

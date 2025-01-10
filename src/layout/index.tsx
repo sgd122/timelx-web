@@ -30,7 +30,11 @@ const Layout = ({ children }: PropsWithChildren) => {
           minHeight={'100vh'}
         >
           <Header />
-          <FramerMotion>{children}</FramerMotion>
+
+          <FramerMotion>
+            <Box className="mx-6">{children}</Box>
+          </FramerMotion>
+
           <Footer />
         </Box>
       </Container>
