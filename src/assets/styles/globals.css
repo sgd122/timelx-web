@@ -1,6 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  input[type='time']::-webkit-calendar-picker-indicator {
+    filter: invert(40%) sepia(10%) saturate(0%) hue-rotate(90deg);
+  }
+  input[type='date']::-webkit-calendar-picker-indicator {
+    filter: invert(40%) sepia(10%) saturate(0%) hue-rotate(90deg);
+  }
+}
+
 @layer base {
   :root {
     --background: hsl(0 0% 100%);
