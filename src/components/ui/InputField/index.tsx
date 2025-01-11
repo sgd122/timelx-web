@@ -55,6 +55,17 @@ const InputField: React.FC<InputFieldProps> = (props) => {
     variant = 'light',
   } = props;
 
+  const theme = {
+    light: {
+      text: 'text-tx-gray-10',
+      bg: 'bg-tx-gray-50',
+    },
+    dark: {
+      text: 'text-tx-gray-50',
+      bg: 'bg-accent',
+    },
+  };
+
   const renderField = () => {
     if (fieldType === 'input') {
       return (
@@ -62,8 +73,9 @@ const InputField: React.FC<InputFieldProps> = (props) => {
           variant="soft"
           className={cn(
             variant === 'light' &&
-              'bg-tx-gray-50 text-tx-gray-10 input-text-light',
-            variant === 'dark' && 'text-tx-gray-50 bg-accent input-text-dark'
+              `${theme.light.bg} ${theme.light.text} input-text-light`,
+            variant === 'dark' &&
+              `${theme.dark.bg} ${theme.dark.text} input-text-dark`
           )}
           {...props.inputProps}
         />
@@ -79,16 +91,16 @@ const InputField: React.FC<InputFieldProps> = (props) => {
       className={cn(
         'relative flex flex-col px-6 py-2',
         'border rounded-md',
-        variant === 'light' && 'bg-tx-gray-50',
-        variant === 'dark' && 'bg-accent',
+        variant === 'light' && theme.light.bg,
+        variant === 'dark' && theme.dark.bg,
         wrapperClassName
       )}
     >
       {label && (
         <label
           className={cn(
-            variant === 'light' && 'text-tx-gray-10',
-            variant === 'dark' && 'text-tx-gray-50'
+            variant === 'light' && theme.light.text,
+            variant === 'dark' && theme.dark.text
           )}
         >
           <Text size="2">{label}</Text>
