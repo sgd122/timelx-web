@@ -1,6 +1,7 @@
 import { Box, Container, ScrollArea } from '@radix-ui/themes';
 import type { PropsWithChildren } from 'react';
 
+import FloatingSearchButton from '@/components/ui/FloatingSearchButton';
 import LeftContainer from '@/layout/_components/LeftContainer';
 import Footer from '@/layout/footer';
 import Header from '@/layout/header';
@@ -39,6 +40,7 @@ const Layout = ({ children }: PropsWithChildren) => {
           >
             <ScrollArea type="hover" scrollbars="vertical">
               <Box className="mx-6 my-4">{children}</Box>
+              <FloatingSearchButton />
             </ScrollArea>
           </Box>
           <Footer />
