@@ -12,6 +12,7 @@ interface BaseProps {
   wrapperClassName?: string;
   icon?: React.ReactNode;
   innerProps?: React.ComponentProps<typeof Box>;
+  variant?: 'light' | 'dark';
 }
 
 type InputFieldProps =
@@ -44,15 +45,26 @@ type InputFieldProps =
  */
 
 const InputField: React.FC<InputFieldProps> = (props) => {
-  const { label, isRequired, fieldType, icon, wrapperClassName, innerProps } =
-    props;
+  const {
+    label,
+    isRequired,
+    fieldType,
+    icon,
+    wrapperClassName,
+    innerProps,
+    variant = 'light',
+  } = props;
 
   const renderField = () => {
     if (fieldType === 'input') {
       return (
         <TextField.Root
           variant="soft"
-          className="bg-tx-gray-50 text-tx-gray-10 input-text-light"
+          className={cn(
+            variant === 'light' &&
+              'bg-tx-gray-50 text-tx-gray-10 input-text-light',
+            variant === 'dark' && 'text-tx-gray-50 bg-accent input-text-dark'
+          )}
           {...props.inputProps}
         />
       );
@@ -65,12 +77,20 @@ const InputField: React.FC<InputFieldProps> = (props) => {
   return (
     <div
       className={cn(
-        'relative flex flex-col px-6 py-2 border rounded-md bg-tx-gray-50',
+        'relative flex flex-col px-6 py-2',
+        'border rounded-md',
+        variant === 'light' && 'bg-tx-gray-50',
+        variant === 'dark' && 'bg-accent',
         wrapperClassName
       )}
     >
       {label && (
-        <label className="text-tx-gray-10">
+        <label
+          className={cn(
+            variant === 'light' && 'text-tx-gray-10',
+            variant === 'dark' && 'text-tx-gray-50'
+          )}
+        >
           <Text size="2">{label}</Text>
           {isRequired && <span className="text-red-400"> *</span>}
         </label>
