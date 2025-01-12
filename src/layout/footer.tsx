@@ -24,9 +24,9 @@ const Footer = () => {
           background-color: transparent !important; /* 배경색 제거 */
       }
       & > span {
-        background-color: transparent !important; /* 배경색 제거 */
-        flex-direction: column;
-        gap: 4px;
+          background-color: transparent !important; /* 배경색 제거 */
+          flex-direction: column;
+          gap: 4px;
       }
   `;
 
@@ -48,7 +48,8 @@ const Footer = () => {
     if (
       ['/', '/search'].includes(pathname) ||
       pathname.startsWith('/search/result') ||
-      pathname.startsWith('/event/')
+      pathname.startsWith('/event/') ||
+      pathname.startsWith('/auth/login')
     ) {
       return TabsEnum.Discover;
     }
@@ -61,16 +62,23 @@ const Footer = () => {
     return null;
   };
 
+  const handleTabClick = (value: NavigateTab) => {
+    if (value === activeTab) {
+      // 현재 탭을 다시 클릭한 경우 처리
+      onRouter(value);
+    }
+  };
+
   useEffect(() => {
-    const { pathname } = router;
-    const activeTab = determineActiveTab(pathname);
-    setActiveTab(activeTab as NavigateTab);
+    const active = determineActiveTab(router.pathname);
+    setActiveTab(active as NavigateTab);
   }, [router.pathname]);
 
   return (
     <Tabs.Root
       className="absolute bottom-0 w-full"
       defaultValue={determineActiveTab(router.pathname) || undefined}
+      value={activeTab}
       onValueChange={(value) => {
         setActiveTab(value as NavigateTab);
         onRouter(value as NavigateTab);
@@ -81,7 +89,10 @@ const Footer = () => {
         color="indigo"
         className="flex justify-around py-4"
       >
-        <TabTriggerOverride value="discover">
+        <TabTriggerOverride
+          value="discover"
+          onClick={() => handleTabClick(TabsEnum.Discover)}
+        >
           <FaLightbulb
             className={
               TabsEnum.Discover === activeTab
@@ -92,7 +103,10 @@ const Footer = () => {
           />
           발견
         </TabTriggerOverride>
-        <TabTriggerOverride value="saved">
+        <TabTriggerOverride
+          value="saved"
+          onClick={() => handleTabClick(TabsEnum.Saved)}
+        >
           <FaHeart
             className={
               TabsEnum.Saved === activeTab ? 'text-yellow-400' : 'text-gray-500'
@@ -101,7 +115,10 @@ const Footer = () => {
           />
           저장
         </TabTriggerOverride>
-        <TabTriggerOverride value="settings">
+        <TabTriggerOverride
+          value="settings"
+          onClick={() => handleTabClick(TabsEnum.Settings)}
+        >
           <FaCog
             className={
               TabsEnum.Settings === activeTab

@@ -1,4 +1,4 @@
 export const ROUTES = {
-  PUBLIC: ['/', '/about', '/contact'],
-  PROTECTED: ['/dashboard'],
+  PUBLIC: ['/', '/event/[eventId]', '/auth/login'],
+  PRIVATE: ['/auth/login'],
 };

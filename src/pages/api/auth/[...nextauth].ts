@@ -73,8 +73,8 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
     session: { strategy: 'jwt' },
     // NOTE: custom login page
     pages: {
-      signIn: `/auth/login/email`,
-      error: `/auth/login/email`,
+      signIn: `/auth/login`,
+      error: `/auth/login`,
     },
     cookies: {
       pkceCodeVerifier: {

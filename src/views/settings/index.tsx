@@ -1,7 +1,5 @@
 import { Button, Flex, Text } from '@radix-ui/themes';
-import { signIn, signOut, useSession } from 'next-auth/react';
-
-import { LOGIN_PROVIDER } from '@/constants/auth';
+import { signOut, useSession } from 'next-auth/react';
 
 const SettingContainer = () => {
   const session = useSession();
@@ -12,16 +10,6 @@ const SettingContainer = () => {
       <Flex direction="column" gap="2">
         {session.status === 'authenticated' &&
           JSON.stringify(session.data?.user)}
-        <Button
-          onClick={() => {
-            signIn(LOGIN_PROVIDER['EMAIL'], {
-              email: '11',
-              password: '123',
-            });
-          }}
-        >
-          Login
-        </Button>
         <Button
           onClick={() => {
             signOut();

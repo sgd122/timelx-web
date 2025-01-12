@@ -8,9 +8,28 @@ export async function middleware(req: NextRequest) {
   const token = await getToken({ req });
   const { pathname } = req.nextUrl;
 
-  if (ROUTES.PROTECTED.some((route) => pathname.startsWith(route)) && !token) {
+  const isPublicRoute = ROUTES.PUBLIC.some((route) => {
+    if (route.includes('[eventId]')) {
+      // [eventId]를 동적 경로로 처리
+      const dynamicRouteRegex = new RegExp(
+        `^${route.replace('[eventId]', '\\d+')}$`
+      );
+      return dynamicRouteRegex.test(pathname);
+    }
+    return route === pathname;
+  });
+
+  if (!isPublicRoute && !token) {
+    const url = req.nextUrl.clone();
+    url.pathname = '/auth/login';
+    url.searchParams.set('message', 'unauthorized'); // 메시지 전달
+    return NextResponse.redirect(url);
+  }
+
+  if (ROUTES.PRIVATE.some((route) => route === pathname) && token) {
     const url = req.nextUrl.clone();
     url.pathname = '/';
+    url.searchParams.delete('message');
     return NextResponse.redirect(url);
   }
 
@@ -18,5 +37,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/'],
+  matcher: ['/((?!api|_next|favicon.ico).*)'],
 };
