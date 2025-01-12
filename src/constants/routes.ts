@@ -1,4 +1,4 @@
 export const ROUTES = {
-  PUBLIC: ['/', '/event/[eventId]', '/auth/login'],
+  PUBLIC: ['/', '/event/[eventId]', '/search', '/search/result', '/auth/login'],
   PRIVATE: ['/auth/login'],
 };
