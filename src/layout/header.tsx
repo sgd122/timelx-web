@@ -19,7 +19,9 @@ const Header = () => {
       <h1>
         <Image src={LogoTitle} alt={'timelx'} height={24} />
       </h1>
-      <FaPlus size={'24'} />
+      <Link href="/event/new">
+        <FaPlus size={'24'} />
+      </Link>
     </Flex>
   );
 };
