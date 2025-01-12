@@ -81,7 +81,13 @@ module.exports = {
         '.input-text-light > input::placeholder': {
           color: '#000',
         },
+        '.input-text-dark > input::placeholder': {
+          color: '#fff',
+        },
         '.input-text-light': {
+          outline: 'none',
+        },
+        '.input-text-dark': {
           outline: 'none',
         },
       });
