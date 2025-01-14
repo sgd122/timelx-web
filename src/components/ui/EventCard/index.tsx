@@ -1,9 +1,8 @@
-import { Button } from '@radix-ui/themes';
 import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
-import { FiHeart } from 'react-icons/fi';
 
+import FavoriteButton from '@/components/ui/FavoriteButton';
 import { cn } from '@/lib/utils';
 
 interface EventCardProps {
@@ -87,22 +86,7 @@ const EventCard: React.FC<EventCardProps> = ({
       </div>
 
       {/* 찜 버튼 */}
-      <Button
-        variant="outline"
-        onClick={handleToggle}
-        className="p-1 shadow-none"
-        aria-label="찜하기"
-      >
-        <FiHeart
-          size={24}
-          className={cn(
-            'transition-colors',
-            favorite
-              ? 'text-red-600 fill-current'
-              : 'text-gray-400 fill-transparent'
-          )}
-        />
-      </Button>
+      <FavoriteButton handleToggle={handleToggle} favorite={favorite} />
     </Link>
   );
 };
