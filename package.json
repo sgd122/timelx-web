@@ -13,6 +13,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/themes": "^3.1.6",
     "@tanstack/react-query": "^5.62.8",
@@ -36,7 +37,8 @@
     "react-icons": "^5.4.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
-    "vaul": "^1.1.2"
+    "vaul": "^1.1.2",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
