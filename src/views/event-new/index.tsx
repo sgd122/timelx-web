@@ -5,8 +5,8 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import InputField from '@/components/ui/InputField';
 import { submitActionAtom } from '@/store/submitActionAtom';
+import FormField from '@/views/event-new/_components/FormField';
 
 const schema = z.object({
   name: z.string().min(1, '이름을 입력해주세요.'),
@@ -48,27 +48,18 @@ const EventNewContainer = () => {
     <div>
       <Text>이벤트 등록페이지</Text>
       <form onSubmit={onSubmit}>
-        <div>
-          <InputField
-            fieldType={'input'}
-            inputProps={{
-              ...register('name'),
-              placeholder: '이름',
-            }}
-          />
-          {errors.name && <p>{errors.name.message}</p>}
-        </div>
-
-        <div>
-          <InputField
-            fieldType={'input'}
-            inputProps={{
-              ...register('email'),
-              placeholder: '이메일',
-            }}
-          />
-          {errors.email && <p>{errors.email.message}</p>}
-        </div>
+        <FormField
+          name="name"
+          placeholder="Enter your username"
+          register={register}
+          error={errors.name}
+        />
+        <FormField
+          name="email"
+          placeholder="Enter your email"
+          register={register}
+          error={errors.email}
+        />
       </form>
     </div>
   );
