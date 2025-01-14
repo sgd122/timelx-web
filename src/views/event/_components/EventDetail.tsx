@@ -1,4 +1,5 @@
 import { Box, Text } from '@radix-ui/themes';
+import { isEmpty } from 'lodash-es';
 
 import ChipList from '@/components/ui/ChipList';
 import type { FieldType } from '@/components/ui/InputField';
@@ -17,6 +18,7 @@ const EventDetail = ({
   fieldType = 'input',
   isReadOnly = true,
 }: EventDetailProps) => {
+  if (isEmpty(value)) return null;
   if (fieldType === 'chip') return <ChipList labels={value as string[]} />;
 
   return (
