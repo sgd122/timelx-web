@@ -36,7 +36,7 @@ const EventNewContainer = () => {
         <Text>이벤트 등록페이지</Text>
         <form onSubmit={onSubmit}>
           <Section className="flex flex-col gap-8 p-0">
-            <EventImage />
+            <EventImage name="image" error={formState.errors.image} />
 
             {detailFieldsSection0.map(
               ({ label, value, isRequired, placeholder }) => (
