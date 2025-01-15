@@ -22,10 +22,10 @@ export const schema = z.object({
     .min(1, '종료일을 입력해주세요.')
     .refine((val) => !isNaN(Date.parse(val)), '유효한 날짜 형식이 아닙니다.')
     .transform((val) => new Date(val)),
-  startTime: z.string().min(1, '시작시간을 입력해주세요.').optional(),
-  endTime: z.string().min(1, '종료시간을 입력해주세요.').optional(),
+  startTime: z.string().optional(),
+  endTime: z.string().optional(),
   venue: z.string().min(1, '장소를 입력해주세요.'),
-  address: z.string().min(1, '주소를 입력해주세요.').optional(),
+  address: z.string().optional(),
   information: z.string().min(1, '정보를 입력해주세요.'),
   organizer: z.string().min(1, '주최·주관을 입력해주세요.'),
   sponsor: z.string().optional(),

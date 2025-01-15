@@ -1,4 +1,5 @@
 import type { FieldType } from '@/components/ui/InputField';
+import type { InputType } from '@/types/input-type';
 import { FIELD_LABELS } from '@/views/event-new/constants/fieldLabels';
 import { schema } from '@/views/event-new/constants/schema';
 import { isFieldRequired } from '@/views/event-new/utils/isFieldRequired';
@@ -10,6 +11,7 @@ interface FieldDefinition {
   placeholder: string;
   isRequired: boolean;
   fieldType?: FieldType; // 선택적 필드
+  type?: InputType;
 }
 
 export const detailFieldsSection0: FieldDefinition[] = [
@@ -25,12 +27,14 @@ export const detailFieldsSection1: FieldDefinition[] = [
   {
     label: FIELD_LABELS.startDate,
     value: 'startDate',
+    type: 'date',
     placeholder: '1999. 01. 01',
     isRequired: isFieldRequired(schema.shape['startDate']),
   },
   {
     label: FIELD_LABELS.endDate,
     value: 'endDate',
+    type: 'date',
     placeholder: '1999. 01. 01',
     isRequired: isFieldRequired(schema.shape['endDate']),
   },
@@ -40,12 +44,14 @@ export const detailFieldsSection2: FieldDefinition[] = [
   {
     title: FIELD_LABELS.startTime,
     value: 'startTime',
+    type: 'time',
     placeholder: '00 : 00',
     isRequired: isFieldRequired(schema.shape['startTime']),
   },
   {
     title: FIELD_LABELS.endTime,
     value: 'endTime',
+    type: 'time',
     placeholder: '00 : 00',
     isRequired: isFieldRequired(schema.shape['endTime']),
   },

@@ -1,6 +1,7 @@
 import { Flex, Section, Text } from '@radix-ui/themes';
 import { useAtom } from 'jotai/react';
 import { useEffect } from 'react';
+import { IoIosInformationCircleOutline } from 'react-icons/io';
 
 import { RegisterProvider } from '@/components/providers/RegisterProvider';
 import { submitActionAtom } from '@/store/submitActionAtom';
@@ -40,7 +41,7 @@ const EventNewContainer = () => {
             {detailFieldsSection0.map(
               ({ label, title, value, isRequired, placeholder }) => (
                 <EventDetail<FormValues>
-                  key={`event-form-${label}`}
+                  key={`event-form-${label}-${value}`}
                   label={label}
                   title={title}
                   name={value as keyof FormValues}
@@ -58,15 +59,23 @@ const EventNewContainer = () => {
               <Flex className="gap-5" direction="column">
                 <Flex className="gap-3.5 justify-between">
                   {detailFieldsSection1.map(
-                    ({ label, title, value, isRequired, placeholder }) => (
+                    ({
+                      label,
+                      title,
+                      value,
+                      isRequired,
+                      placeholder,
+                      type,
+                    }) => (
                       <EventDetail<FormValues>
-                        key={value}
+                        key={`event-form-${label}-${value}`}
                         label={label}
                         title={title}
                         name={value as keyof FormValues}
                         error={formState.errors[value as keyof FormValues]}
                         isRequired={isRequired}
                         placeholder={placeholder}
+                        type={type}
                       />
                     )
                   )}
@@ -78,25 +87,33 @@ const EventNewContainer = () => {
               <Text size="2">이벤트 시간</Text>
               <Flex className="gap-3.5 justify-between">
                 {detailFieldsSection2.map(
-                  ({ label, title, value, isRequired, placeholder }) => (
+                  ({ label, title, value, isRequired, placeholder, type }) => (
                     <EventDetail<FormValues>
-                      key={`event-form-${label}`}
+                      key={`event-form-${label}-${value}`}
                       label={label}
                       title={title}
                       name={value as keyof FormValues}
                       error={formState.errors[value as keyof FormValues]}
                       isRequired={isRequired}
                       placeholder={placeholder}
+                      type={type}
                     />
                   )
                 )}
+              </Flex>
+              <Flex className="justify-center mt-0.5">
+                <IoIosInformationCircleOutline size="18" className="mr-1" />
+                <Text size="2">
+                  다양한 시간에 걸쳐 진행되는 경우, ‘이벤트 정보’에 별도로
+                  입력해주세요.
+                </Text>
               </Flex>
             </Flex>
 
             {detailFieldsSection3.map(
               ({ label, title, value, fieldType, isRequired, placeholder }) => (
                 <EventDetail<FormValues>
-                  key={`event-form-${label}`}
+                  key={`event-form-${label}-${value}`}
                   label={label}
                   title={title}
                   name={value as keyof FormValues}

@@ -4,6 +4,7 @@ import type { FieldError, FieldPath, FieldValues } from 'react-hook-form';
 import { useRegister } from '@/components/providers/RegisterProvider';
 import type { FieldType } from '@/components/ui/InputField';
 import InputField from '@/components/ui/InputField';
+import type { InputType } from '@/types/input-type';
 import ErrorField from '@/views/event-new/_components/ErrorField';
 
 interface EventDetailProps<TFieldValues extends FieldValues> {
@@ -14,6 +15,7 @@ interface EventDetailProps<TFieldValues extends FieldValues> {
   fieldType?: FieldType;
   isRequired: boolean;
   placeholder?: string;
+  type?: InputType;
 }
 
 const EventDetail = <TFieldValues extends FieldValues>({
@@ -24,11 +26,12 @@ const EventDetail = <TFieldValues extends FieldValues>({
   error,
   isRequired,
   placeholder,
+  type,
 }: Omit<EventDetailProps<TFieldValues>, 'register'>) => {
   const register = useRegister<TFieldValues>();
 
   return (
-    <Box className="flex flex-col gap-1.5">
+    <Box className="flex flex-col gap-1.5 w-full">
       {title && (
         <Text size="2">
           {title}
@@ -36,11 +39,13 @@ const EventDetail = <TFieldValues extends FieldValues>({
         </Text>
       )}
       <InputField
+        wrapperClassName="w-full"
         label={label}
         fieldType={fieldType}
         inputProps={{
           ...register(name),
           placeholder: placeholder,
+          type,
         }}
         textareaProps={{
           ...register(name),
