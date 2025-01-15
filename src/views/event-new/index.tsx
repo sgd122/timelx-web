@@ -1,67 +1,103 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Text } from '@radix-ui/themes';
+import { Flex, Section, Text } from '@radix-ui/themes';
 import { useAtom } from 'jotai/react';
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
 
+import { RegisterProvider } from '@/components/providers/RegisterProvider';
 import { submitActionAtom } from '@/store/submitActionAtom';
-import FormField from '@/views/event-new/_components/FormField';
-
-const schema = z.object({
-  name: z.string().min(1, '이름을 입력해주세요.'),
-  email: z
-    .string()
-    .min(1, '이메일을 입력해주세요.')
-    .email('유효한 이메일 주소를 입력해주세요'),
-});
+import EventDetail from '@/views/event-new/_components/EventDetail';
+import EventImage from '@/views/event-new/_components/EventImage';
+import {
+  detailFieldsSection0,
+  detailFieldsSection1,
+  detailFieldsSection2,
+  detailFieldsSection3,
+} from '@/views/event-new/constants/fieldDefinitions';
+import { useEventForm } from '@/views/event-new/hooks/useEventForm';
+import type { FormValues } from '@/views/event-new/types/form-values';
 
 const EventNewContainer = () => {
   const [isSubmitAction, setSubmitAction] = useAtom(submitActionAtom);
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm({
-    defaultValues: {
-      name: '',
-      email: '',
-    },
-    resolver: zodResolver(schema),
-  });
+  const { register, handleSubmit, formState } = useEventForm();
 
-  const onSubmit = handleSubmit((formData) => {
-    // 폼 데이터 제출 로직
-    console.log('Form submitted:', formData);
+  const onSubmit = handleSubmit((data) => {
+    console.log('Form submitted:', data);
   });
 
   useEffect(() => {
     if (isSubmitAction) {
-      // 상태 초기화
       setSubmitAction(false);
-      // ANCHOR: 등록 액션 처리
       onSubmit();
     }
   }, [isSubmitAction]);
 
   return (
-    <div>
-      <Text>이벤트 등록페이지</Text>
-      <form onSubmit={onSubmit}>
-        <FormField
-          name="name"
-          placeholder="Enter your username"
-          register={register}
-          error={errors.name}
-        />
-        <FormField
-          name="email"
-          placeholder="Enter your email"
-          register={register}
-          error={errors.email}
-        />
-      </form>
-    </div>
+    <RegisterProvider register={register}>
+      <div>
+        <Text>이벤트 등록페이지</Text>
+        <form onSubmit={onSubmit}>
+          <Section className="flex flex-col gap-8 p-0">
+            <EventImage />
+
+            {detailFieldsSection0.map(
+              ({ label, value, isRequired, placeholder }) => (
+                <EventDetail<FormValues>
+                  key={`event-form-${label}`}
+                  label={label}
+                  name={value as keyof FormValues}
+                  error={formState.errors[value as keyof FormValues]}
+                  isRequired={isRequired}
+                  placeholder={placeholder}
+                />
+              )
+            )}
+
+            <Flex className="gap-5" direction="column">
+              <Flex className="gap-3.5 justify-between">
+                {detailFieldsSection1.map(
+                  ({ label, value, isRequired, placeholder }) => (
+                    <EventDetail<FormValues>
+                      key={value}
+                      label={label}
+                      name={value as keyof FormValues}
+                      error={formState.errors[value as keyof FormValues]}
+                      isRequired={isRequired}
+                      placeholder={placeholder}
+                    />
+                  )
+                )}
+              </Flex>
+              <Flex className="gap-3.5 justify-between">
+                {detailFieldsSection2.map(
+                  ({ label, value, isRequired, placeholder }) => (
+                    <EventDetail<FormValues>
+                      key={`event-form-${label}`}
+                      label={label}
+                      name={value as keyof FormValues}
+                      error={formState.errors[value as keyof FormValues]}
+                      isRequired={isRequired}
+                      placeholder={placeholder}
+                    />
+                  )
+                )}
+              </Flex>
+              {detailFieldsSection3.map(
+                ({ label, value, fieldType, isRequired, placeholder }) => (
+                  <EventDetail<FormValues>
+                    key={`event-form-${label}`}
+                    label={label}
+                    name={value as keyof FormValues}
+                    error={formState.errors[value as keyof FormValues]}
+                    fieldType={fieldType}
+                    isRequired={isRequired}
+                    placeholder={placeholder}
+                  />
+                )
+              )}
+            </Flex>
+          </Section>
+        </form>
+      </div>
+    </RegisterProvider>
   );
 };
 

@@ -29,6 +29,7 @@ const FormField = <TFieldValues extends FieldValues>({
           ...register(name), // 명확한 타입 지정
           placeholder,
         }}
+        variant="dark"
       />
       {error && <ErrorField fieldName={error} />}
     </>
