@@ -105,7 +105,7 @@ const Header = () => {
         <h2>
           {/* TODO: isPageName 인 경우 페이지경로에 따라서 적절한 페이지명으로 나오게 기능 추가 필요 */}
           <Text size="5" weight="bold">
-            새 이벤트
+            이벤트 등록
           </Text>
         </h2>
       )}

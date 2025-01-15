@@ -5,7 +5,6 @@ import type { FieldError, FieldPath, FieldValues } from 'react-hook-form';
 
 import PlaceholderImage from '@/assets/icon/placeholder-image.png';
 import { useRegister } from '@/components/providers/RegisterProvider';
-import FavoriteButton from '@/components/ui/FavoriteButton';
 import ErrorField from '@/views/event-new/_components/ErrorField';
 
 interface EventImageProps<TFieldValues extends FieldValues> {
@@ -19,7 +18,6 @@ const EventImage = <TFieldValues extends FieldValues>({
   error,
 }: EventImageProps<TFieldValues>) => {
   const register = useRegister<TFieldValues>();
-  const [favorite, setFavorite] = useState(false);
   const [avatarSrc, setAvatarSrc] = useState<string>(image); // 현재 아바타 이미지 경로 상태
   const fileInputRef = useRef<HTMLInputElement>(null); // 파일 입력 요소에 대한 참조
 
@@ -33,11 +31,6 @@ const EventImage = <TFieldValues extends FieldValues>({
 
   const handleImageClick = () => {
     fileInputRef.current?.click(); // 숨겨진 파일 입력 요소 클릭
-  };
-
-  const handleToggle = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
-    setFavorite(!favorite);
   };
 
   // `register` 반환값에 커스텀 onChange를 추가
@@ -59,7 +52,7 @@ const EventImage = <TFieldValues extends FieldValues>({
   };
 
   return (
-    <div className="h-auto -mx-6 [width:calc(100%_+_48px)] relative">
+    <div className="h-auto -mx-6 [width:calc(100%_+_48px)]">
       {/* 이미지를 클릭하면 파일 입력 창 표시 */}
       <div onClick={handleImageClick} className="cursor-pointer h-full">
         <Image
@@ -69,9 +62,6 @@ const EventImage = <TFieldValues extends FieldValues>({
           width={16}
           height={9}
         />
-      </div>
-      <div className="absolute top-2 right-2">
-        <FavoriteButton handleToggle={handleToggle} favorite={favorite} />
       </div>
       {/* 숨겨진 파일 입력 요소 */}
       <input

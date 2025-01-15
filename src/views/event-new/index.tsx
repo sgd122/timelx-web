@@ -33,16 +33,16 @@ const EventNewContainer = () => {
   return (
     <RegisterProvider register={register}>
       <div>
-        <Text>이벤트 등록페이지</Text>
         <form onSubmit={onSubmit}>
           <Section className="flex flex-col gap-8 p-0">
             <EventImage name="image" error={formState.errors.image} />
 
             {detailFieldsSection0.map(
-              ({ label, value, isRequired, placeholder }) => (
+              ({ label, title, value, isRequired, placeholder }) => (
                 <EventDetail<FormValues>
                   key={`event-form-${label}`}
                   label={label}
+                  title={title}
                   name={value as keyof FormValues}
                   error={formState.errors[value as keyof FormValues]}
                   isRequired={isRequired}
@@ -51,27 +51,38 @@ const EventNewContainer = () => {
               )
             )}
 
-            <Flex className="gap-5" direction="column">
-              <Flex className="gap-3.5 justify-between">
-                {detailFieldsSection1.map(
-                  ({ label, value, isRequired, placeholder }) => (
-                    <EventDetail<FormValues>
-                      key={value}
-                      label={label}
-                      name={value as keyof FormValues}
-                      error={formState.errors[value as keyof FormValues]}
-                      isRequired={isRequired}
-                      placeholder={placeholder}
-                    />
-                  )
-                )}
+            <Flex direction="column" className="gap-1">
+              <Text size="2">
+                이벤트 날짜<span className="text-red-400"> *</span>
+              </Text>
+              <Flex className="gap-5" direction="column">
+                <Flex className="gap-3.5 justify-between">
+                  {detailFieldsSection1.map(
+                    ({ label, title, value, isRequired, placeholder }) => (
+                      <EventDetail<FormValues>
+                        key={value}
+                        label={label}
+                        title={title}
+                        name={value as keyof FormValues}
+                        error={formState.errors[value as keyof FormValues]}
+                        isRequired={isRequired}
+                        placeholder={placeholder}
+                      />
+                    )
+                  )}
+                </Flex>
               </Flex>
+            </Flex>
+
+            <Flex direction="column" className="gap-1">
+              <Text size="2">이벤트 시간</Text>
               <Flex className="gap-3.5 justify-between">
                 {detailFieldsSection2.map(
-                  ({ label, value, isRequired, placeholder }) => (
+                  ({ label, title, value, isRequired, placeholder }) => (
                     <EventDetail<FormValues>
                       key={`event-form-${label}`}
                       label={label}
+                      title={title}
                       name={value as keyof FormValues}
                       error={formState.errors[value as keyof FormValues]}
                       isRequired={isRequired}
@@ -80,20 +91,22 @@ const EventNewContainer = () => {
                   )
                 )}
               </Flex>
-              {detailFieldsSection3.map(
-                ({ label, value, fieldType, isRequired, placeholder }) => (
-                  <EventDetail<FormValues>
-                    key={`event-form-${label}`}
-                    label={label}
-                    name={value as keyof FormValues}
-                    error={formState.errors[value as keyof FormValues]}
-                    fieldType={fieldType}
-                    isRequired={isRequired}
-                    placeholder={placeholder}
-                  />
-                )
-              )}
             </Flex>
+
+            {detailFieldsSection3.map(
+              ({ label, title, value, fieldType, isRequired, placeholder }) => (
+                <EventDetail<FormValues>
+                  key={`event-form-${label}`}
+                  label={label}
+                  title={title}
+                  name={value as keyof FormValues}
+                  error={formState.errors[value as keyof FormValues]}
+                  fieldType={fieldType}
+                  isRequired={isRequired}
+                  placeholder={placeholder}
+                />
+              )
+            )}
           </Section>
         </form>
       </div>

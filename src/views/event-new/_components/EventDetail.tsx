@@ -7,7 +7,8 @@ import InputField from '@/components/ui/InputField';
 import ErrorField from '@/views/event-new/_components/ErrorField';
 
 interface EventDetailProps<TFieldValues extends FieldValues> {
-  label: string;
+  title?: string;
+  label?: string;
   name: FieldPath<TFieldValues>; // 특정 필드 이름만 허용
   error?: FieldError;
   fieldType?: FieldType;
@@ -16,6 +17,7 @@ interface EventDetailProps<TFieldValues extends FieldValues> {
 }
 
 const EventDetail = <TFieldValues extends FieldValues>({
+  title,
   label,
   name,
   fieldType = 'input',
@@ -27,13 +29,14 @@ const EventDetail = <TFieldValues extends FieldValues>({
 
   return (
     <Box className="flex flex-col gap-1.5">
-      {label && (
+      {title && (
         <Text size="2">
-          {label}
+          {title}
           {isRequired && <span className="text-red-400"> *</span>}
         </Text>
       )}
       <InputField
+        label={label}
         fieldType={fieldType}
         inputProps={{
           ...register(name),
