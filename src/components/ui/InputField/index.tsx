@@ -1,19 +1,14 @@
-import { Box, Text, TextField } from '@radix-ui/themes';
+import { TextArea, TextField } from '@radix-ui/themes';
 import type React from 'react';
 
 import ChipListInput from '@/components/ui/ChipListInput';
+import type { FieldWrapperProps } from '@/components/ui/FieldWrapper';
+import FieldWrapper from '@/components/ui/FieldWrapper';
 import { cn } from '@/lib/utils';
 
-export type FieldType = 'input' | 'chip';
+export type FieldType = 'input' | 'chip' | 'textarea';
 
-interface BaseProps {
-  label?: string;
-  isRequired?: boolean;
-  wrapperClassName?: string;
-  icon?: React.ReactNode;
-  innerProps?: React.ComponentProps<typeof Box>;
-  variant?: 'light' | 'dark';
-}
+type BaseProps = Omit<FieldWrapperProps, 'children'>;
 
 type InputFieldProps =
   | (BaseProps & {
@@ -23,6 +18,10 @@ type InputFieldProps =
   | (BaseProps & {
       fieldType: 'chip';
       chipProps?: React.ComponentProps<typeof ChipListInput>;
+    })
+  | (BaseProps & {
+      fieldType: 'textarea';
+      textareaProps?: React.ComponentProps<typeof TextArea>;
     });
 
 /**
@@ -82,42 +81,36 @@ const InputField: React.FC<InputFieldProps> = (props) => {
       );
     } else if (fieldType === 'chip') {
       return <ChipListInput {...props.chipProps} />;
+    } else if (fieldType === 'textarea') {
+      return (
+        <TextArea
+          rows={20}
+          className={cn(
+            'bg-none shadow-none',
+            variant === 'light' &&
+              `${theme.light.bg} ${theme.light.text} input-text-light`,
+            variant === 'dark' &&
+              `${theme.dark.bg} ${theme.dark.text} input-text-dark`
+          )}
+          placeholder="Reply to comment…"
+          {...props.textareaProps}
+        />
+      );
     }
     return null;
   };
 
   return (
-    <div
-      className={cn(
-        'relative flex flex-col px-6 py-2',
-        'border rounded-md',
-        variant === 'light' && theme.light.bg,
-        variant === 'dark' && theme.dark.bg,
-        wrapperClassName
-      )}
+    <FieldWrapper
+      label={label}
+      icon={icon}
+      isRequired={isRequired}
+      wrapperClassName={wrapperClassName}
+      variant={variant}
+      innerProps={innerProps}
     >
-      {label && (
-        <label
-          className={cn(
-            variant === 'light' && theme.light.text,
-            variant === 'dark' && theme.dark.text
-          )}
-        >
-          <Text size="2">{label}</Text>
-          {isRequired && <span className="text-red-400"> *</span>}
-        </label>
-      )}
-
-      <Box className={icon ? 'w-full pr-4' : ''} {...innerProps}>
-        {renderField()}
-      </Box>
-
-      {icon && (
-        <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center">
-          {icon}
-        </div>
-      )}
-    </div>
+      {renderField()}
+    </FieldWrapper>
   );
 };
 
