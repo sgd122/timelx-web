@@ -45,13 +45,15 @@ const CloseDialog = () => {
           <DialogTitle className="text-lg font-bold">
             변경 사항이 사라질 수 있습니다
           </DialogTitle>
-          <DialogDescription className="mt-2 text-gray-50">
-            <Text as="p">현재 작성 중인 내용이 저장되지 않았습니다.</Text>
+          <div className="mt-2">
+            <DialogDescription>
+              현재 작성 중인 내용이 저장되지 않았습니다.
+            </DialogDescription>
             <Text as="p">
               페이지를 떠나면 작성한 내용이 사라질 수 있습니다.
             </Text>
             <Text as="p">계속 진행하시겠습니까?</Text>
-          </DialogDescription>
+          </div>
           <div className="mt-4 flex justify-end items-center gap-4">
             <Button variant="ghost" onClick={handleCancel}>
               취소
