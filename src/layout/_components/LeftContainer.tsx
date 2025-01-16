@@ -1,12 +1,14 @@
-import { Button } from '@radix-ui/themes';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import type React from 'react';
 
 import Gemini from '@/assets/icon/gemini.png';
 import LogoTitle from '@/assets/icon/title.png';
+import Button from '@/components/ui/Button';
 import type { FieldType } from '@/components/ui/InputField';
 import InputField from '@/components/ui/InputField';
+import useInput from '@/hooks/useInput';
 import { cn } from '@/lib/utils';
 import type { InputType } from '@/types/input-type';
 
@@ -15,6 +17,25 @@ interface LeftContainerProps {
 }
 
 const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
+  const router = useRouter();
+
+  const [date, setDate] = useInput<string>('');
+  const [location, setLocation] = useInput<string>('');
+  const [startTime, setStartTime] = useInput<string>('');
+  const [keyword, setKeyword] = useInput<string>('');
+
+  const handleSearch = () => {
+    const queryParams = new URLSearchParams({
+      date,
+      location,
+      startTime,
+      endTime: startTime,
+      keyword,
+    });
+
+    router.push(`/search/result?${queryParams.toString()}`);
+  };
+
   const fields: {
     id: string;
     label: string;
@@ -22,6 +43,10 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
     isRequired: boolean;
     component: FieldType;
     type?: InputType;
+    value: string;
+    setValue: (
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => void;
   }[] = [
     {
       id: 'date',
@@ -30,6 +55,8 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
       isRequired: true,
       component: 'input',
       type: 'date',
+      value: date,
+      setValue: setDate,
     },
     {
       id: 'location',
@@ -38,6 +65,8 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
       isRequired: false,
       component: 'input',
       type: 'text',
+      value: location,
+      setValue: setLocation,
     },
     {
       id: 'time',
@@ -46,6 +75,8 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
       isRequired: false,
       component: 'input',
       type: 'time',
+      value: startTime,
+      setValue: setStartTime,
     },
     {
       id: 'keywords',
@@ -54,6 +85,8 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
       isRequired: false,
       component: 'input',
       type: 'text',
+      value: keyword,
+      setValue: setKeyword,
     },
   ];
 
@@ -91,13 +124,16 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
               inputProps={{
                 placeholder: field.placeholder,
                 type: field.type,
+                onChange: field.setValue,
+                value: field.value,
               }}
             />
           ))}
 
           <Button
             variant="solid"
-            className="bg-blue-500 hover:bg-blue-600 h-[77] w-[105]"
+            className="h-[77] w-[105]"
+            onClick={handleSearch}
           >
             검색하기
           </Button>
