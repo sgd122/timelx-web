@@ -94,24 +94,26 @@ const Header = () => {
   };
 
   return (
-    <Flex className="mx-6" justify="between" height="56px" align="center">
-      <LeftComponent />
+    <header>
+      <Flex className="mx-6" justify="between" height="56px" align="center">
+        <LeftComponent />
 
-      <h1 className={isPageName ? 'sr-only' : ''}>
-        <Image src={LogoTitle} alt="timelx" height={24} />
-      </h1>
+        <h1 className={isPageName ? 'sr-only' : ''}>
+          <Image src={LogoTitle} alt="timelx" height={24} />
+        </h1>
 
-      {isPageName && (
-        <h2>
-          {/* TODO: isPageName 인 경우 페이지경로에 따라서 적절한 페이지명으로 나오게 기능 추가 필요 */}
-          <Text size="5" weight="bold">
-            이벤트 등록
-          </Text>
-        </h2>
-      )}
+        {isPageName && (
+          <h2>
+            {/* TODO: isPageName 인 경우 페이지경로에 따라서 적절한 페이지명으로 나오게 기능 추가 필요 */}
+            <Text size="5" weight="bold">
+              이벤트 등록
+            </Text>
+          </h2>
+        )}
 
-      <RightComponent />
-    </Flex>
+        <RightComponent />
+      </Flex>
+    </header>
   );
 };
 

@@ -1,10 +1,15 @@
 import { Button, Tooltip } from '@radix-ui/themes';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { FaSearch } from 'react-icons/fa';
 
 const FloatingSearchButton = () => {
+  const router = useRouter();
+
+  const hiddenClass = router.pathname === '/search' ? 'hidden' : '';
+
   return (
-    <div className="absolute bottom-6 right-6">
+    <div className={`absolute bottom-6 right-6 ${hiddenClass}`}>
       <Tooltip content="검색하기">
         <Button
           asChild={true}

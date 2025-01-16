@@ -35,7 +35,8 @@ const FieldWrapper: React.FC<FieldWrapperProps> = ({
   return (
     <div
       className={cn(
-        'relative flex flex-col px-6 py-2',
+        'relative flex flex-col pl-2 py-2',
+        'sm:px-6',
         'border rounded-md',
         variant === 'light' && theme.light.bg,
         variant === 'dark' && theme.dark.bg,

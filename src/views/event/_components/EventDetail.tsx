@@ -22,8 +22,10 @@ const EventDetail = ({
   if (fieldType === 'chip') return <ChipList labels={value as string[]} />;
 
   return (
-    <Box className="flex flex-col gap-1.5">
-      <Text size="2">{label}</Text>
+    <Box className="flex flex-col gap-1.5 w-full">
+      <Text size="2" className="w-fit">
+        {label}
+      </Text>
       <InputField
         fieldType={fieldType}
         inputProps={{ readOnly: isReadOnly, value: value as string }}

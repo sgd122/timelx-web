@@ -73,7 +73,7 @@ const EventNewContainer = () => {
                 이벤트 날짜<span className="text-red-400"> *</span>
               </Text>
               <Flex className="gap-5" direction="column">
-                <Flex className="gap-3.5 justify-between">
+                <Flex className="gap-3.5 justify-between max-w-[87vw]">
                   {renderEventDetails(detailFieldsSection1)}
                 </Flex>
               </Flex>
@@ -82,10 +82,10 @@ const EventNewContainer = () => {
             {/* 이벤트 시간 */}
             <Flex direction="column" className="gap-1">
               <Text size="2">이벤트 시간</Text>
-              <Flex className="gap-3.5 justify-between">
+              <Flex className="gap-3.5 justify-between max-w-[87vw]">
                 {renderEventDetails(detailFieldsSection2)}
               </Flex>
-              <Flex className="justify-center mt-0.5">
+              <Flex className="justify-center mt-0.5 max-w-[87vw]">
                 <IoIosInformationCircleOutline size="18" className="mr-1" />
                 <Text size="2">
                   다양한 시간에 걸쳐 진행되는 경우, ‘이벤트 정보’에 별도로
