@@ -1,7 +1,12 @@
 import Image from 'next/image';
 import type React from 'react';
 import { useRef, useState } from 'react';
-import type { FieldError, FieldPath, FieldValues } from 'react-hook-form';
+import type {
+  FieldError,
+  FieldErrors,
+  FieldPath,
+  FieldValues,
+} from 'react-hook-form';
 
 import PlaceholderImage from '@/assets/icon/placeholder-image.png';
 import { useRegister } from '@/components/providers/RegisterProvider';
@@ -10,7 +15,7 @@ import ErrorField from '@/views/event-new/_components/ErrorField';
 interface EventImageProps<TFieldValues extends FieldValues> {
   image?: string;
   name: FieldPath<TFieldValues>; // 특정 필드 이름만 허용
-  error?: FieldError;
+  error?: FieldErrors<TFieldValues>;
 }
 const EventImage = <TFieldValues extends FieldValues>({
   image = '',
@@ -72,7 +77,7 @@ const EventImage = <TFieldValues extends FieldValues>({
         ref={fileInputRef} // 파일 입력 요소 참조 설정
         className="hidden"
       />
-      {error && <ErrorField fieldName={error} />}
+      {error && <ErrorField fieldName={error as FieldError} />}
     </div>
   );
 };

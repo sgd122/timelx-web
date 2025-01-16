@@ -1,5 +1,10 @@
 import { Box, Text } from '@radix-ui/themes';
-import type { FieldError, FieldPath, FieldValues } from 'react-hook-form';
+import type {
+  FieldError,
+  FieldErrors,
+  FieldPath,
+  FieldValues,
+} from 'react-hook-form';
 
 import { useRegister } from '@/components/providers/RegisterProvider';
 import type { FieldType } from '@/components/ui/InputField';
@@ -11,7 +16,7 @@ interface EventDetailProps<TFieldValues extends FieldValues> {
   title?: string;
   label?: string;
   name: FieldPath<TFieldValues>; // 특정 필드 이름만 허용
-  error?: FieldError;
+  error?: FieldErrors<TFieldValues>;
   fieldType?: FieldType;
   isRequired: boolean;
   placeholder?: string;
@@ -58,7 +63,7 @@ const EventDetail = <TFieldValues extends FieldValues>({
         }}
         variant="dark"
       />
-      {error && <ErrorField fieldName={error} />}
+      {error && <ErrorField fieldName={error as FieldError} />}
     </Box>
   );
 };
