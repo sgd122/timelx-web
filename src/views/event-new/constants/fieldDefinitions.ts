@@ -1,18 +1,8 @@
 import type { FieldType } from '@/components/ui/InputField';
-import type { InputType } from '@/types/input-type';
 import { FIELD_LABELS } from '@/views/event-new/constants/fieldLabels';
 import { schema } from '@/views/event-new/constants/schema';
+import type { FieldDefinition } from '@/views/event-new/types/field-definition';
 import { isFieldRequired } from '@/views/event-new/utils/isFieldRequired';
-
-interface FieldDefinition {
-  title?: string;
-  label?: string;
-  value: string;
-  placeholder?: string;
-  isRequired: boolean;
-  fieldType?: FieldType; // 선택적 필드
-  type?: InputType;
-}
 
 export const detailFieldsSection0: FieldDefinition[] = [
   {
