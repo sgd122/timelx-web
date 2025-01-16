@@ -1,35 +1,27 @@
-import type { KeyboardEvent } from 'react';
+import type { ChangeEvent, KeyboardEvent } from 'react';
 import { useState } from 'react';
 
 import ChipList from '@/components/ui/ChipList';
-import useInput from '@/hooks/useInput';
 import { cn } from '@/lib/utils';
 
 interface ChipListInputProps {
   placeholder?: string;
   maxChips?: number;
-  onChange?: (values: string[]) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   className?: string;
   chipClassName?: string;
+  wrapperClassName?: string;
 }
 
-/**
- * @example
- * ```tsx
- * <ChipListInput
- *   placeholder="이벤트 주제를 태그해주세요 (최대 3개)"
- *   onChange={(values) => console.log('Current tags:', values)}
- * />
- * ```
- */
 const ChipListInput = ({
   placeholder,
   maxChips = Infinity,
   onChange,
   className,
   chipClassName,
+  wrapperClassName,
 }: ChipListInputProps) => {
-  const [value, handler, setValue] = useInput('');
+  const [value, setValue] = useState('');
   const [chips, setChips] = useState<string[]>([]);
 
   const addChip = (newValue: string) => {
@@ -39,13 +31,21 @@ const ChipListInput = ({
     const newChips = [...chips, newValue.trim()];
     setChips(newChips);
     setValue('');
-    onChange?.(newChips);
+    // Trigger `onChange` with updated chips as a string
+    const syntheticEvent = {
+      target: { value: newChips.join(', ') },
+    } as ChangeEvent<HTMLInputElement>;
+    onChange?.(syntheticEvent);
   };
 
   const removeChip = (index: number) => {
     const newChips = chips.filter((_, i) => i !== index);
     setChips(newChips);
-    onChange?.(newChips);
+    // Trigger `onChange` with updated chips as a string
+    const syntheticEvent = {
+      target: { value: newChips.join(', ') },
+    } as ChangeEvent<HTMLInputElement>;
+    onChange?.(syntheticEvent);
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -53,6 +53,11 @@ const ChipListInput = ({
       e.preventDefault();
       addChip(value);
     }
+  };
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+    onChange?.(e); // Forward input changes to the parent
   };
 
   return (
@@ -66,7 +71,8 @@ const ChipListInput = ({
           'border border-input',
           'bg-[#404040]',
           'focus-within:ring-1 focus-within:ring-ring',
-          'transition-colors'
+          'transition-colors',
+          wrapperClassName
         )}
       >
         <ChipList
@@ -78,7 +84,7 @@ const ChipListInput = ({
         <input
           type="text"
           value={value}
-          onChange={handler}
+          onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           placeholder={chips.length === 0 ? placeholder : ''}
           disabled={chips.length >= maxChips}

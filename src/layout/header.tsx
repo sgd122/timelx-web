@@ -10,7 +10,7 @@ import { FaHome, FaPlus } from 'react-icons/fa';
 import { IoMdShareAlt } from 'react-icons/io';
 
 import LogoTitle from '@/assets/icon/title.png';
-import CloseDialog from '@/layout/_components/CloseDialog';
+import Close from '@/layout/_components/Close';
 import { submitActionAtom } from '@/store/submitActionAtom';
 
 // 타입 정의
@@ -56,7 +56,7 @@ const Header = () => {
 
   const LeftComponent = () => {
     return router.pathname === '/event/new' ? (
-      <CloseDialog />
+      <Close />
     ) : (
       <Link href="/">
         <FaHome size="24" />
@@ -105,7 +105,7 @@ const Header = () => {
         <h2>
           {/* TODO: isPageName 인 경우 페이지경로에 따라서 적절한 페이지명으로 나오게 기능 추가 필요 */}
           <Text size="5" weight="bold">
-            새 이벤트
+            이벤트 등록
           </Text>
         </h2>
       )}

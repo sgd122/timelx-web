@@ -1,67 +1,105 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Text } from '@radix-ui/themes';
+import { Flex, Section, Text } from '@radix-ui/themes';
 import { useAtom } from 'jotai/react';
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
+import { IoIosInformationCircleOutline } from 'react-icons/io';
 
+import { RegisterProvider } from '@/components/providers/RegisterProvider';
 import { submitActionAtom } from '@/store/submitActionAtom';
-import FormField from '@/views/event-new/_components/FormField';
-
-const schema = z.object({
-  name: z.string().min(1, '이름을 입력해주세요.'),
-  email: z
-    .string()
-    .min(1, '이메일을 입력해주세요.')
-    .email('유효한 이메일 주소를 입력해주세요'),
-});
+import EventDetail from '@/views/event-new/_components/EventDetail';
+import EventImage from '@/views/event-new/_components/EventImage';
+import {
+  detailFieldsSection0,
+  detailFieldsSection1,
+  detailFieldsSection2,
+  detailFieldsSection3,
+} from '@/views/event-new/constants/fieldDefinitions';
+import { useEventForm } from '@/views/event-new/hooks/useEventForm';
+import { useFormDirty } from '@/views/event-new/hooks/useFormDirty';
+import type { FieldDefinition } from '@/views/event-new/types/field-definition';
+import type { FormValues } from '@/views/event-new/types/form-values';
 
 const EventNewContainer = () => {
   const [isSubmitAction, setSubmitAction] = useAtom(submitActionAtom);
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm({
-    defaultValues: {
-      name: '',
-      email: '',
-    },
-    resolver: zodResolver(schema),
-  });
+  const { register, handleSubmit, formState } = useEventForm();
 
-  const onSubmit = handleSubmit((formData) => {
-    // 폼 데이터 제출 로직
-    console.log('Form submitted:', formData);
+  const { setFormDirty } = useFormDirty();
+
+  const onSubmit = handleSubmit((data) => {
+    console.log('Form submitted:', data);
+    setFormDirty(false); // 제출 후 dirty 상태 초기화
   });
 
   useEffect(() => {
     if (isSubmitAction) {
-      // 상태 초기화
       setSubmitAction(false);
-      // ANCHOR: 등록 액션 처리
       onSubmit();
     }
   }, [isSubmitAction]);
 
+  const renderEventDetails = (fields: FieldDefinition[]) =>
+    fields.map(
+      ({ label, title, value, isRequired, placeholder, type, fieldType }) => (
+        <EventDetail<FormValues>
+          key={`event-form-${label}-${value}`}
+          label={label}
+          title={title}
+          name={value as keyof FormValues}
+          error={formState.errors[value as keyof FormValues]}
+          isRequired={isRequired}
+          placeholder={placeholder}
+          type={type}
+          fieldType={fieldType}
+        />
+      )
+    );
+
   return (
-    <div>
-      <Text>이벤트 등록페이지</Text>
-      <form onSubmit={onSubmit}>
-        <FormField
-          name="name"
-          placeholder="Enter your username"
-          register={register}
-          error={errors.name}
-        />
-        <FormField
-          name="email"
-          placeholder="Enter your email"
-          register={register}
-          error={errors.email}
-        />
-      </form>
-    </div>
+    <RegisterProvider register={register}>
+      <div>
+        <form
+          onSubmit={onSubmit}
+          onChange={() => setFormDirty(true)} // 폼 변경 시 dirty 상태로 설정
+        >
+          <Section className="flex flex-col gap-8 p-0">
+            {/* 이미지 업로드 */}
+            <EventImage name="image" error={formState.errors.image} />
+
+            {/* 첫 번째 섹션 */}
+            {renderEventDetails(detailFieldsSection0)}
+
+            {/* 이벤트 날짜 */}
+            <Flex direction="column" className="gap-1">
+              <Text size="2">
+                이벤트 날짜<span className="text-red-400"> *</span>
+              </Text>
+              <Flex className="gap-5" direction="column">
+                <Flex className="gap-3.5 justify-between">
+                  {renderEventDetails(detailFieldsSection1)}
+                </Flex>
+              </Flex>
+            </Flex>
+
+            {/* 이벤트 시간 */}
+            <Flex direction="column" className="gap-1">
+              <Text size="2">이벤트 시간</Text>
+              <Flex className="gap-3.5 justify-between">
+                {renderEventDetails(detailFieldsSection2)}
+              </Flex>
+              <Flex className="justify-center mt-0.5">
+                <IoIosInformationCircleOutline size="18" className="mr-1" />
+                <Text size="2">
+                  다양한 시간에 걸쳐 진행되는 경우, ‘이벤트 정보’에 별도로
+                  입력해주세요.
+                </Text>
+              </Flex>
+            </Flex>
+
+            {/* 추가 섹션 */}
+            {renderEventDetails(detailFieldsSection3)}
+          </Section>
+        </form>
+      </div>
+    </RegisterProvider>
   );
 };
 
