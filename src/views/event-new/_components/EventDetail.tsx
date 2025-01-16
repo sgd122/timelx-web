@@ -57,7 +57,8 @@ const EventDetail = <TFieldValues extends FieldValues>({
           placeholder: placeholder,
         }}
         chipProps={{
-          wrapperClassName: 'bg-transparent border-none outline-none',
+          wrapperClassName:
+            'bg-transparent border-none outline-none focus-within:ring-0',
           ...register(name),
           placeholder: placeholder,
         }}
