@@ -8,7 +8,7 @@ interface FieldDefinition {
   title?: string;
   label?: string;
   value: string;
-  placeholder: string;
+  placeholder?: string;
   isRequired: boolean;
   fieldType?: FieldType; // 선택적 필드
   type?: InputType;
@@ -28,14 +28,12 @@ export const detailFieldsSection1: FieldDefinition[] = [
     label: FIELD_LABELS.startDate,
     value: 'startDate',
     type: 'date',
-    placeholder: '1999. 01. 01',
     isRequired: isFieldRequired(schema.shape['startDate']),
   },
   {
     label: FIELD_LABELS.endDate,
     value: 'endDate',
     type: 'date',
-    placeholder: '1999. 01. 01',
     isRequired: isFieldRequired(schema.shape['endDate']),
   },
 ];
@@ -45,14 +43,12 @@ export const detailFieldsSection2: FieldDefinition[] = [
     title: FIELD_LABELS.startTime,
     value: 'startTime',
     type: 'time',
-    placeholder: '00 : 00',
     isRequired: isFieldRequired(schema.shape['startTime']),
   },
   {
     title: FIELD_LABELS.endTime,
     value: 'endTime',
     type: 'time',
-    placeholder: '00 : 00',
     isRequired: isFieldRequired(schema.shape['endTime']),
   },
 ];
@@ -92,7 +88,6 @@ export const detailFieldsSection3: FieldDefinition[] = [
   {
     title: FIELD_LABELS.tags,
     value: 'tags',
-    placeholder: '태그를 입력해주세요.',
     fieldType: 'chip' as FieldType,
     isRequired: isFieldRequired(schema.shape['tags']),
   },
