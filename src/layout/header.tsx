@@ -10,7 +10,7 @@ import { FaHome, FaPlus } from 'react-icons/fa';
 import { IoMdShareAlt } from 'react-icons/io';
 
 import LogoTitle from '@/assets/icon/title.png';
-import CloseDialog from '@/layout/_components/CloseDialog';
+import Close from '@/layout/_components/Close';
 import { submitActionAtom } from '@/store/submitActionAtom';
 
 // 타입 정의
@@ -56,7 +56,7 @@ const Header = () => {
 
   const LeftComponent = () => {
     return router.pathname === '/event/new' ? (
-      <CloseDialog />
+      <Close />
     ) : (
       <Link href="/">
         <FaHome size="24" />
