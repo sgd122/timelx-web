@@ -28,7 +28,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ children, className }) => {
         className
       )}
     >
-      <Text>{children}</Text>
+      <Text size="1">{children}</Text>
     </Box>
   );
 };
