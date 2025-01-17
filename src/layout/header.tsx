@@ -16,6 +16,7 @@ import { submitActionAtom } from '@/store/submitActionAtom';
 // 경로별 제목 정의
 const pageTitles: Record<string, string> = {
   '/event/new': '이벤트 등록',
+  '/event/[eventId]/edit': '이벤트 등록',
   '/saved': '저장한 이벤트',
   '/settings': 'Profile',
   '/settings/account': '계정 설정',
@@ -63,7 +64,8 @@ const Header = () => {
   });
 
   const LeftComponent = () => {
-    return router.pathname === '/event/new' ? (
+    return router.pathname === '/event/new' ||
+      router.pathname === '/event/[eventId]/edit' ? (
       <Close />
     ) : (
       <Link href="/">
@@ -83,7 +85,11 @@ const Header = () => {
     // 경로에 따라 적절한 아이콘 반환
     const getIconAndAction = () => {
       if (session.status === 'unauthenticated') return getLoginIcon();
-      if (router.pathname === '/event/new') return getRegisterIcon();
+      if (
+        router.pathname === '/event/new' ||
+        router.pathname === '/event/[eventId]/edit'
+      )
+        return getRegisterIcon();
       if (router.pathname === '/event/[eventId]') return getShareIcon();
       return getNewEventIcon();
     };
