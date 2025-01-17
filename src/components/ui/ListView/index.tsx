@@ -1,6 +1,6 @@
 import { Text } from '@radix-ui/themes';
 import Link from 'next/link';
-import type React from 'react';
+import React from 'react';
 import { FaChevronRight } from 'react-icons/fa';
 
 import { cn } from '@/lib/utils';
@@ -19,6 +19,14 @@ interface ListViewProps {
   items: ListViewItemProps[];
   className?: string;
 }
+
+const renderWithLineBreaks = (text: string) =>
+  text.split('\n').map((line, idx) => (
+    <React.Fragment key={idx}>
+      {line}
+      <br />
+    </React.Fragment>
+  ));
 
 const ListViewItem: React.FC<ListViewItemProps> = (props) => {
   const { label, icon } = props;
@@ -44,7 +52,7 @@ const ListViewItem: React.FC<ListViewItemProps> = (props) => {
           )}
         >
           <Text size="2" className="flex-1">
-            {label}
+            {renderWithLineBreaks(label)}
           </Text>
           {icon ? icon : <FaChevronRight className="text-tx-white" />}
         </Link>
@@ -67,7 +75,7 @@ const ListViewItem: React.FC<ListViewItemProps> = (props) => {
         )}
       >
         <Text size="2" className="flex-1">
-          {label}
+          {renderWithLineBreaks(label)}
         </Text>
         {icon ? icon : <FaChevronRight className="text-tx-white" />}
       </li>
