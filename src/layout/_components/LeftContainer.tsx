@@ -69,7 +69,7 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
       id: 'location',
       label: '지역 입력',
       placeholder: '지역 입력',
-      isRequired: false,
+      isRequired: true,
       component: 'input',
       type: 'text',
       value: location,
