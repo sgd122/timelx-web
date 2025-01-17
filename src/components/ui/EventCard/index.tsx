@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
+import { MdEdit } from 'react-icons/md';
 
 import FavoriteButton from '@/components/ui/FavoriteButton';
 import { cn } from '@/lib/utils';
@@ -12,6 +13,7 @@ interface EventCardProps {
   date: string;
   location: string;
   isFavorite?: boolean;
+  isEdit?: boolean;
   onFavoriteToggle?: (isFavorite: boolean) => void;
 }
 
@@ -56,6 +58,7 @@ const EventCard: React.FC<EventCardProps> = ({
   date,
   location,
   isFavorite = false,
+  isEdit = false,
   onFavoriteToggle,
 }) => {
   const [favorite, setFavorite] = React.useState(isFavorite);
@@ -68,7 +71,10 @@ const EventCard: React.FC<EventCardProps> = ({
   };
 
   return (
-    <Link href={`/event/${id}`} className={cn('flex items-center gap-4')}>
+    <Link
+      href={isEdit ? `/event/${id}/edit` : `/event/${id}`}
+      className={cn('flex items-center gap-4')}
+    >
       {/* 이미지 */}
       <Image
         src={image}
@@ -86,7 +92,11 @@ const EventCard: React.FC<EventCardProps> = ({
       </div>
 
       {/* 찜 버튼 */}
-      <FavoriteButton handleToggle={handleToggle} favorite={favorite} />
+      {isEdit ? (
+        <MdEdit size={24} />
+      ) : (
+        <FavoriteButton handleToggle={handleToggle} favorite={favorite} />
+      )}
     </Link>
   );
 };

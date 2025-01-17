@@ -1,5 +1,12 @@
+import EventEditList from '@/components/ui/EventEditList';
+import { events } from '@/views/home/dummy';
+
 const DashboardContainer = () => {
-  return <>이벤트 대시보드 페이지</>;
+  return (
+    <>
+      <EventEditList events={events} />
+    </>
+  );
 };
 
 export default DashboardContainer;
