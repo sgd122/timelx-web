@@ -6,6 +6,7 @@ declare module '@api/user' {
     id: number;
     name: string;
     nick_name: string | null;
+    imageUrl: string;
     email: string;
   }
 

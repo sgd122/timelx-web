@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 interface ListViewItemProps {
   label: string;
   href: string;
+  icon?: React.ReactNode;
 }
 
 interface ListViewProps {
@@ -15,11 +16,17 @@ interface ListViewProps {
   className?: string;
 }
 
-const ListViewItem: React.FC<ListViewItemProps> = ({ label, href }) => {
+const ListViewItem: React.FC<ListViewItemProps> = ({ label, href, icon }) => {
+  const isExternalLink =
+    href.startsWith('http://') || href.startsWith('https://');
+
   return (
     <li>
       <Link
         href={href}
+        {...(isExternalLink
+          ? { target: '_blank', rel: 'noopener noreferrer' } // 외부 링크인 경우 속성 추가
+          : {})}
         className={cn(
           'w-full',
           'flex items-center justify-between',
@@ -32,7 +39,7 @@ const ListViewItem: React.FC<ListViewItemProps> = ({ label, href }) => {
         <Text size="2" className="flex-1">
           {label}
         </Text>
-        <FaChevronRight className="text-tx-white" />
+        {icon ? icon : <FaChevronRight className="text-tx-white" />}
       </Link>
     </li>
   );
