@@ -115,9 +115,9 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
 
       {/* Main Content */}
       <div className="ml-6">
-        <p className="text-lg font-medium">AI time search engine</p>
+        <p className="text-lg font-medium">시간을 밝히는</p>
         <span className="text-5xl font-bold leading-tight mt-2">
-          시간을 밝히다<span className="text-yellow-500">.</span>
+          시간상점<span className="text-yellow-500">.</span>
         </span>
 
         {/* Filters */}
@@ -142,7 +142,7 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
             className="h-[77] w-[105]"
             onClick={handleSearch}
           >
-            검색하기
+            검색
           </Button>
         </div>
 
@@ -181,7 +181,7 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
           </Link>
           <Button
             variant="solid"
-            className="bg-yellow-500 hover:bg-yellow-600 text-black"
+            className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
           >
             🔥 이벤트 등록하고 시간 밝히기
           </Button>
