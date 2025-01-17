@@ -77,7 +77,6 @@ const Footer = () => {
   return (
     <footer>
       <Tabs.Root
-        className="absolute bottom-0 w-full"
         defaultValue={determineActiveTab(router.pathname) || undefined}
         value={activeTab}
         onValueChange={(value) => {

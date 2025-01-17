@@ -102,3 +102,19 @@
 .rt-TextFieldInput {
   text-indent: 0;
 }
+
+html, body {
+  overflow: hidden; /* 전체 페이지 스크롤 방지 */
+  height: 100%;
+}
+
+header {
+  position: sticky;
+  top: 0;
+}
+
+footer {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+}
