@@ -13,35 +13,39 @@ import LogoTitle from '@/assets/icon/title.png';
 import Close from '@/layout/_components/Close';
 import { submitActionAtom } from '@/store/submitActionAtom';
 
-// 타입 정의
-interface IconAction {
-  icon: React.ReactNode;
-  action: () => void | Promise<void | boolean>;
-  label: string;
-}
+// 경로별 제목 정의
+const pageTitles: Record<string, string> = {
+  '/event/new': '이벤트 등록',
+  '/saved': '저장한 이벤트',
+};
 
 const Header = () => {
   const router = useRouter();
   const session = useSession();
   const setSubmitAction = useSetAtom(submitActionAtom);
-  const isPageName = router.pathname === '/event/new';
+
+  // 현재 경로가 pageTitles에 포함되는지 확인
+  const isPageName = Object.prototype.hasOwnProperty.call(
+    pageTitles,
+    router.pathname
+  );
 
   // 로그인 아이콘
-  const getLoginIcon = (): IconAction => ({
+  const getLoginIcon = () => ({
     icon: <BiLogIn size="24" />,
     action: () => router.push('/auth/login'),
     label: '로그인',
   });
 
   // 등록 아이콘
-  const getRegisterIcon = (): IconAction => ({
+  const getRegisterIcon = () => ({
     icon: <Text className="text-blue-200">등록</Text>,
     action: () => setSubmitAction(true),
     label: '등록',
   });
 
   // 공유 아이콘
-  const getShareIcon = (): IconAction => ({
+  const getShareIcon = () => ({
     icon: <IoMdShareAlt size="24" />,
     action: async () => {
       try {
@@ -66,14 +70,14 @@ const Header = () => {
 
   const RightComponent = () => {
     // 새 이벤트 등록 아이콘
-    const getNewEventIcon = (): IconAction => ({
+    const getNewEventIcon = () => ({
       icon: <FaPlus size="24" />,
       action: () => router.push('/event/new'),
       label: '새 이벤트 등록',
     });
 
     // 경로에 따라 적절한 아이콘 반환
-    const getIconAndAction = (): IconAction => {
+    const getIconAndAction = () => {
       if (session.status === 'unauthenticated') return getLoginIcon();
       if (router.pathname === '/event/new') return getRegisterIcon();
       if (router.pathname === '/event/[eventId]') return getShareIcon();
@@ -102,11 +106,11 @@ const Header = () => {
           <Image src={LogoTitle} alt="timelx" height={24} />
         </h1>
 
+        {/* MiddleTitleName 대신 바로 출력 */}
         {isPageName && (
           <h2>
-            {/* TODO: isPageName 인 경우 페이지경로에 따라서 적절한 페이지명으로 나오게 기능 추가 필요 */}
             <Text size="5" weight="bold">
-              이벤트 등록
+              {pageTitles[router.pathname]}
             </Text>
           </h2>
         )}
