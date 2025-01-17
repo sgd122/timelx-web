@@ -1,7 +1,9 @@
+import { isEmpty } from 'lodash-es';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import type React from 'react';
+import toast from 'react-hot-toast';
 
 import Gemini from '@/assets/icon/gemini.png';
 import LogoTitle from '@/assets/icon/title.png';
@@ -25,6 +27,11 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
   const [keyword, setKeyword] = useInput<string>('');
 
   const handleSearch = () => {
+    if (isEmpty(date) || isEmpty(location)) {
+      toast.error('날짜와 지역은 필수 입력 항목입니다.');
+      return;
+    }
+
     const queryParams = new URLSearchParams({
       date,
       location,

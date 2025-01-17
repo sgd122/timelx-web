@@ -1,5 +1,7 @@
 import { Flex } from '@radix-ui/themes';
+import { isEmpty } from 'lodash-es';
 import { useRouter } from 'next/router';
+import toast from 'react-hot-toast';
 
 import Button from '@/components/ui/Button';
 import InputField from '@/components/ui/InputField';
@@ -15,6 +17,11 @@ const SearchContainer = () => {
   const [keyword, setKeyword] = useInput<string>('');
 
   const handleSearch = () => {
+    if (isEmpty(date) || isEmpty(location)) {
+      toast.error('날짜와 지역은 필수 입력 항목입니다.');
+      return;
+    }
+
     const queryParams = new URLSearchParams({
       date,
       location,
