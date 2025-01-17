@@ -1,5 +1,7 @@
+import SavedContainer from '@/views/saved';
+
 const Saved = () => {
-  return <>Saved Page</>;
+  return <SavedContainer />;
 };
 
 export default Saved;
