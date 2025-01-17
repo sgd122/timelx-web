@@ -2,8 +2,8 @@ import { Flex } from '@radix-ui/themes';
 
 import EventList from '@/components/ui/EventList';
 import SearchBar from '@/components/ui/SearchBar';
-import { events } from '@/views/home/dummy';
 import EventNotification from '@/views/search-result/_components/EventNotification';
+import { events } from '@/views/search-result/dummy';
 
 const SearchResultContainer = () => {
   return (
