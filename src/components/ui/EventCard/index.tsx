@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import * as React from 'react';
+import type * as React from 'react';
 import { MdEdit } from 'react-icons/md';
 
 import FavoriteButton from '@/components/ui/FavoriteButton';
 import { cn } from '@/lib/utils';
+import { handleFavoriteToggle } from '@/services/favoriteService';
 
 interface EventCardProps {
   id: number;
@@ -14,7 +15,6 @@ interface EventCardProps {
   location: string;
   isFavorite?: boolean;
   isEdit?: boolean;
-  onFavoriteToggle?: (isFavorite: boolean) => void;
 }
 
 /**
@@ -31,6 +31,7 @@ interface EventCardProps {
  *
  * ---
  * 📋 **Props**:
+ * - `id` (필수): 이벤트 ID
  * - `image` (필수): 이벤트 이미지 경로.
  * - `title` (필수): 이벤트 제목.
  * - `date` (필수): 이벤트 날짜 문자열.
@@ -42,6 +43,7 @@ interface EventCardProps {
  * 💡 **사용 예제**:
  * ```tsx
  * <EventCard
+ *   id=0
  *   image="/path/to/image.jpg"
  *   title="YOUNG POSSE CONCERT"
  *   date="2024.12.14.(토)"
@@ -59,15 +61,9 @@ const EventCard: React.FC<EventCardProps> = ({
   location,
   isFavorite = false,
   isEdit = false,
-  onFavoriteToggle,
 }) => {
-  const [favorite, setFavorite] = React.useState(isFavorite);
-
-  const handleToggle = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    e.preventDefault();
-    const newValue = !favorite;
-    setFavorite(newValue);
-    onFavoriteToggle?.(newValue);
+  const refetchPostList = async () => {
+    console.log('refetchPostList');
   };
 
   return (
@@ -95,7 +91,13 @@ const EventCard: React.FC<EventCardProps> = ({
       {isEdit ? (
         <MdEdit size={24} />
       ) : (
-        <FavoriteButton handleToggle={handleToggle} favorite={favorite} />
+        <FavoriteButton
+          postId={id}
+          favorite={isFavorite}
+          onFavoriteToggle={(newFavorite, postId) =>
+            handleFavoriteToggle(newFavorite, postId, refetchPostList)
+          }
+        />
       )}
     </Link>
   );

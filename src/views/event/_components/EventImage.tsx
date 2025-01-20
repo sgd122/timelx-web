@@ -1,15 +1,14 @@
 import Image from 'next/image';
-import type React from 'react';
-import { useState } from 'react';
 
 import FavoriteButton from '@/components/ui/FavoriteButton';
+import { handleFavoriteToggle } from '@/services/favoriteService';
+import { EVENT_DETAILS } from '@/views/event/dummy';
 
-const EventImage = ({ image }: { image: string }) => {
-  const [favorite, setFavorite] = useState(false);
+const EventImage = () => {
+  const { id, favorite, image } = EVENT_DETAILS;
 
-  const handleToggle = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
-    setFavorite(!favorite);
+  const refetchPostList = async () => {
+    console.log('refetchPostList');
   };
 
   return (
@@ -22,7 +21,13 @@ const EventImage = ({ image }: { image: string }) => {
         height={9}
       />
       <div className="absolute top-2 right-2">
-        <FavoriteButton handleToggle={handleToggle} favorite={favorite} />
+        <FavoriteButton
+          postId={id}
+          favorite={favorite}
+          onFavoriteToggle={(newFavorite, postId) =>
+            handleFavoriteToggle(newFavorite, postId, refetchPostList)
+          }
+        />
       </div>
     </div>
   );

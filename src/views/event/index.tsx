@@ -7,7 +7,6 @@ import { EVENT_DETAILS } from '@/views/event/dummy';
 
 const EventContainer = () => {
   const {
-    image,
     title,
     startDate,
     endDate,
@@ -33,7 +32,7 @@ const EventContainer = () => {
 
   return (
     <Section className="flex flex-col gap-8 p-0">
-      <EventImage image={image} />
+      <EventImage />
       <Flex className="gap-5" direction="column">
         <Text size="5">{title}</Text>
 
