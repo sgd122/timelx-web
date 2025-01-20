@@ -7,9 +7,15 @@ const isValidPreviousPage = () => {
   const referrer = document.referrer;
   return referrer.includes(window.location.origin); // 외부 링크가 아닌 경우에만 true
 };
-const Close = () => {
+
+interface CloseProps {
+  href?: string;
+}
+const Close: React.FC<CloseProps> = ({ href }) => {
   const router = useRouter();
   const handleDiscard = () => {
+    if (href) router.push(href);
+
     // Navigate or reset logic here
     if (window.history.length > 1 && isValidPreviousPage()) {
       router.back(); // 히스토리가 있고 이전 페이지가 유효하면 뒤로가기

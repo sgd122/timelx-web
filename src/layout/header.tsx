@@ -64,10 +64,24 @@ const Header = () => {
   });
 
   const LeftComponent = () => {
-    return router.pathname === '/event/new' ||
-      router.pathname === '/event/[eventId]/edit' ? (
-      <Close />
-    ) : (
+    const pages = [
+      '/event/new',
+      '/event/[eventId]/edit',
+      '/settings/account',
+      '/settings/contact',
+      '/settings/dashboard',
+    ];
+    const shouldShowSettingsLink = router.pathname.startsWith('settings');
+
+    if (pages.includes(router.pathname) && shouldShowSettingsLink) {
+      return <Close href="/settings" />;
+    }
+
+    if (pages.includes(router.pathname)) {
+      return <Close />;
+    }
+
+    return (
       <Link href="/">
         <FaHome size="24" />
       </Link>
