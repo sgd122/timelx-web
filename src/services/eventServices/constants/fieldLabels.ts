@@ -8,6 +8,7 @@ export const FIELD_LABELS = {
   address: '상세주소 (도로명, 지번)',
   information: '이벤트 정보',
   organizer: '주최·주관',
-  sponsor: '링크',
+  urlName: 'URL 제목',
+  urlLink: 'URL 주소',
   tags: '주제 태그(최대 3개). 입력 후 엔터',
 };

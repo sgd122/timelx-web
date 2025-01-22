@@ -4,19 +4,19 @@ import { useEffect } from 'react';
 import { IoIosInformationCircleOutline } from 'react-icons/io';
 
 import { RegisterProvider } from '@/components/providers/RegisterProvider';
-import { submitActionAtom } from '@/store/submitActionAtom';
-import EventDetail from '@/views/event-new/_components/EventDetail';
-import EventImage from '@/views/event-new/_components/EventImage';
 import {
   detailFieldsSection0,
   detailFieldsSection1,
   detailFieldsSection2,
   detailFieldsSection3,
-} from '@/views/event-new/constants/fieldDefinitions';
-import { useEventForm } from '@/views/event-new/hooks/useEventForm';
-import { useFormDirty } from '@/views/event-new/hooks/useFormDirty';
-import type { FieldDefinition } from '@/views/event-new/types/field-definition';
-import type { FormValues } from '@/views/event-new/types/form-values';
+} from '@/services/eventServices/constants/fieldDefinitions';
+import { useEventForm } from '@/services/eventServices/hooks/useEventForm';
+import { useFormDirty } from '@/services/eventServices/hooks/useFormDirty';
+import type { FieldDefinition } from '@/services/eventServices/types/field-definition';
+import type { FormValues } from '@/services/eventServices/types/form-values';
+import { submitActionAtom } from '@/store/submitActionAtom';
+import EventDetail from '@/views/event-new/_components/EventDetail';
+import EventImage from '@/views/event-new/_components/EventImage';
 
 const EventNewContainer = () => {
   const [isSubmitAction, setSubmitAction] = useAtom(submitActionAtom);

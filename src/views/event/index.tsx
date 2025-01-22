@@ -25,8 +25,8 @@ const EventContainer = () => {
     { label: '장소명', value: venue },
     { label: '상세주소', value: address },
     { label: '이벤트 정보', value: information, fieldType: 'textarea' },
-    { label: '주최', value: organizer },
-    { label: '주관', value: sponsor },
+    { label: '주최·주관', value: organizer },
+    { label: '링크', value: sponsor },
     { label: '', value: tags, fieldType: 'chip' },
   ];
 
