@@ -14,7 +14,10 @@ interface CloseProps {
 const Close: React.FC<CloseProps> = ({ href }) => {
   const router = useRouter();
   const handleDiscard = () => {
-    if (href) router.push(href);
+    if (href) {
+      router.push(href);
+      return;
+    }
 
     // Navigate or reset logic here
     if (window.history.length > 1 && isValidPreviousPage()) {
