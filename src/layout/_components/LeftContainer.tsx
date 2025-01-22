@@ -107,9 +107,9 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
       {/* Header */}
       <div className="flex items-center text-center">
         <Image src={LogoTitle} alt={'logo'} height={20} />
-        <span className="text-sm font-semibold tracking-wide">타임럭스</span>
+        <span className="text-md font-semibold tracking-wide">타임럭스</span>
         <span className="bg-gray-700 text-xs rounded-full px-2 py-1 ml-2">
-          베타
+          Beta
         </span>
       </div>
 
