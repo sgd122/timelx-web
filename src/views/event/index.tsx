@@ -34,7 +34,9 @@ const EventContainer = () => {
     <Section className="flex flex-col gap-8 p-0">
       <EventImage />
       <Flex className="gap-5" direction="column">
-        <Text size="5">{title}</Text>
+        <Text className="font-bold" size="5">
+          {title}
+        </Text>
 
         <Flex className="gap-3.5 justify-between max-w-[87vw]">
           {detailFields.slice(0, 2).map(({ label, value }, idx) => (
