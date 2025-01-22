@@ -15,6 +15,7 @@ import { useFormDirty } from '@/services/eventServices/hooks/useFormDirty';
 import type { FieldDefinition } from '@/services/eventServices/types/field-definition';
 import type { FormValues } from '@/services/eventServices/types/form-values';
 import { submitActionAtom } from '@/store/submitActionAtom';
+import DeleteButton from '@/views/event-edit/_components/DeleteButton';
 import EventDetail from '@/views/event-edit/_components/EventDetail';
 import EventImage from '@/views/event-edit/_components/EventImage';
 
@@ -53,6 +54,10 @@ const EventEditContainer = () => {
       onSubmit();
     }
   }, [isSubmitAction]);
+
+  const onDelete = () => {
+    console.log('onDelete');
+  };
 
   const renderEventDetails = (fields: FieldDefinition[]) =>
     fields.map(
@@ -118,6 +123,8 @@ const EventEditContainer = () => {
 
             {/* 추가 섹션 */}
             {renderEventDetails(detailFieldsSection3)}
+
+            <DeleteButton onDelete={onDelete} />
           </Section>
         </form>
       </div>
