@@ -23,16 +23,15 @@ export const baseSchema = z.object({
       });
     }
   }),
+  // TODO: .transform((val) => new Date(val)), 로직이 필요한지 체크필요!
   startDate: z
     .string()
     .min(1, '시작일을 입력해주세요.')
-    .refine((val) => !isNaN(Date.parse(val)), '유효한 날짜 형식이 아닙니다.')
-    .transform((val) => new Date(val)),
+    .refine((val) => !isNaN(Date.parse(val)), '유효한 날짜 형식이 아닙니다.'),
   endDate: z
     .string()
     .min(1, '종료일을 입력해주세요.')
-    .refine((val) => !isNaN(Date.parse(val)), '유효한 날짜 형식이 아닙니다.')
-    .transform((val) => new Date(val)),
+    .refine((val) => !isNaN(Date.parse(val)), '유효한 날짜 형식이 아닙니다.'),
   startTime: z.string().optional(),
   endTime: z.string().optional(),
   venue: z.string().min(1, '장소를 입력해주세요.'),

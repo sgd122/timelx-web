@@ -11,6 +11,7 @@ import {
   detailFieldsSection3,
 } from '@/services/eventServices/constants/fieldDefinitions';
 import { useEventForm } from '@/services/eventServices/hooks/useEventForm';
+import { useEventTimeValidation } from '@/services/eventServices/hooks/useEventTimeValidation';
 import { useFormDirty } from '@/services/eventServices/hooks/useFormDirty';
 import type { FieldDefinition } from '@/services/eventServices/types/field-definition';
 import type { FormValues } from '@/services/eventServices/types/form-values';
@@ -38,10 +39,13 @@ const TEST_DATA: FormValues = {
 
 const EventEditContainer = () => {
   const [isSubmitAction, setSubmitAction] = useAtom(submitActionAtom);
-  const { register, handleSubmit, formState, getValues } =
+  const { register, handleSubmit, formState, getValues, watch, setValue } =
     useEventForm(TEST_DATA);
 
   const { setFormDirty } = useFormDirty();
+
+  // 시간 관리 로직
+  useEventTimeValidation({ watch, setValue });
 
   const onSubmit = handleSubmit((data) => {
     console.log('Form submitted:', data);
