@@ -6,7 +6,9 @@ import { FaSearch } from 'react-icons/fa';
 const FloatingSearchButton = () => {
   const router = useRouter();
 
-  const hiddenClass = router.pathname === '/search' ? 'hidden' : '';
+  const hiddenClass = ['/', '/search/result'].includes(router.pathname)
+    ? ''
+    : 'hidden';
 
   return (
     <div className={`absolute bottom-6 right-6 ${hiddenClass}`}>
