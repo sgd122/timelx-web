@@ -28,3 +28,13 @@ test('event search workflow test', async ({ page }) => {
 
   console.log('검색 테스트가 성공적으로 수행되었습니다.');
 });
+
+test('event detail workflow test', async ({ page }) => {
+  await page.goto('http://localhost:3000/');
+
+  await page.getByRole('link', { name: 'YOUNG POSSE CONCERT YOUNG' }).click();
+
+  await expect(page).toHaveURL(new RegExp(`/event/0`), { timeout: 10000 });
+
+  console.log('이벤트 이동 테스트가 성공적으로 수행되었습니다.');
+});
