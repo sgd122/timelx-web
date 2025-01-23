@@ -9,7 +9,7 @@ const useDefaultSeo = (): DefaultSeoProps => {
   const defaultTitle = DOMAIN_NAME;
   const titleTemplate = `${DOMAIN_NAME} %s`;
   const siteName = DOMAIN_NAME;
-  const description = '설명';
+  const description = '시간을 밝히는 시간상점.';
   const canonical = `${DOMAIN}${asPath}`;
 
   const openGraph = {

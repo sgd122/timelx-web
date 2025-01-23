@@ -1,2 +1,2 @@
-export const DOMAIN = 'https://sgd122.vercel.app/';
+export const DOMAIN = 'https://timelx.com';
 export const DOMAIN_NAME = 'Timelx';
