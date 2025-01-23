@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "lint-staged": "lint-staged",
-    "commitlint": "commitlint -e"
+    "commitlint": "commitlint -e",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

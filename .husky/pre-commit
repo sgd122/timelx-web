@@ -1,4 +1,17 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# Lint-staged 실행 (ESLint, Prettier 등)
 yarn lint-staged
+
+# Playwright 테스트 실행
+echo "Running Playwright tests..."
+yarn test:e2e --reporter=dot
+
+# Playwright 테스트 실패 시 커밋 중단
+if [ $? -ne 0 ]; then
+  echo "❌ Playwright tests failed. Commit aborted."
+  exit 1
+fi
+
+echo "✅ All tests passed. Commit allowed."
