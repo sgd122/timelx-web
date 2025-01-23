@@ -5,7 +5,7 @@ const useViewportHeight = () => {
 
   useEffect(() => {
     const updateHeight = () => {
-      const vh = window.innerHeight * 0.01;
+      const vh = window.innerHeight * 0.01 + 0.2;
       setViewportHeight(`${vh * 100}px`);
     };
 

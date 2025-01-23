@@ -121,7 +121,7 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
         </span>
 
         {/* Filters */}
-        <div className="flex justify-center gap-4 mt-8">
+        <div className="flex flex-wrap gap-4 mt-8">
           {fields.map((field) => (
             <InputField
               key={field.id}

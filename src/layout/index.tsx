@@ -27,18 +27,18 @@ const Layout = ({ children }: PropsWithChildren) => {
         <Box
           style={{
             background: 'var(--gray-a2)',
-            borderRadius: 'var(--radius-3)',
             position: 'relative',
             overflow: 'hidden',
             height: viewportHeight,
             display: 'flex',
             flexDirection: 'column',
+            paddingBottom: '16px',
           }}
         >
           <Header />
           <Box className="flex-1 overflow-y-hidden">
             <ScrollArea type="hover" scrollbars="vertical">
-              <Box className="px-6 py-4">{children}</Box>
+              <Box className="px-6 pb-4">{children}</Box>
               <FloatingSearchButton />
             </ScrollArea>
           </Box>
