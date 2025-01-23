@@ -22,8 +22,8 @@ import EventImage from '@/views/event-edit/_components/EventImage';
 
 const TEST_DATA: FormValues = {
   title: 'title',
-  startDate: new Date(),
-  endDate: new Date(),
+  startDate: '2025-01-21',
+  endDate: '2025-01-23',
   startTime: 'startTime',
   endTime: 'endTime',
   venue: 'venue',

@@ -145,6 +145,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
             nick_name: '홍길동',
             email: 'aaa@gmail.com',
             accessToken: 'plainTextToken',
+            imageUrl: '',
           };
 
           const tokenResponse = await fetch(`${BACKEND_API}/login`, {
@@ -187,6 +188,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
                 nick_name: user.nick_name,
                 email: user.email,
                 accessToken: token?.data.token?.plainTextToken,
+                imageUrl: '',
               };
             }
           }
