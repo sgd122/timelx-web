@@ -78,7 +78,7 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
     {
       id: 'time',
       label: '시간 선택',
-      placeholder: '17:00 - 21:00',
+      placeholder: '17:00',
       isRequired: false,
       component: 'input',
       type: 'time',

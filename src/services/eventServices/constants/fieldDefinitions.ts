@@ -18,12 +18,14 @@ export const detailFieldsSection1: FieldDefinition[] = [
     label: FIELD_LABELS.startDate,
     value: 'startDate',
     type: 'date',
+    placeholder: 'YYYY. MM. DD.',
     isRequired: isFieldRequired(baseSchema.shape['startDate']),
   },
   {
     label: FIELD_LABELS.endDate,
     value: 'endDate',
     type: 'date',
+    placeholder: 'YYYY. MM. DD.',
     isRequired: isFieldRequired(baseSchema.shape['endDate']),
   },
 ];
@@ -33,12 +35,14 @@ export const detailFieldsSection2: FieldDefinition[] = [
     title: FIELD_LABELS.startTime,
     value: 'startTime',
     type: 'time',
+    placeholder: 'MM:SS',
     isRequired: isFieldRequired(baseSchema.shape['startTime']),
   },
   {
     title: FIELD_LABELS.endTime,
     value: 'endTime',
     type: 'time',
+    placeholder: 'MM:SS',
     isRequired: isFieldRequired(baseSchema.shape['endTime']),
   },
 ];

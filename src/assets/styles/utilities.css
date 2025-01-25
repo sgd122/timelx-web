@@ -1,0 +1,13 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    input[type='time']::-webkit-calendar-picker-indicator,
+    input[type='date']::-webkit-calendar-picker-indicator {
+        filter: invert(40%) sepia(10%) saturate(0%) hue-rotate(90deg);
+    }
+
+    .rt-TextFieldInput {
+        text-indent: 0;
+    }
+}

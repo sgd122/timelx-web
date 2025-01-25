@@ -1,0 +1,31 @@
+input[type='date']::before,
+input[type='time']::before {
+    width: 100%;
+    position: absolute;
+    content: attr(placeholder);
+}
+
+input[type='date']:focus::before,
+input[type='date']:valid::before,
+input[type='time']:focus::before,
+input[type='time']:valid::before {
+    content: '';
+}
+
+input[type="date"]:in-range::-webkit-datetime-edit-text,
+input[type="date"]:in-range::-webkit-datetime-edit-year-field,
+input[type="date"]:in-range::-webkit-datetime-edit-month-field,
+input[type="date"]:in-range::-webkit-datetime-edit-day-field {
+    color: transparent;
+    -webkit-appearance: none;
+    display: none;
+}
+
+input[type="time"]:in-range::-webkit-datetime-edit-hour-field,
+input[type="time"]:in-range::-webkit-datetime-edit-minute-field,
+input[type="time"]:in-range::-webkit-datetime-edit-second-field,
+input[type="time"]:in-range::-webkit-datetime-edit-ampm-field,
+input[type="time"]:in-range::-webkit-datetime-edit-text {
+    -webkit-appearance: none;
+    display: none;
+}
