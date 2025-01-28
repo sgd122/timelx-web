@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import { Tabs } from '@radix-ui/themes';
 import { useAtom } from 'jotai/react';
-import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { FaCog, FaHeart, FaLightbulb } from 'react-icons/fa';
 
+import { useAppRouter } from '@/hooks/useAppRouter';
 import { activeTabAtom } from '@/store/navigationAtom';
 import type { NavigateTab } from '@/types/navigate';
 
@@ -15,7 +15,7 @@ enum TabsEnum {
 }
 
 const Footer = () => {
-  const router = useRouter();
+  const router = useAppRouter();
   const [activeTab, setActiveTab] = useAtom(activeTabAtom);
 
   const TabTriggerOverride = styled(Tabs.Trigger)`

@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { FaHome } from 'react-icons/fa';
 
+import { useAppRouter } from '@/hooks/useAppRouter';
 import Close from '@/layout/_components/Close';
 
 export const useHeaderNavigation = () => {
-  const router = useRouter();
+  const router = useAppRouter();
 
   const shouldShowSettingsLink = router.pathname.startsWith('/settings');
 

@@ -1,7 +1,6 @@
 import { isEmpty } from 'lodash-es';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import type React from 'react';
 import toast from 'react-hot-toast';
 
@@ -10,6 +9,7 @@ import LogoTitle from '@/assets/icon/title.png';
 import Button from '@/components/ui/Button';
 import type { FieldType } from '@/components/ui/InputField';
 import InputField from '@/components/ui/InputField';
+import { useAppRouter } from '@/hooks/useAppRouter';
 import useInput from '@/hooks/useInput';
 import { cn } from '@/lib/utils';
 import type { InputType } from '@/types/input-type';
@@ -19,7 +19,7 @@ interface LeftContainerProps {
 }
 
 const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
-  const router = useRouter();
+  const router = useAppRouter();
 
   const [date, setDate] = useInput<string>('');
   const [location, setLocation] = useInput<string>('');

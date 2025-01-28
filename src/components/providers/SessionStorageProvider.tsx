@@ -1,6 +1,7 @@
-import { useRouter } from 'next/router';
 import type React from 'react';
 import { createContext, useEffect, useState } from 'react';
+
+import { useAppRouter } from '@/hooks/useAppRouter';
 
 // Context 생성
 interface SessionStorageContextProps {
@@ -16,7 +17,7 @@ export const SessionStorageContext = createContext<
 export const SessionStorageProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
-  const router = useRouter();
+  const router = useAppRouter();
   const [previousPage, setPreviousPageState] = useState<string | null>(null);
 
   useEffect(() => {

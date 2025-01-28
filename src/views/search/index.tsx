@@ -1,6 +1,5 @@
-import { useRouter } from 'next/router';
-
 import Button from '@/components/ui/Button';
+import { useAppRouter } from '@/hooks/useAppRouter';
 import SearchForm from '@/views/search/components/SearchForm';
 import useSearchInputs from '@/views/search/hooks/useSearchInputs';
 import {
@@ -9,7 +8,7 @@ import {
 } from '@/views/search/utils/searchUtils';
 
 const SearchContainer = () => {
-  const router = useRouter();
+  const router = useAppRouter();
   const [
     { date, location, startTime, endTime, keyword },
     { setDate, setLocation, setStartTime, setEndTime, setKeyword },

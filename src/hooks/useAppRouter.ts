@@ -1,5 +1,6 @@
 import type { UrlObject } from 'url';
 
+import type { NextRouter } from 'next/router';
 import { useRouter } from 'next/router';
 
 import { DOMAIN } from '@/constants/url';
@@ -29,12 +30,12 @@ export type AppRouterPush = (
   url: string | UrlObject,
   as?: string | UrlObject,
   options?: AppRouterOptions
-) => Promise<boolean | void>;
+) => Promise<boolean>;
 
 /**
  * useAppRouter 훅이 반환하는 객체의 타입
  */
-export interface UseAppRouterReturn {
+export interface UseAppRouterReturn extends Omit<NextRouter, 'push'> {
   push: AppRouterPush;
 }
 
@@ -44,20 +45,23 @@ export interface UseAppRouterReturn {
 export const useAppRouter = (): UseAppRouterReturn => {
   const { isWebView } = useWebView();
   const router = useRouter();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars,no-unused-vars
+  const { push: _, ...otherRouterProps } = router;
 
   const push: AppRouterPush = async (url, as, options = { shallow: true }) => {
     if (isWebView) {
       // 웹뷰 환경: 이벤트를 네이티브 쪽에 알리는 로직
-      return sendRouterEvent({
+      await sendRouterEvent({
         path: `${DOMAIN}/${url}`,
         screenName: options.appScreenName ?? '',
         data: { ...(options.appSendData ?? {}) },
       });
+      return true;
     }
 
     // 웹 환경: Next.js 라우터 사용
     return router.push(url, as, options);
   };
 
-  return { push };
+  return { ...otherRouterProps, push };
 };

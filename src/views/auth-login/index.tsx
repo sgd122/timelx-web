@@ -1,5 +1,4 @@
 import { Flex, Text } from '@radix-ui/themes';
-import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
@@ -7,9 +6,10 @@ import { FcGoogle } from 'react-icons/fc';
 
 import Button from '@/components/ui/Button';
 import { LOGIN_PROVIDER } from '@/constants/auth';
+import { useAppRouter } from '@/hooks/useAppRouter';
 
 const AuthLoginContainer = () => {
-  const router = useRouter();
+  const router = useAppRouter();
 
   useEffect(() => {
     const { message } = router.query;

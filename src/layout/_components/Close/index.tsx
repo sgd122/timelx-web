@@ -1,7 +1,7 @@
 import { Button } from '@radix-ui/themes';
-import { useRouter } from 'next/router';
 import { IoMdClose } from 'react-icons/io';
 
+import { useAppRouter } from '@/hooks/useAppRouter';
 import { useSessionStorage } from '@/hooks/useSessionStorage';
 
 interface CloseProps {
@@ -9,7 +9,7 @@ interface CloseProps {
 }
 const Close: React.FC<CloseProps> = ({ href }) => {
   const { previousPage } = useSessionStorage();
-  const router = useRouter();
+  const router = useAppRouter();
 
   const handleDiscard = () => {
     if (href) {

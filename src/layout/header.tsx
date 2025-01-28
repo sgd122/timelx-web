@@ -1,10 +1,10 @@
 import { Button, Flex, Text } from '@radix-ui/themes';
 import { useSetAtom } from 'jotai';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 
 import LogoTitle from '@/assets/icon/title.png';
+import { useAppRouter } from '@/hooks/useAppRouter';
 import { pageTitles } from '@/layout/constants/headerTitles';
 import { useHeaderNavigation } from '@/layout/hooks/useHeaderNavigation';
 import {
@@ -21,7 +21,7 @@ interface IconAction {
   label: string;
 }
 const Header = () => {
-  const router = useRouter();
+  const router = useAppRouter();
   const session = useSession();
   const setSubmitAction = useSetAtom(submitActionAtom);
 

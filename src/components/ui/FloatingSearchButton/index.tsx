@@ -1,10 +1,11 @@
 import { Button, Tooltip } from '@radix-ui/themes';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { FaSearch } from 'react-icons/fa';
 
+import { useAppRouter } from '@/hooks/useAppRouter';
+
 const FloatingSearchButton = () => {
-  const router = useRouter();
+  const router = useAppRouter();
 
   const hiddenClass = ['/', '/search/result'].includes(router.pathname)
     ? ''

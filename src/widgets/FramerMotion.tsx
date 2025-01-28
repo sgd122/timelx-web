@@ -1,9 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useRouter } from 'next/router';
 import type { PropsWithChildren } from 'react';
 
+import { useAppRouter } from '@/hooks/useAppRouter';
+
 const FramerMotion = ({ children }: PropsWithChildren) => {
-  const router = useRouter();
+  const router = useAppRouter();
 
   return (
     <AnimatePresence mode="wait" initial={false}>

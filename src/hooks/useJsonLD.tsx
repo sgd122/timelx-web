@@ -1,11 +1,11 @@
 import type { JsonLDProps } from '@seo';
-import { useRouter } from 'next/router';
 
 import { DOMAIN, DOMAIN_NAME } from '@/constants/url';
+import { useAppRouter } from '@/hooks/useAppRouter';
 
 const useJsonLD = (props?: JsonLDProps) => {
   const { context, type, contactPoint, ...rest } = props ?? {};
-  const { locale, asPath } = useRouter();
+  const { locale, asPath } = useAppRouter();
 
   const defaultJson = {
     '@context': context || 'http://schema.org',

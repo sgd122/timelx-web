@@ -1,12 +1,13 @@
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+
+import { useAppRouter } from '@/hooks/useAppRouter';
 
 export const useFormDirty = (): {
   isFormDirty: boolean;
   setFormDirty: (dirty: boolean) => void;
 } => {
   const [isFormDirty, setIsFormDirty] = useState(false);
-  const router = useRouter();
+  const router = useAppRouter();
 
   // 페이지 이동 시 경고 메시지 표시
   useEffect(() => {
