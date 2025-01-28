@@ -1,24 +1,38 @@
 import useInput from '@/hooks/useInput';
 import { INITIAL_SEARCH_VALUES } from '@/views/search/constants/initialValues';
-import type { SearchFormInputs } from '@/views/search/types/search';
+import type {
+  SearchFormInputs,
+  SearchSetters,
+  SearchValues,
+} from '@/views/search/types/search';
 
 const useSearchInputs = (): SearchFormInputs => {
-  const [date, setDate] = useInput<string>(INITIAL_SEARCH_VALUES.DATE);
-  const [location, setLocation] = useInput<string>(
-    INITIAL_SEARCH_VALUES.LOCATION
-  );
-  const [startTime, setStartTime] = useInput<string>(
-    INITIAL_SEARCH_VALUES.START_TIME
-  );
-  const [endTime, setEndTime] = useInput<string>(
-    INITIAL_SEARCH_VALUES.END_TIME
-  );
-  const [keyword, setKeyword] = useInput<string>(INITIAL_SEARCH_VALUES.KEYWORD);
-
-  return [
-    { date, location, startTime, endTime, keyword },
-    { setDate, setLocation, setStartTime, setEndTime, setKeyword },
+  const fields = [
+    { key: 'date', initialValue: INITIAL_SEARCH_VALUES.DATE },
+    { key: 'location', initialValue: INITIAL_SEARCH_VALUES.LOCATION },
+    { key: 'startTime', initialValue: INITIAL_SEARCH_VALUES.START_TIME },
+    { key: 'endTime', initialValue: INITIAL_SEARCH_VALUES.END_TIME },
+    { key: 'keyword', initialValue: INITIAL_SEARCH_VALUES.KEYWORD },
   ] as const;
+
+  const inputs = fields.map(({ key, initialValue }) => ({
+    key,
+    value: useInput<string>(initialValue),
+  }));
+
+  const values = inputs.reduce((acc, { key, value }) => {
+    acc[key as keyof SearchValues] = value[0];
+    return acc;
+  }, {} as SearchValues);
+
+  const setters = inputs.reduce((acc, { key, value }) => {
+    acc[
+      `set${key.charAt(0).toUpperCase()}${key.slice(1)}` as keyof SearchSetters
+    ] = value[1];
+    return acc;
+  }, {} as SearchSetters);
+
+  return [values, setters] as const;
 };
 
 export default useSearchInputs;
