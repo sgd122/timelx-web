@@ -7,6 +7,7 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './assets/styles/**/*.css',
 
     // Or if using `src` directory:
     './src/**/*.{js,ts,jsx,tsx,mdx}',
@@ -81,8 +82,16 @@ module.exports = {
         '.input-text-light > input::placeholder': {
           color: '#000',
         },
+        '.input-text-light > input::before': {
+          color: '#000',
+          opacity: 0.5,
+        },
         '.input-text-dark > input::placeholder': {
           color: '#fff',
+        },
+        '.input-text-dark > input::before': {
+          color: '#fff',
+          opacity: 0.5,
         },
         '.input-text-light': {
           outline: 'none',

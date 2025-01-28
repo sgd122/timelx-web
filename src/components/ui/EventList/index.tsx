@@ -1,4 +1,4 @@
-import type React from 'react';
+import { forwardRef } from 'react';
 
 import EventCard from '@/components/ui/EventCard';
 
@@ -25,29 +25,35 @@ interface EventListProps {
  *
  * ---
  * 📋 **Props**:
- * - 별도의 props를 받지 않습니다. 이벤트 데이터는 컴포넌트 내부에서 관리됩니다.
+ * - `events`: 이벤트 목록 데이터 (배열)
+ * - `ref`: 컴포넌트의 DOM 접근을 위한 React ref 지원
  *
  * ---
  * 💡 **사용 예제**:
  * ```tsx
- * <EventList />
+ * const eventListRef = useRef<HTMLDivElement>(null);
+ * <EventList ref={eventListRef} events={eventData} />
  * ```
  */
-const EventList: React.FC<EventListProps> = ({ events }) => {
-  return (
-    <div className="space-y-4">
-      {events.map((event, index) => (
-        <EventCard
-          key={event.id}
-          id={event.id}
-          image={event.image}
-          title={event.title}
-          date={event.date}
-          location={event.location}
-        />
-      ))}
-    </div>
-  );
-};
+const EventList = forwardRef<HTMLDivElement, EventListProps>(
+  ({ events }, ref) => {
+    return (
+      <div ref={ref} className="space-y-4">
+        {events.map((event) => (
+          <EventCard
+            key={event.id}
+            id={event.id}
+            image={event.image}
+            title={event.title}
+            date={event.date}
+            location={event.location}
+          />
+        ))}
+      </div>
+    );
+  }
+);
+
+EventList.displayName = 'EventList';
 
 export default EventList;

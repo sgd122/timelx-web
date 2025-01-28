@@ -1,6 +1,7 @@
-import { Box, Container, ScrollArea } from '@radix-ui/themes';
+import { Box, Container } from '@radix-ui/themes';
 import type { PropsWithChildren } from 'react';
 
+import { ScrollAreaProvider } from '@/components/providers/ScrollAreaProvider';
 import FloatingSearchButton from '@/components/ui/FloatingSearchButton';
 import useViewportHeight from '@/hooks/useViewportHeight';
 import LeftContainer from '@/layout/_components/LeftContainer';
@@ -37,10 +38,10 @@ const Layout = ({ children }: PropsWithChildren) => {
         >
           <Header />
           <Box className="flex-1 overflow-y-hidden">
-            <ScrollArea type="hover" scrollbars="vertical">
+            <ScrollAreaProvider>
               <Box className="px-6 pb-4">{children}</Box>
               <FloatingSearchButton />
-            </ScrollArea>
+            </ScrollAreaProvider>
           </Box>
           <Footer />
         </Box>

@@ -6,7 +6,7 @@ test('event search workflow test', async ({ page }) => {
   await page.getByPlaceholder('날짜 입력').fill('2025-01-23');
   await page.getByPlaceholder('지역 입력').fill('서울시');
 
-  const timeInput = page.getByPlaceholder(':00 - 21:00');
+  const timeInput = page.getByPlaceholder('17:00');
   await timeInput.click();
   await timeInput.press('ArrowUp');
   await timeInput.press('Shift+Tab');

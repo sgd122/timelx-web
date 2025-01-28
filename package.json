@@ -32,6 +32,7 @@
     "next-seo": "^6.6.0",
     "nextjs-progressbar": "^0.0.16",
     "react": "^19.0.0",
+    "react-clipboardjs-copy": "^2.1.0",
     "react-day-picker": "8.10.1",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",

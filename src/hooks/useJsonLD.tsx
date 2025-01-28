@@ -1,7 +1,7 @@
 import type { JsonLDProps } from '@seo';
 import { useRouter } from 'next/router';
 
-import { DOMAIN } from '@/constants/url';
+import { DOMAIN, DOMAIN_NAME } from '@/constants/url';
 
 const useJsonLD = (props?: JsonLDProps) => {
   const { context, type, contactPoint, ...rest } = props ?? {};
@@ -11,10 +11,10 @@ const useJsonLD = (props?: JsonLDProps) => {
     '@context': context || 'http://schema.org',
     '@type': type || 'Organization',
     url: `${DOMAIN}/${locale}${asPath}`,
-    name: 'Timelx',
+    name: DOMAIN_NAME,
     contactPoint: {
       '@type': contactPoint?.type || 'ContactPoint',
-      telephone: '+82-10-2361-6889',
+      email: 'timelxers@gmail.com',
       contactType: 'Customer service',
     },
     sameAs: [

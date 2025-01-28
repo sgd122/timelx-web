@@ -14,9 +14,6 @@ const GlobalStyles = ({ children }: PropsWithChildren) => {
         appearance="dark"
       >
         {children}
-        {/*NOTE: emotion 제거*/}
-        {/*<Global styles={style(theme)} />*/}
-        {/*<ThemeProvider theme={theme}>{children}</ThemeProvider>*/}
       </Theme>
     </>
   );

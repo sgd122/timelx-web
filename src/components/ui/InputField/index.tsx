@@ -76,6 +76,7 @@ const InputField: React.FC<InputFieldProps> = (props) => {
             variant === 'dark' &&
               `${theme.dark.bg} ${theme.dark.text} input-text-dark`
           )}
+          required={true}
           {...props.inputProps}
         />
       );
