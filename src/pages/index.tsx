@@ -1,6 +1,8 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import type { GetServerSideProps } from 'next';
 
+import queryKeys from '@/api/queryKeys';
+import { withAuthServerSideProps } from '@/hos/withAuthServerSideProps';
 import HomeContainer from '@/views/home';
 
 const Home = () => {
@@ -9,7 +11,7 @@ const Home = () => {
 
 export default Home;
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+const getServerSidePropsFunction: GetServerSideProps = async () => {
   const queryClient = new QueryClient();
 
   // NOTE: Example code
@@ -17,6 +19,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   //   queryKey: ['fetchMainSectionLocal'],
   //   queryFn: () => fetchMainSectionLocal(req),
   // });
+  await queryClient.prefetchQuery(queryKeys.main.list());
 
   return {
     props: {
@@ -24,3 +27,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     },
   };
 };
+
+export const getServerSideProps = withAuthServerSideProps(
+  getServerSidePropsFunction
+);

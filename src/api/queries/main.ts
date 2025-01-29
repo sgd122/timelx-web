@@ -1,14 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { fetchMainSectionLocal } from '@/api/domains/main';
+import queryKeys from '@/api/queryKeys';
 
 /**
  * ANCHOR: MAIN API fetch
  * @param
  * @returns
  */
-export const useFetchMainSectionLocal = () =>
-  useQuery({
-    queryKey: ['fetchMainSectionLocal'],
-    queryFn: () => fetchMainSectionLocal(),
-  });
+export const useFetchMainSectionLocal = () => useQuery(queryKeys.main.list());
