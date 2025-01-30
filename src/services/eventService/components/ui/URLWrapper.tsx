@@ -14,6 +14,9 @@ const URLWrapper: React.FC<URLWrapperProps> = ({ isReadOnly, form }) => {
   const { getValues } = form;
 
   const urlValues: string[] = [];
+  const hasData = detailFieldsSection4.some((field) =>
+    getValues(field.value as keyof FormValues)
+  );
   detailFieldsSection4.map((field) => {
     const _value = getValues(field.value as keyof FormValues) as string;
     urlValues.push(_value);
@@ -22,6 +25,7 @@ const URLWrapper: React.FC<URLWrapperProps> = ({ isReadOnly, form }) => {
   const isExternalLink =
     urlValues[1]?.startsWith('http://') || urlValues[1]?.startsWith('https://');
 
+  if (!hasData) return null; // ✅ 값이 없으면 렌더링하지 않음
   if (isReadOnly) {
     return (
       <Flex direction="column" className="gap-1">
