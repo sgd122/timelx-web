@@ -42,7 +42,6 @@ const EventServiceComponent: React.FC<EventServiceComponentProps> = ({
   useEventTimeValidation({ watch, setValue });
 
   const _onSubmit = handleSubmit((data) => {
-    console.log('Form submitted:', data);
     onSubmit?.(data);
     setFormDirty(false); // 제출 후 dirty 상태 초기화
   });
