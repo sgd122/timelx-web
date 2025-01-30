@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import type React from 'react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type {
   FieldError,
   FieldErrors,
@@ -58,6 +58,31 @@ const EventImage = <TFieldValues extends FieldValues>({
       } as unknown as React.ChangeEvent<HTMLInputElement>);
     }
   };
+
+  useEffect(() => {
+    const dataURLtoFile = async (url: string, filename = 'image') => {
+      const response = await fetch(url);
+      const blob = await response.blob();
+
+      // 📌 MIME 타입 감지 후, 파일 확장자 설정
+      const mimeType = blob.type || 'image/png';
+      const extension = mimeType.split('/')[1] || 'png';
+
+      return new File([blob], `${filename}.${extension}`, { type: mimeType });
+    };
+
+    if (image) {
+      dataURLtoFile(image).then((file) => {
+        inputProps.onChange({
+          target: {
+            name,
+            value: file, // ✅ 변환된 File 객체 전달
+          },
+          type: 'change',
+        } as unknown as React.ChangeEvent<HTMLInputElement>);
+      });
+    }
+  }, []);
 
   return (
     <div className="h-auto -mx-6 [width:calc(100%_+_48px)]">
