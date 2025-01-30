@@ -16,12 +16,14 @@ interface EventImageProps<TFieldValues extends FieldValues> {
   image?: string;
   name: FieldPath<TFieldValues>; // 특정 필드 이름만 허용
   error?: FieldErrors<TFieldValues>;
+  isReadOnly?: boolean;
 }
 
 const EventImage = <TFieldValues extends FieldValues>({
   image = '',
   name,
   error,
+  isReadOnly,
 }: EventImageProps<TFieldValues>) => {
   const register = useRegister<TFieldValues>();
   const [avatarSrc, setAvatarSrc] = useState<string>(image); // 현재 아바타 이미지 경로 상태
@@ -60,7 +62,10 @@ const EventImage = <TFieldValues extends FieldValues>({
   return (
     <div className="h-auto -mx-6 [width:calc(100%_+_48px)]">
       {/* 이미지를 클릭하면 파일 입력 창 표시 */}
-      <div onClick={handleImageClick} className="cursor-pointer h-full">
+      <div
+        onClick={!isReadOnly ? handleImageClick : undefined}
+        className={`h-full ${!isReadOnly ? 'cursor-pointer' : 'cursor-default'}`} // ✅ isReadOnly에 따라 커서 변경
+      >
         <Image
           src={avatarSrc || PlaceholderImage} // 기본 이미지 경로 설정
           alt="event"

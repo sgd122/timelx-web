@@ -8,6 +8,7 @@ export const useEventForm = (initialValues?: FormValues) => {
   const { register, handleSubmit, formState, getValues, setValue, watch } =
     useForm<FormValues>({
       defaultValues: {
+        image: initialValues?.image ?? '',
         title: initialValues?.title ?? '',
         startDate: initialValues?.startDate ?? undefined,
         endDate: initialValues?.endDate ?? undefined,

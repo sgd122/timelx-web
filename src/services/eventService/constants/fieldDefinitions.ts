@@ -74,6 +74,9 @@ export const detailFieldsSection3: FieldDefinition[] = [
     placeholder: PLACEHOLDERS.ORGANIZER,
     isRequired: isFieldRequired(baseSchema.shape['organizer']),
   },
+];
+
+export const detailFieldsSection4: FieldDefinition[] = [
   {
     title: FIELD_LABELS.urlName,
     value: 'urlName',
@@ -86,6 +89,9 @@ export const detailFieldsSection3: FieldDefinition[] = [
     placeholder: PLACEHOLDERS.URL_LINK,
     isRequired: isFieldRequired(baseSchema.shape['urlLink']),
   },
+];
+
+export const detailFieldsSection5: FieldDefinition[] = [
   {
     title: FIELD_LABELS.tags,
     value: 'tags',
