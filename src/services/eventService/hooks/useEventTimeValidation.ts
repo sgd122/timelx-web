@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import type { UseFormSetValue, UseFormWatch } from 'react-hook-form';
 
 import type { FormValues } from '@/services/eventService/types/form-values';
-import { validateEventDate } from '@/services/eventService/utils/validateEventDate';
-import { validateEventTime } from '@/services/eventService/utils/validateEventTime';
+import { validateEventDate } from '@/services/eventService/validations/validateEventDate';
+import { validateEventTime } from '@/services/eventService/validations/validateEventTime';
 
 interface UseEventTimeValidationProps {
   watch: UseFormWatch<FormValues>;
