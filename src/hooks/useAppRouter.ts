@@ -3,10 +3,6 @@ import type { UrlObject } from 'url';
 import type { NextRouter } from 'next/router';
 import { useRouter } from 'next/router';
 
-import { DOMAIN } from '@/constants/url';
-import { useWebView } from '@/hooks/useWebView';
-import { sendRouterEvent } from '@/utils/sendRouterEvent';
-
 /**
  * push 함수에 추가로 넘길 수 있는 옵션 타입
  * - shallow?: boolean            Next.js의 라우터 기본 옵션
@@ -43,21 +39,21 @@ export interface UseAppRouterReturn extends Omit<NextRouter, 'push'> {
  * 웹뷰 환경과 웹 환경을 구분하여 push 함수를 제공하는 커스텀 훅
  */
 export const useAppRouter = (): UseAppRouterReturn => {
-  const { isWebView } = useWebView();
+  // const { isWebView } = useWebView();
   const router = useRouter();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars,no-unused-vars
   const { push: _, ...otherRouterProps } = router;
 
   const push: AppRouterPush = async (url, as, options = { shallow: true }) => {
-    if (isWebView) {
-      // 웹뷰 환경: 이벤트를 네이티브 쪽에 알리는 로직
-      await sendRouterEvent({
-        path: `${DOMAIN}/${url}`,
-        screenName: options.appScreenName ?? '',
-        data: { ...(options.appSendData ?? {}) },
-      });
-      return true;
-    }
+    // if (isWebView) {
+    //   // 웹뷰 환경: 이벤트를 네이티브 쪽에 알리는 로직
+    //   await sendRouterEvent({
+    //     path: `http://192.168.0.59:3000${url}`,
+    //     screenName: options.appScreenName ?? '',
+    //     data: { ...(options.appSendData ?? {}) },
+    //   });
+    //   return true;
+    // }
 
     // 웹 환경: Next.js 라우터 사용
     return router.push(url, as, options);

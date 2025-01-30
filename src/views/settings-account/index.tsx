@@ -1,14 +1,18 @@
+import { useRouter } from 'next/router';
 import { signOut } from 'next-auth/react';
 import toast from 'react-hot-toast';
 
 import ListView from '@/components/ui/ListView';
 
 const AccountContainer = () => {
+  const router = useRouter();
   const ITEMS = [
     {
       label: '로그아웃',
       onClick: () => {
-        signOut();
+        signOut({ redirect: false }).then(() => {
+          router.push('/');
+        });
       },
     },
     {
