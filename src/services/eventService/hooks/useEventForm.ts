@@ -1,8 +1,8 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import { schema } from '@/services/eventServices/constants/schema';
-import type { FormValues } from '@/services/eventServices/types/form-values';
+import { schema } from '@/services/eventService/constants/schema';
+import type { FormValues } from '@/services/eventService/types/form-values';
 
 export const useEventForm = (initialValues?: FormValues) => {
   const { register, handleSubmit, formState, getValues, setValue, watch } =

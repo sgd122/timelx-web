@@ -1,7 +1,7 @@
 import type { UseFormSetValue } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
-import type { FormValues } from '@/services/eventServices/types/form-values';
+import type { FormValues } from '@/services/eventService/types/form-values';
 
 export const validateEventTime = (
   values: FormValues,

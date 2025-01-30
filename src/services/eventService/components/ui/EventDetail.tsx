@@ -9,8 +9,8 @@ import type {
 import { useRegister } from '@/components/providers/RegisterProvider';
 import type { FieldType } from '@/components/ui/InputField';
 import InputField from '@/components/ui/InputField';
+import ErrorField from '@/services/eventService/components/ui/ErrorField';
 import type { InputType } from '@/types/input-type';
-import ErrorField from '@/views/event-edit/_components/ErrorField';
 
 interface EventDetailProps<TFieldValues extends FieldValues> {
   title?: string;

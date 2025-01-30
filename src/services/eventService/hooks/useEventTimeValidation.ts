@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import type { UseFormSetValue, UseFormWatch } from 'react-hook-form';
 
-import type { FormValues } from '@/services/eventServices/types/form-values';
-import { validateEventDate } from '@/services/eventServices/utils/validateEventDate';
-import { validateEventTime } from '@/services/eventServices/utils/validateEventTime';
+import type { FormValues } from '@/services/eventService/types/form-values';
+import { validateEventDate } from '@/services/eventService/utils/validateEventDate';
+import { validateEventTime } from '@/services/eventService/utils/validateEventTime';
 
 interface UseEventTimeValidationProps {
   watch: UseFormWatch<FormValues>;
@@ -31,7 +31,7 @@ interface UseEventTimeValidationProps {
  * 💡 **사용 예제**:
  * ```tsx
  * import { useForm } from 'react-hook-form';
- * import { useEventTimeValidation } from '@/services/eventServices/hooks/useEventTimeValidation';
+ * import { useEventTimeValidation } from '@/services/eventService/hooks/useEventTimeValidation';
  *
  * const { watch, setValue } = useForm<FormValues>();
  *

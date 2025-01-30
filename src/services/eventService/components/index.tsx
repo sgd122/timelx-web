@@ -4,20 +4,20 @@ import { useEffect } from 'react';
 import { IoIosInformationCircleOutline } from 'react-icons/io';
 
 import { RegisterProvider } from '@/components/providers/RegisterProvider';
-import DeleteButton from '@/services/eventServices/components/ui/DeleteButton';
-import EventDetail from '@/services/eventServices/components/ui/EventDetail';
-import EventImage from '@/services/eventServices/components/ui/EventImage';
+import DeleteButton from '@/services/eventService/components/ui/DeleteButton';
+import EventDetail from '@/services/eventService/components/ui/EventDetail';
+import EventImage from '@/services/eventService/components/ui/EventImage';
 import {
   detailFieldsSection0,
   detailFieldsSection1,
   detailFieldsSection2,
   detailFieldsSection3,
-} from '@/services/eventServices/constants/fieldDefinitions';
-import { useEventForm } from '@/services/eventServices/hooks/useEventForm';
-import { useEventTimeValidation } from '@/services/eventServices/hooks/useEventTimeValidation';
-import { useFormDirty } from '@/services/eventServices/hooks/useFormDirty';
-import type { FieldDefinition } from '@/services/eventServices/types/field-definition';
-import type { FormValues } from '@/services/eventServices/types/form-values';
+} from '@/services/eventService/constants/fieldDefinitions';
+import { useEventForm } from '@/services/eventService/hooks/useEventForm';
+import { useEventTimeValidation } from '@/services/eventService/hooks/useEventTimeValidation';
+import { useFormDirty } from '@/services/eventService/hooks/useFormDirty';
+import type { FieldDefinition } from '@/services/eventService/types/field-definition';
+import type { FormValues } from '@/services/eventService/types/form-values';
 import { submitActionAtom } from '@/store/submitActionAtom';
 
 interface EventServiceComponentProps {

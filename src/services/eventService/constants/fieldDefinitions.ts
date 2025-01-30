@@ -1,9 +1,9 @@
 import type { FieldType } from '@/components/ui/InputField';
 import { PLACEHOLDERS } from '@/constants/placeholders';
-import { FIELD_LABELS } from '@/services/eventServices/constants/fieldLabels';
-import { baseSchema } from '@/services/eventServices/constants/schema';
-import type { FieldDefinition } from '@/services/eventServices/types/field-definition';
-import { isFieldRequired } from '@/services/eventServices/utils/isFieldRequired';
+import { FIELD_LABELS } from '@/services/eventService/constants/fieldLabels';
+import { baseSchema } from '@/services/eventService/constants/schema';
+import type { FieldDefinition } from '@/services/eventService/types/field-definition';
+import { isFieldRequired } from '@/services/eventService/utils/isFieldRequired';
 
 export const detailFieldsSection0: FieldDefinition[] = [
   {

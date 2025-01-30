@@ -10,13 +10,14 @@ import type {
 
 import PlaceholderImage from '@/assets/icon/placeholder-image.png';
 import { useRegister } from '@/components/providers/RegisterProvider';
-import ErrorField from '@/services/eventServices/components/ui/ErrorField';
+import ErrorField from '@/services/eventService/components/ui/ErrorField';
 
 interface EventImageProps<TFieldValues extends FieldValues> {
   image?: string;
   name: FieldPath<TFieldValues>; // 특정 필드 이름만 허용
   error?: FieldErrors<TFieldValues>;
 }
+
 const EventImage = <TFieldValues extends FieldValues>({
   image = '',
   name,
