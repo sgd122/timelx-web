@@ -1,5 +1,5 @@
-import EventServiceComponent from '@/services/eventService/components';
-import type { FormValues } from '@/services/eventService/types/form-values';
+import EventServiceComponent from '@/features/event/components';
+import type { FormValues } from '@/features/event/types/form-values';
 
 const TEST_DATA: FormValues = {
   title: 'title',

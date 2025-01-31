@@ -3,23 +3,23 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { SessionProvider } from 'next-auth/react';
 
-import GlobalStyles from '@/components/GlobalStyles';
-import JotaiProvider from '@/components/providers/Jotai';
-import ReactQueryProvider from '@/components/providers/ReactQuery';
-import { SessionStorageProvider } from '@/components/providers/SessionStorageProvider';
-import Seo from '@/components/Seo';
 import Layout from '@/layout';
+import JotaiProvider from '@/shared/providers/Jotai';
+import ReactQueryProvider from '@/shared/providers/ReactQuery';
+import { SessionStorageProvider } from '@/shared/providers/SessionStorageProvider';
+import GlobalStyles from '@/shared/ui/GlobalStyles';
+import Seo from '@/shared/ui/Seo';
 
-import '@/assets/styles/globals.css';
+import '@/shared/assets/styles/globals.css';
 
 const Toaster = dynamic(
-  () => import('@/components/ui/Toaster').then((c) => c.Toaster),
+  () => import('@/shared/ui/Toaster').then((c) => c.Toaster),
   {
     ssr: false,
   }
 );
 
-const ExternalScript = dynamic(() => import('@/components/scripts'), {
+const ExternalScript = dynamic(() => import('@/app/scripts'), {
   ssr: false,
 });
 

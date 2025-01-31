@@ -2,8 +2,8 @@ import toast from 'react-hot-toast';
 import { FaLink } from 'react-icons/fa';
 import { IoCopySharp } from 'react-icons/io5';
 
-import ListView from '@/components/ui/ListView';
-import { copyToClipboard } from '@/utils/copyToClipboard';
+import ListView from '@/shared/ui/ListView';
+import { copyToClipboard } from '@/shared/utils/copyToClipboard';
 
 const ContactContainer = () => {
   const ITEMS = [

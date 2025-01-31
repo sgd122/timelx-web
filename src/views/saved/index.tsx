@@ -1,4 +1,4 @@
-import EventList from '@/components/ui/EventList';
+import EventList from '@/shared/ui/EventList';
 import { events } from '@/views/search-result/dummy';
 
 const SavedContainer = () => {

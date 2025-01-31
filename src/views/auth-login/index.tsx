@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc';
 
-import Button from '@/components/ui/Button';
-import { LOGIN_PROVIDER } from '@/constants/auth';
+import { LOGIN_PROVIDER } from '@/shared/constants/auth';
+import Button from '@/shared/ui/Button';
 
 const AuthLoginContainer = ({ authError }: { authError?: string }) => {
   useEffect(() => {

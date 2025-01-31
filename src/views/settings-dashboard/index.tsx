@@ -1,4 +1,4 @@
-import EventEditList from '@/components/ui/EventEditList';
+import EventEditList from '@/shared/ui/EventEditList';
 import { events } from '@/views/home/dummy';
 
 const DashboardContainer = () => {

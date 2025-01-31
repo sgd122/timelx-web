@@ -1,12 +1,12 @@
 import { Box, Container } from '@radix-ui/themes';
 import type { PropsWithChildren } from 'react';
 
-import { ScrollAreaProvider } from '@/components/providers/ScrollAreaProvider';
-import FloatingSearchButton from '@/components/ui/FloatingSearchButton';
-import useViewportHeight from '@/hooks/useViewportHeight';
-import LeftContainer from '@/layout/_components/LeftContainer';
-import Footer from '@/layout/footer';
-import Header from '@/layout/header';
+import useViewportHeight from '@/shared/hooks/useViewportHeight';
+import { ScrollAreaProvider } from '@/shared/providers/ScrollAreaProvider';
+import FloatingSearchButton from '@/shared/ui/FloatingSearchButton';
+import Footer from '@/widgets/Footer';
+import Header from '@/widgets/Header';
+import LeftContainer from '@/widgets/layout/ui/LeftContainer';
 
 const Layout = ({ children }: PropsWithChildren) => {
   const viewportHeight = useViewportHeight();
