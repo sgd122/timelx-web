@@ -3,7 +3,7 @@ import { useSession } from 'next-auth/react';
 
 import Avatar from '@/components/ui/Avatar';
 import ListView from '@/components/ui/ListView';
-import { ITEMS } from '@/views/settings/contants/items';
+import { ITEMS } from '@/views/settings/constants/items';
 
 const SettingContainer = () => {
   const session = useSession();

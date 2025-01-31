@@ -10,16 +10,15 @@ import {
 const SearchContainer = () => {
   const router = useAppRouter();
   const [
-    { date, location, startTime, endTime, keyword },
-    { setDate, setLocation, setStartTime, setEndTime, setKeyword },
+    { date, location, time, keyword },
+    { setDate, setLocation, setTime, setKeyword },
   ] = useSearchInputs();
 
   const handleSearch = () => {
     const searchParams = {
       date,
       location,
-      startTime,
-      endTime,
+      time,
       keyword,
     };
 
@@ -35,10 +34,8 @@ const SearchContainer = () => {
         setDate={setDate}
         location={location}
         setLocation={setLocation}
-        startTime={startTime}
-        setStartTime={setStartTime}
-        endTime={endTime}
-        setEndTime={setEndTime}
+        time={time}
+        setTime={setTime}
         keyword={keyword}
         setKeyword={setKeyword}
       />

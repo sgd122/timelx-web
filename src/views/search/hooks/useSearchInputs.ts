@@ -10,8 +10,7 @@ const useSearchInputs = (): SearchFormInputs => {
   const fields = [
     { key: 'date', initialValue: INITIAL_SEARCH_VALUES.DATE },
     { key: 'location', initialValue: INITIAL_SEARCH_VALUES.LOCATION },
-    { key: 'startTime', initialValue: INITIAL_SEARCH_VALUES.START_TIME },
-    { key: 'endTime', initialValue: INITIAL_SEARCH_VALUES.END_TIME },
+    { key: 'time', initialValue: INITIAL_SEARCH_VALUES.TIME },
     { key: 'keyword', initialValue: INITIAL_SEARCH_VALUES.KEYWORD },
   ] as const;
 

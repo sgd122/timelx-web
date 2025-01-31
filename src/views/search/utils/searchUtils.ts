@@ -4,8 +4,7 @@ import toast from 'react-hot-toast';
 interface SearchParams {
   date: string;
   location: string;
-  startTime?: string;
-  endTime?: string;
+  time?: string;
   keyword?: string;
 }
 
@@ -37,8 +36,7 @@ export const searchResults = (
   const queryParams = new URLSearchParams({
     date: params.date,
     location: params.location,
-    startTime: params.startTime || '',
-    endTime: params.endTime || '',
+    time: params.time || '',
     keyword: params.keyword || '',
   });
 
