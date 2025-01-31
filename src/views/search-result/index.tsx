@@ -1,7 +1,7 @@
 import { Flex } from '@radix-ui/themes';
 
-import EventList from '@/components/ui/EventList';
-import SearchBar from '@/components/ui/SearchBar';
+import EventList from '@/shared/ui/EventList';
+import SearchBar from '@/shared/ui/SearchBar';
 import EventNotification from '@/views/search-result/_components/EventNotification';
 import { events } from '@/views/search-result/dummy';
 

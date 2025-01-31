@@ -7,8 +7,8 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import KakaoProvider from 'next-auth/providers/kakao';
 
-import { BASE_URL, VERSION } from '@/api/config';
-import { LOGIN_PROVIDER } from '@/constants/auth';
+import { BASE_URL, VERSION } from '@/features/api/config';
+import { LOGIN_PROVIDER } from '@/shared/constants/auth';
 
 const BACKEND_API = `${BASE_URL}${VERSION['V2']}`;
 

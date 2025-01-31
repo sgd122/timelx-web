@@ -1,8 +1,8 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import type { GetServerSideProps } from 'next';
 
-import queryKeys from '@/api/queryKeys';
-import { withAuthServerSideProps } from '@/hos/withAuthServerSideProps';
+import queryKeys from '@/features/api/queryKeys';
+import { withAuthServerSideProps } from '@/shared/hoc/withAuthServerSideProps';
 import HomeContainer from '@/views/home';
 
 const Home = () => {

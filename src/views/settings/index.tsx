@@ -1,8 +1,8 @@
 import { Box, Text } from '@radix-ui/themes';
 import { useSession } from 'next-auth/react';
 
-import Avatar from '@/components/ui/Avatar';
-import ListView from '@/components/ui/ListView';
+import Avatar from '@/shared/ui/Avatar';
+import ListView from '@/shared/ui/ListView';
 import { ITEMS } from '@/views/settings/constants/items';
 
 const SettingContainer = () => {

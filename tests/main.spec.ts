@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-import { PLACEHOLDERS } from '@/constants/placeholders';
+import { PLACEHOLDERS } from '@/shared/constants/placeholders';
 
 test('event search workflow test', async ({ page }) => {
   await page.goto('http://localhost:3000/');
