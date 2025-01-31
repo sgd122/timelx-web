@@ -6,18 +6,13 @@ import { FcGoogle } from 'react-icons/fc';
 
 import Button from '@/components/ui/Button';
 import { LOGIN_PROVIDER } from '@/constants/auth';
-import { useAppRouter } from '@/hooks/useAppRouter';
 
-const AuthLoginContainer = () => {
-  const router = useAppRouter();
-
+const AuthLoginContainer = ({ authError }: { authError?: string }) => {
   useEffect(() => {
-    const { message } = router.query;
-
-    if (message === 'unauthorized') {
+    if (authError === 'unauthorized') {
       toast.error('로그인이 필요합니다.');
     }
-  }, [router.query]);
+  }, []);
 
   return (
     <Flex

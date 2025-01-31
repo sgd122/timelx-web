@@ -22,8 +22,16 @@ export async function middleware(req: NextRequest) {
   if (!isPublicRoute && !token) {
     const url = req.nextUrl.clone();
     url.pathname = '/auth/login';
-    url.searchParams.set('message', 'unauthorized'); // 메시지 전달
-    return NextResponse.redirect(url);
+
+    // ✅ 쿠키를 통해 메시지 전달
+    const response = NextResponse.redirect(url);
+    response.cookies.set('auth_error', 'unauthorized', {
+      path: '/',
+      httpOnly: true,
+      maxAge: 5,
+    });
+
+    return response;
   }
 
   if (ROUTES.PRIVATE.some((route) => route === pathname) && token) {
