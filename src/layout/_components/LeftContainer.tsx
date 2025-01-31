@@ -9,6 +9,7 @@ import LogoTitle from '@/assets/icon/title.png';
 import Button from '@/components/ui/Button';
 import type { FieldType } from '@/components/ui/InputField';
 import InputField from '@/components/ui/InputField';
+import { PLACEHOLDERS } from '@/constants/placeholders';
 import { useAppRouter } from '@/hooks/useAppRouter';
 import useInput from '@/hooks/useInput';
 import { cn } from '@/lib/utils';
@@ -58,7 +59,7 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
     {
       id: 'date',
       label: '날짜 선택',
-      placeholder: '날짜 입력',
+      placeholder: PLACEHOLDERS.DATE,
       isRequired: true,
       component: 'input',
       type: 'date',
@@ -68,7 +69,7 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
     {
       id: 'location',
       label: '지역 입력',
-      placeholder: '지역 입력',
+      placeholder: PLACEHOLDERS.LOCATION,
       isRequired: true,
       component: 'input',
       type: 'text',
@@ -78,7 +79,7 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
     {
       id: 'time',
       label: '시간 선택',
-      placeholder: '17:00',
+      placeholder: PLACEHOLDERS.TIME,
       isRequired: false,
       component: 'input',
       type: 'time',
@@ -88,7 +89,7 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
     {
       id: 'keywords',
       label: '키워드 입력',
-      placeholder: '#축제 #강연 #할인행사',
+      placeholder: PLACEHOLDERS.KEYWORD,
       isRequired: false,
       component: 'input',
       type: 'text',

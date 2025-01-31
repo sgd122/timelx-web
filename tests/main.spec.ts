@@ -1,12 +1,14 @@
 import { expect, test } from '@playwright/test';
 
+import { PLACEHOLDERS } from '@/constants/placeholders';
+
 test('event search workflow test', async ({ page }) => {
   await page.goto('http://localhost:3000/');
 
-  await page.getByPlaceholder('날짜 입력').fill('2025-01-23');
-  await page.getByPlaceholder('지역 입력').fill('서울시');
+  await page.getByPlaceholder(PLACEHOLDERS.DATE).fill('2025-01-23');
+  await page.getByPlaceholder(PLACEHOLDERS.LOCATION).fill('서울시');
 
-  const timeInput = page.getByPlaceholder('17:00');
+  const timeInput = page.getByPlaceholder(PLACEHOLDERS.TIME);
   await timeInput.click();
   await timeInput.press('ArrowUp');
   await timeInput.press('Shift+Tab');
@@ -15,7 +17,7 @@ test('event search workflow test', async ({ page }) => {
   await timeInput.press('ArrowUp');
   // await timeInput.fill('10:00 - 18:00');
 
-  await page.getByPlaceholder('#축제 #강연 #할인행사').fill('축제');
+  await page.getByPlaceholder(PLACEHOLDERS.KEYWORD).fill('축제');
 
   await page.getByRole('button', { name: '검색' }).click();
 
