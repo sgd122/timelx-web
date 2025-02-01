@@ -4,6 +4,7 @@ import type { UseFormSetValue, UseFormWatch } from 'react-hook-form';
 import type { FormValues } from '@/features/event/types/form-values';
 import { validateEventDate } from '@/features/event/validations/validateEventDate';
 import { validateEventTime } from '@/features/event/validations/validateEventTime';
+import { useToaster } from '@/shared/hooks/useToaster';
 
 interface UseEventTimeValidationProps {
   watch: UseFormWatch<FormValues>;
@@ -42,10 +43,11 @@ export const useEventTimeValidation = ({
   watch,
   setValue,
 }: UseEventTimeValidationProps) => {
+  const toaster = useToaster();
   useEffect(() => {
     const subscription = watch((values) => {
-      validateEventTime(values as FormValues, setValue);
-      validateEventDate(values as FormValues, setValue);
+      validateEventTime(values as FormValues, setValue, toaster);
+      validateEventDate(values as FormValues, setValue, toaster);
     });
 
     return () => subscription.unsubscribe();

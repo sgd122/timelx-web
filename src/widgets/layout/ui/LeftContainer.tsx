@@ -2,18 +2,18 @@ import { isEmpty } from 'lodash-es';
 import Image from 'next/image';
 import Link from 'next/link';
 import type React from 'react';
-import toast from 'react-hot-toast';
 
 import Gemini from '@/shared/assets/icon/gemini.png';
 import LogoTitle from '@/shared/assets/icon/title.png';
 import { PLACEHOLDERS } from '@/shared/constants/placeholders';
 import { useAppRouter } from '@/shared/hooks/useAppRouter';
 import useInput from '@/shared/hooks/useInput';
+import { useToaster } from '@/shared/hooks/useToaster';
 import { cn } from '@/shared/lib/utils';
 import type { InputType } from '@/shared/types/input-type';
 import Button from '@/shared/ui/Button';
-import InputField from '@/shared/ui/InputField';
 import type { FieldType } from '@/shared/ui/InputField';
+import InputField from '@/shared/ui/InputField';
 
 interface LeftContainerProps {
   className?: string;
@@ -26,10 +26,11 @@ const LeftContainer: React.FC<LeftContainerProps> = ({ className }) => {
   const [location, setLocation] = useInput<string>('');
   const [startTime, setStartTime] = useInput<string>('');
   const [keyword, setKeyword] = useInput<string>('');
+  const toaster = useToaster();
 
   const handleSearch = () => {
     if (isEmpty(date) || isEmpty(location)) {
-      toast.error('날짜와 지역은 필수 입력 항목입니다.');
+      toaster.error('날짜와 지역은 필수 입력 항목입니다.');
       return;
     }
 

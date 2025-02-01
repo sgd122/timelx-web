@@ -1,11 +1,12 @@
 import type { UseFormSetValue } from 'react-hook-form';
-import toast from 'react-hot-toast';
 
 import type { FormValues } from '@/features/event/types/form-values';
+import type { useToaster } from '@/shared/hooks/useToaster';
 
 export const validateEventTime = (
   values: FormValues,
-  setValue: UseFormSetValue<FormValues>
+  setValue: UseFormSetValue<FormValues>,
+  toaster: ReturnType<typeof useToaster>
 ) => {
   const startTime = values['startTime'];
   const endTime = values['endTime'];
@@ -19,7 +20,7 @@ export const validateEventTime = (
 
     if (toMinutes(endTime) < toMinutes(startTime)) {
       setValue('endTime', undefined);
-      toast.error('종료 시간이 시작 시간보다 이전일 수 없습니다.');
+      toaster.error('종료 시간이 시작 시간보다 이전일 수 없습니다.');
     }
   }
 };

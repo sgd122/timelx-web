@@ -8,7 +8,7 @@ import { LogParamsProvider } from '@/shared/providers/LogParamsProvider';
 import type { LogParameters } from '@/shared/types/log';
 
 interface LogScreenProps {
-  params: LogParameters;
+  params?: LogParameters;
 }
 export const LogScreen = ({
   children,
@@ -19,7 +19,7 @@ export const LogScreen = ({
   const logger = useLogger();
 
   useEffect(() => {
-    if (router.isReady && session.status !== 'loading') {
+    if (params && router.isReady && session.status !== 'loading') {
       const userId = session.data?.user?.id;
       session.status === 'authenticated'
         ? logger.screen({ params: { ...params, userId } })
@@ -27,5 +27,7 @@ export const LogScreen = ({
     }
   }, [router.isReady, session]);
 
-  return <LogParamsProvider params={params}>{children}</LogParamsProvider>;
+  return (
+    <LogParamsProvider params={params ?? null}>{children}</LogParamsProvider>
+  );
 };

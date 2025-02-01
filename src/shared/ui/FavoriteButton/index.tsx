@@ -1,10 +1,10 @@
 import { Button } from '@radix-ui/themes';
 import type * as React from 'react';
 import { useOptimistic, useState } from 'react';
-import toast from 'react-hot-toast';
 import { FiHeart } from 'react-icons/fi';
 
 import { useAuthSession } from '@/shared/hooks/useAuthSession';
+import { useToaster } from '@/shared/hooks/useToaster';
 import { cn } from '@/shared/lib/utils';
 
 interface FavoriteButtonProps {
@@ -20,6 +20,7 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({
 }) => {
   const { isAuthenticated } = useAuthSession();
   const [isLoading, setIsLoading] = useState(false);
+  const toaster = useToaster();
 
   const [state, reducerFn] = useOptimistic(
     { favorite },
@@ -30,7 +31,7 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({
 
   const handleIsAuthenticated = () => {
     if (!isAuthenticated) {
-      toast.error('로그인이 필요합니다.');
+      toaster.error('로그인이 필요합니다.');
       return false;
     }
     return true;

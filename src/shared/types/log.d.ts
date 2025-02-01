@@ -3,4 +3,5 @@ export interface LogParameters {
   button?: string;
   message?: string;
   userId?: number;
+  popupMessage?: string;
 }

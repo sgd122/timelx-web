@@ -1,18 +1,19 @@
 import { Flex, Text } from '@radix-ui/themes';
 import { signIn } from 'next-auth/react';
 import { useEffect } from 'react';
-import toast from 'react-hot-toast';
 import { FcGoogle } from 'react-icons/fc';
 
 import { LOGIN_PROVIDER } from '@/shared/constants/auth';
 import { PAGE_TITLE } from '@/shared/constants/title';
+import { useToaster } from '@/shared/hooks/useToaster';
 import Button from '@/shared/ui/Button';
 import { LogScreen } from '@/shared/ui/LogScreen';
 
 const AuthLoginContainer = ({ authError }: { authError?: string }) => {
+  const toaster = useToaster();
   useEffect(() => {
     if (authError === 'unauthorized') {
-      toast.error('로그인이 필요합니다.');
+      toaster.error('로그인이 필요합니다.');
     }
   }, []);
 

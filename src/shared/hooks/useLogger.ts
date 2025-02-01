@@ -3,6 +3,7 @@ import type { LogParameters } from '@/shared/types/log';
 
 interface LoggerParams {
   params: LogParameters;
+  component?: string;
 }
 
 export const useLogger = () => {
@@ -21,8 +22,8 @@ export const useLogger = () => {
     console.log('click::', params, parentParams);
   };
 
-  const popup = ({ params }: LoggerParams) => {
-    console.log('popup::', params, parentParams);
+  const popup = ({ params, component }: LoggerParams) => {
+    console.log('popup::', params, parentParams, component);
   };
 
   return { log, screen, click, popup };

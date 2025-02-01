@@ -1,11 +1,13 @@
 import { isEmpty } from 'lodash-es';
-import toast from 'react-hot-toast';
+
+import type { useToaster } from '@/shared/hooks/useToaster';
 
 interface SearchParams {
   date: string;
   location: string;
   time?: string;
   keyword?: string;
+  toaster?: ReturnType<typeof useToaster>;
 }
 
 /**
@@ -16,9 +18,10 @@ interface SearchParams {
 export const validateSearchParams = ({
   date,
   location,
+  toaster,
 }: SearchParams): boolean => {
   if (isEmpty(date) || isEmpty(location)) {
-    toast.error('날짜와 지역은 필수 입력 항목입니다.');
+    toaster?.error('날짜와 지역은 필수 입력 항목입니다.');
     return true;
   }
   return false;

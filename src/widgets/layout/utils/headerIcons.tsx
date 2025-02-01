@@ -1,10 +1,10 @@
 import type { NextRouter } from 'next/router';
 import type { Dispatch, SetStateAction } from 'react';
-import toast from 'react-hot-toast';
 import { BiLogIn } from 'react-icons/bi';
 import { FaPlus } from 'react-icons/fa';
 import { IoMdShareAlt } from 'react-icons/io';
 
+import type { useToaster } from '@/shared/hooks/useToaster';
 import { copyToClipboard } from '@/shared/utils/copyToClipboard';
 
 type SetSubmitActionType = Dispatch<SetStateAction<boolean>>;
@@ -21,14 +21,14 @@ export const getRegisterIcon = (setSubmitAction: SetSubmitActionType) => ({
   label: '등록',
 });
 
-export const getShareIcon = () => ({
+export const getShareIcon = (toaster: ReturnType<typeof useToaster>) => ({
   icon: <IoMdShareAlt size="24" />,
   action: async () => {
     try {
       await copyToClipboard(window.location.href);
-      toast.success('링크가 클립보드에 복사되었습니다.');
+      toaster.success('링크가 클립보드에 복사되었습니다.');
     } catch {
-      toast.error('클립보드 복사에 실패했습니다.');
+      toaster.error('클립보드 복사에 실패했습니다.');
     }
   },
   label: '공유하기',
