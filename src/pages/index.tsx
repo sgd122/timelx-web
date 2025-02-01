@@ -2,16 +2,23 @@ import { dehydrate, QueryClient } from '@tanstack/react-query';
 import type { GetServerSideProps } from 'next';
 
 import queryKeys from '@/features/api/queryKeys';
+import { PAGE_TITLE } from '@/shared/constants/title';
 import { withAuthServerSideProps } from '@/shared/hoc/withAuthServerSideProps';
+import type { PageDefaultProps } from '@/shared/types/page-props';
+import { LogScreen } from '@/shared/ui/LogScreen';
 import HomeContainer from '@/views/home';
 
-const Home = () => {
-  return <HomeContainer />;
+const Home = ({ userId }: PageDefaultProps) => {
+  return (
+    <LogScreen params={{ title: PAGE_TITLE.HOME }} userId={userId}>
+      <HomeContainer />
+    </LogScreen>
+  );
 };
 
 export default Home;
 
-const getServerSidePropsFunction: GetServerSideProps = async () => {
+const getServerSidePropsFunction: GetServerSideProps = async ({ req }) => {
   const queryClient = new QueryClient();
 
   // NOTE: Example code

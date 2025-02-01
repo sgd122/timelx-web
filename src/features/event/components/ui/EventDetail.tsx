@@ -41,7 +41,7 @@ const EventDetail = <TFieldValues extends FieldValues>({
 }: Omit<EventDetailProps<TFieldValues>, 'register'>) => {
   const register = useRegister<TFieldValues>();
 
-  if (isEmpty(value)) return null;
+  if (isReadOnly && isEmpty(value)) return null;
 
   if (isReadOnly && fieldType === 'chip') {
     if (isEmpty(value)) return null;

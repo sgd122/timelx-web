@@ -1,8 +1,9 @@
-import { Button, Popover, Select } from '@radix-ui/themes';
+import { Popover, Select } from '@radix-ui/themes';
 import type * as React from 'react';
 import { CiClock1 } from 'react-icons/ci';
 
 import { cn } from '@/shared/lib/utils';
+import Button from '@/shared/ui/Button';
 
 interface TimePickerProps {
   value: string | undefined; // HH:mm 형식

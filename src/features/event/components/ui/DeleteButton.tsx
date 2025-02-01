@@ -1,4 +1,6 @@
-import { AlertDialog, Button, Flex } from '@radix-ui/themes';
+import { AlertDialog, Flex } from '@radix-ui/themes';
+
+import Button from '@/shared/ui/Button';
 
 interface DeleteButtonProps {
   onDelete?: () => void;

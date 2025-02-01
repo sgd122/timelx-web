@@ -23,7 +23,7 @@ export const useHeaderNavigation = () => {
     }
 
     return (
-      <Link href="/public">
+      <Link href="/">
         <FaHome size="24" />
       </Link>
     );

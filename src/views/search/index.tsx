@@ -5,12 +5,14 @@ import {
   validateSearchParams,
 } from '@/features/search/utils/searchUtils';
 import { useAppRouter } from '@/shared/hooks/useAppRouter';
+import { useToaster } from '@/shared/hooks/useToaster';
 
 const SearchContainer = () => {
   const router = useAppRouter();
 
+  const toaster = useToaster();
   const handleSearch = (searchValues: SearchValues) => {
-    if (validateSearchParams(searchValues)) return;
+    if (validateSearchParams({ ...searchValues, toaster })) return;
     searchResults(searchValues, router.push);
   };
 

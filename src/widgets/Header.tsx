@@ -1,11 +1,13 @@
-import { Button, Flex, Text } from '@radix-ui/themes';
+import { Flex, Text } from '@radix-ui/themes';
 import { useSetAtom } from 'jotai';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 
 import LogoTitle from '@/shared/assets/icon/title.png';
 import { useAppRouter } from '@/shared/hooks/useAppRouter';
+import { useToaster } from '@/shared/hooks/useToaster';
 import { submitActionAtom } from '@/shared/store/submitActionAtom';
+import Button from '@/shared/ui/Button';
 import { pageTitles } from '@/widgets/layout/constants/headerTitles';
 import { useHeaderNavigation } from '@/widgets/layout/hooks/useHeaderNavigation';
 import {
@@ -39,6 +41,7 @@ const Header = () => {
       router.pathname
     );
     const isEventDetailPage = router.pathname === '/event/[eventId]';
+    const toaster = useToaster();
 
     if (isUnauthenticated) {
       return getLoginIcon(router);
@@ -49,7 +52,7 @@ const Header = () => {
     }
 
     if (isEventDetailPage) {
-      return getShareIcon();
+      return getShareIcon(toaster);
     }
 
     return getNewEventIcon(router);

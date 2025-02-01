@@ -15,8 +15,9 @@ export const withAuthServerSideProps =
     context: GetServerSidePropsContext
   ): Promise<GetServerSidePropsResult<P>> => {
     const session = await getSession({ req: context.req });
+    const isAuthenticated = session?.user?.accessToken;
 
-    if (session?.user?.accessToken) {
+    if (isAuthenticated) {
       const accessToken = session.user.accessToken;
       instance.defaults.headers.common['Authorization'] =
         `Bearer ${accessToken}`;
@@ -25,5 +26,19 @@ export const withAuthServerSideProps =
 
     instance.defaults.headers.common['Authorization'] = '';
 
-    return res;
+    const userId = session?.user?.id;
+    const props = {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      ...res.props,
+    };
+
+    if (userId !== undefined) {
+      props.userId = userId; // ✅ userId가 undefined가 아닐 때만 추가
+    }
+
+    return {
+      ...res,
+      props,
+    };
   };

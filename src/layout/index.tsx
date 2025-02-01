@@ -1,6 +1,9 @@
 import { Box, Container } from '@radix-ui/themes';
+import { useSession } from 'next-auth/react';
 import type { PropsWithChildren } from 'react';
+import { useEffect } from 'react';
 
+import { logUserEvent } from '@/app/utils/firebase';
 import useViewportHeight from '@/shared/hooks/useViewportHeight';
 import { ScrollAreaProvider } from '@/shared/providers/ScrollAreaProvider';
 import FloatingSearchButton from '@/shared/ui/FloatingSearchButton';
@@ -10,6 +13,13 @@ import LeftContainer from '@/widgets/layout/ui/LeftContainer';
 
 const Layout = ({ children }: PropsWithChildren) => {
   const viewportHeight = useViewportHeight();
+  const session = useSession();
+  useEffect(() => {
+    if (session.status === 'authenticated' && session.data?.user) {
+      const { user } = session.data;
+      logUserEvent(user);
+    }
+  }, [session.data?.user]);
 
   return (
     <Box
