@@ -1,9 +1,15 @@
 import type { GetServerSideProps } from 'next';
 
+import { PAGE_TITLE } from '@/shared/constants/title';
+import { LogScreen } from '@/shared/ui/LogScreen';
 import AuthLoginContainer from '@/views/auth-login';
 
 const AuthLoginPage = ({ authError }: { authError?: string }) => {
-  return <AuthLoginContainer authError={authError} />;
+  return (
+    <LogScreen params={{ title: PAGE_TITLE.AUTH_LOGIN }}>
+      <AuthLoginContainer authError={authError} />
+    </LogScreen>
+  );
 };
 
 export default AuthLoginPage;

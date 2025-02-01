@@ -1,7 +1,5 @@
 import EventServiceComponent from '@/features/event/components';
 import type { FormValues } from '@/features/event/types/form-values';
-import { PAGE_TITLE } from '@/shared/constants/title';
-import { LogScreen } from '@/shared/ui/LogScreen';
 
 const TEST_DATA: FormValues = {
   title: 'title',
@@ -22,15 +20,13 @@ const TEST_DATA: FormValues = {
 
 const EventEditContainer = () => {
   return (
-    <LogScreen params={{ title: PAGE_TITLE.EVENT_EDIT }}>
-      <EventServiceComponent
-        data={TEST_DATA}
-        isEdit={true}
-        onSubmit={(data) => {
-          console.log('Form submitted:', data);
-        }}
-      />
-    </LogScreen>
+    <EventServiceComponent
+      data={TEST_DATA}
+      isEdit={true}
+      onSubmit={(data) => {
+        console.log('Form submitted:', data);
+      }}
+    />
   );
 };
 

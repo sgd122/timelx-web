@@ -1,20 +1,10 @@
 import { useRouter } from 'next/router';
 import { signOut } from 'next-auth/react';
 
-import { PAGE_TITLE } from '@/shared/constants/title';
 import { useToaster } from '@/shared/hooks/useToaster';
 import ListView from '@/shared/ui/ListView';
-import { LogScreen } from '@/shared/ui/LogScreen';
 
 const AccountContainer = () => {
-  return (
-    <LogScreen params={{ title: PAGE_TITLE.SETTINGS_ACCOUNT }}>
-      <AccountList />
-    </LogScreen>
-  );
-};
-
-const AccountList = () => {
   const router = useRouter();
   const toaster = useToaster();
   const ITEMS = [

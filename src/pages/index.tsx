@@ -2,11 +2,17 @@ import { dehydrate, QueryClient } from '@tanstack/react-query';
 import type { GetServerSideProps } from 'next';
 
 import queryKeys from '@/features/api/queryKeys';
+import { PAGE_TITLE } from '@/shared/constants/title';
 import { withAuthServerSideProps } from '@/shared/hoc/withAuthServerSideProps';
+import { LogScreen } from '@/shared/ui/LogScreen';
 import HomeContainer from '@/views/home';
 
 const Home = () => {
-  return <HomeContainer />;
+  return (
+    <LogScreen params={{ title: PAGE_TITLE.HOME }}>
+      <HomeContainer />
+    </LogScreen>
+  );
 };
 
 export default Home;

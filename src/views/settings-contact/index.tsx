@@ -1,21 +1,11 @@
 import { FaLink } from 'react-icons/fa';
 import { IoCopySharp } from 'react-icons/io5';
 
-import { PAGE_TITLE } from '@/shared/constants/title';
 import { useToaster } from '@/shared/hooks/useToaster';
 import ListView from '@/shared/ui/ListView';
-import { LogScreen } from '@/shared/ui/LogScreen';
 import { copyToClipboard } from '@/shared/utils/copyToClipboard';
 
 const ContactContainer = () => {
-  return (
-    <LogScreen params={{ title: PAGE_TITLE.SETTINGS_CONTACT }}>
-      <ContactList />
-    </LogScreen>
-  );
-};
-
-const ContactList = () => {
   const toaster = useToaster();
   const ITEMS = [
     {
