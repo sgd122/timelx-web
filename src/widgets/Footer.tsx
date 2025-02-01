@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { Tabs } from '@radix-ui/themes';
 import { useAtom } from 'jotai/react';
 import { useEffect } from 'react';
@@ -17,18 +16,6 @@ enum TabsEnum {
 const Footer = () => {
   const router = useAppRouter();
   const [activeTab, setActiveTab] = useAtom(activeTabAtom);
-
-  const TabTriggerOverride = styled(Tabs.Trigger)`
-      &::before {
-          content: none !important; /* 기본 before 제거 */
-          background-color: transparent !important; /* 배경색 제거 */
-      }
-      & > span {
-          background-color: transparent !important; /* 배경색 제거 */
-          flex-direction: column;
-          gap: 4px;
-      }
-  `;
 
   const onRouter = (path: NavigateTab) => {
     switch (path) {
@@ -89,48 +76,57 @@ const Footer = () => {
           color="indigo"
           className="flex justify-around py-4"
         >
-          <TabTriggerOverride
+          <Tabs.Trigger
             value="discover"
             onClick={() => handleTabClick(TabsEnum.Discover)}
+            className="before:content-none before:bg-transparent"
           >
-            <FaLightbulb
-              className={
-                TabsEnum.Discover === activeTab
-                  ? 'text-yellow-400'
-                  : 'text-gray-500'
-              }
-              size={24}
-            />
-            발견
-          </TabTriggerOverride>
-          <TabTriggerOverride
+            <span className="flex flex-col gap-1">
+              <FaLightbulb
+                className={
+                  TabsEnum.Discover === activeTab
+                    ? 'text-yellow-400'
+                    : 'text-gray-500'
+                }
+                size={24}
+              />
+              발견
+            </span>
+          </Tabs.Trigger>
+          <Tabs.Trigger
             value="saved"
             onClick={() => handleTabClick(TabsEnum.Saved)}
+            className="before:content-none before:bg-transparent"
           >
-            <FaHeart
-              className={
-                TabsEnum.Saved === activeTab
-                  ? 'text-yellow-400'
-                  : 'text-gray-500'
-              }
-              size={24}
-            />
-            저장
-          </TabTriggerOverride>
-          <TabTriggerOverride
+            <span className="flex flex-col gap-1">
+              <FaHeart
+                className={
+                  TabsEnum.Saved === activeTab
+                    ? 'text-yellow-400'
+                    : 'text-gray-500'
+                }
+                size={24}
+              />
+              저장
+            </span>
+          </Tabs.Trigger>
+          <Tabs.Trigger
             value="settings"
             onClick={() => handleTabClick(TabsEnum.Settings)}
+            className="before:content-none before:bg-transparent"
           >
-            <FaCog
-              className={
-                TabsEnum.Settings === activeTab
-                  ? 'text-yellow-400'
-                  : 'text-gray-500'
-              }
-              size={24}
-            />
-            설정
-          </TabTriggerOverride>
+            <span className="flex flex-col gap-1">
+              <FaCog
+                className={
+                  TabsEnum.Settings === activeTab
+                    ? 'text-yellow-400'
+                    : 'text-gray-500'
+                }
+                size={24}
+              />
+              설정
+            </span>
+          </Tabs.Trigger>
         </Tabs.List>
       </Tabs.Root>
     </footer>

@@ -7,9 +7,6 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   output: 'standalone',
-  compiler: {
-    emotion: true,
-  },
   images: {
     remotePatterns: [
       {
