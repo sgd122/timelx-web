@@ -23,7 +23,7 @@ test('event search workflow test', async ({ page }) => {
 
   await expect(page).toHaveURL(
     new RegExp(
-      `/search/result\\?date=2025-01-23&location=%EC%84%9C%EC%9A%B8%EC%8B%9C(&startTime=.*&endTime=.*)?&keyword=%EC%B6%95%EC%A0%9C`
+      `/search/result\\?date=2025-01-23&location=%EC%84%9C%EC%9A%B8%EC%8B%9C(&time=.*)?&keyword=%EC%B6%95%EC%A0%9C`
     ),
     { timeout: 10000 }
   );
