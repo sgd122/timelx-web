@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { SessionProvider } from 'next-auth/react';
 
+import useFirebase from '@/app/hooks/useFirebase';
 import Layout from '@/layout';
 import JotaiProvider from '@/shared/providers/Jotai';
 import ReactQueryProvider from '@/shared/providers/ReactQuery';
@@ -28,6 +29,7 @@ const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
 
   // FIXME: 여전히 msw에러 발생
   // useMocks();
+  useFirebase();
 
   return (
     <>
