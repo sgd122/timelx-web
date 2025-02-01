@@ -1,8 +1,9 @@
-import { Button, Tooltip } from '@radix-ui/themes';
+import { Tooltip } from '@radix-ui/themes';
 import Link from 'next/link';
 import { FaSearch } from 'react-icons/fa';
 
 import { useAppRouter } from '@/shared/hooks/useAppRouter';
+import Button from '@/shared/ui/Button';
 
 const FloatingSearchButton = () => {
   const router = useAppRouter();
