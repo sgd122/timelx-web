@@ -17,8 +17,8 @@ const ButtonComponent = (
   return (
     <LogClick
       params={{
-        ...logParams,
         button: getInnerTextOfReactNode(props.children),
+        ...logParams,
       }}
     >
       <RadixButton ref={ref} {...props} />
