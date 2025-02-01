@@ -26,7 +26,10 @@ const FloatingSearchButton = () => {
           aria-label="Search"
         >
           <Link href="/search">
-            <FaSearch size={24} />
+            <>
+              <span className="sr-only">검색</span>
+              <FaSearch size={24} />
+            </>
           </Link>
         </Button>
       </Tooltip>
