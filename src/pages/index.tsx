@@ -7,9 +7,13 @@ import { withAuthServerSideProps } from '@/shared/hoc/withAuthServerSideProps';
 import { LogScreen } from '@/shared/ui/LogScreen';
 import HomeContainer from '@/views/home';
 
-const Home = () => {
+interface HomeProps {
+  userId?: string;
+}
+
+const Home = ({ userId }: HomeProps) => {
   return (
-    <LogScreen params={{ title: PAGE_TITLE.HOME }}>
+    <LogScreen params={{ title: PAGE_TITLE.HOME }} userId={userId}>
       <HomeContainer />
     </LogScreen>
   );
@@ -17,7 +21,7 @@ const Home = () => {
 
 export default Home;
 
-const getServerSidePropsFunction: GetServerSideProps = async () => {
+const getServerSidePropsFunction: GetServerSideProps = async ({ req }) => {
   const queryClient = new QueryClient();
 
   // NOTE: Example code
