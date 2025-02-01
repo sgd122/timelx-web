@@ -3,14 +3,11 @@ import type { GetServerSideProps } from 'next';
 
 import { PAGE_TITLE } from '@/shared/constants/title';
 import { withAuthServerSideProps } from '@/shared/hoc/withAuthServerSideProps';
+import type { PageDefaultProps } from '@/shared/types/page-props';
 import { LogScreen } from '@/shared/ui/LogScreen';
 import AccountContainer from '@/views/settings-account';
 
-interface AccountPageProps {
-  userId?: string;
-}
-
-const AccountPage = ({ userId }: AccountPageProps) => {
+const AccountPage = ({ userId }: PageDefaultProps) => {
   return (
     <LogScreen params={{ title: PAGE_TITLE.SETTINGS_ACCOUNT }} userId={userId}>
       <AccountContainer />

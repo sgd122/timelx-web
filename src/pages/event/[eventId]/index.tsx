@@ -3,14 +3,11 @@ import type { GetServerSideProps } from 'next';
 
 import { PAGE_TITLE } from '@/shared/constants/title';
 import { withAuthServerSideProps } from '@/shared/hoc/withAuthServerSideProps';
+import type { PageDefaultProps } from '@/shared/types/page-props';
 import { LogScreen } from '@/shared/ui/LogScreen';
 import EventContainer from '@/views/event';
 
-interface EventPageProps {
-  userId?: string;
-}
-
-const EventPage = ({ userId }: EventPageProps) => {
+const EventPage = ({ userId }: PageDefaultProps) => {
   return (
     <LogScreen params={{ title: PAGE_TITLE.EVENT }} userId={userId}>
       <EventContainer />

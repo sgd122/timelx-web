@@ -3,14 +3,11 @@ import type { GetServerSideProps } from 'next';
 
 import { PAGE_TITLE } from '@/shared/constants/title';
 import { withAuthServerSideProps } from '@/shared/hoc/withAuthServerSideProps';
+import type { PageDefaultProps } from '@/shared/types/page-props';
 import { LogScreen } from '@/shared/ui/LogScreen';
 import SavedContainer from '@/views/saved';
 
-interface SavedProps {
-  userId?: string;
-}
-
-const Saved = ({ userId }: SavedProps) => {
+const Saved = ({ userId }: PageDefaultProps) => {
   return (
     <LogScreen params={{ title: PAGE_TITLE.SAVED }} userId={userId}>
       <SavedContainer />

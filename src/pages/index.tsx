@@ -4,14 +4,11 @@ import type { GetServerSideProps } from 'next';
 import queryKeys from '@/features/api/queryKeys';
 import { PAGE_TITLE } from '@/shared/constants/title';
 import { withAuthServerSideProps } from '@/shared/hoc/withAuthServerSideProps';
+import type { PageDefaultProps } from '@/shared/types/page-props';
 import { LogScreen } from '@/shared/ui/LogScreen';
 import HomeContainer from '@/views/home';
 
-interface HomeProps {
-  userId?: string;
-}
-
-const Home = ({ userId }: HomeProps) => {
+const Home = ({ userId }: PageDefaultProps) => {
   return (
     <LogScreen params={{ title: PAGE_TITLE.HOME }} userId={userId}>
       <HomeContainer />

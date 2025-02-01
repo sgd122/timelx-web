@@ -3,14 +3,11 @@ import type { GetServerSideProps } from 'next';
 
 import { PAGE_TITLE } from '@/shared/constants/title';
 import { withAuthServerSideProps } from '@/shared/hoc/withAuthServerSideProps';
+import type { PageDefaultProps } from '@/shared/types/page-props';
 import { LogScreen } from '@/shared/ui/LogScreen';
 import SearchResultContainer from '@/views/search-result';
 
-interface SearchResultProps {
-  userId?: string;
-}
-
-const SearchResult = ({ userId }: SearchResultProps) => {
+const SearchResult = ({ userId }: PageDefaultProps) => {
   return (
     <LogScreen params={{ title: PAGE_TITLE.SEARCH_RESULT }} userId={userId}>
       <SearchResultContainer />

@@ -3,14 +3,11 @@ import type { GetServerSideProps } from 'next';
 
 import { PAGE_TITLE } from '@/shared/constants/title';
 import { withAuthServerSideProps } from '@/shared/hoc/withAuthServerSideProps';
+import type { PageDefaultProps } from '@/shared/types/page-props';
 import { LogScreen } from '@/shared/ui/LogScreen';
 import DashboardContainer from '@/views/settings-dashboard';
 
-interface DashboardProps {
-  userId?: string;
-}
-
-const DashboardPage = ({ userId }: DashboardProps) => {
+const DashboardPage = ({ userId }: PageDefaultProps) => {
   return (
     <LogScreen
       params={{ title: PAGE_TITLE.SETTINGS_DASHBOARD }}
