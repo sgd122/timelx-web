@@ -2,7 +2,9 @@ import { useRouter } from 'next/router';
 import { signOut } from 'next-auth/react';
 import toast from 'react-hot-toast';
 
+import { PAGE_TITLE } from '@/shared/constants/title';
 import ListView from '@/shared/ui/ListView';
+import { LogScreen } from '@/shared/ui/LogScreen';
 
 const AccountContainer = () => {
   const router = useRouter();
@@ -24,9 +26,9 @@ const AccountContainer = () => {
   ];
 
   return (
-    <>
+    <LogScreen params={{ title: PAGE_TITLE.SETTINGS_ACCOUNT }}>
       <ListView items={ITEMS} />
-    </>
+    </LogScreen>
   );
 };
 

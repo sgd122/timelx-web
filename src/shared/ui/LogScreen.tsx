@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 import type { PropsWithChildren } from 'react';
 import { useEffect } from 'react';
 
@@ -14,13 +15,17 @@ export const LogScreen = ({
   params,
 }: PropsWithChildren<LogScreenProps>) => {
   const router = useRouter();
+  const session = useSession();
   const logger = useLogger();
 
   useEffect(() => {
-    if (router.isReady) {
-      logger.screen({ params });
+    if (router.isReady && session.status !== 'loading') {
+      const userId = session.data?.user?.id;
+      session.status === 'authenticated'
+        ? logger.screen({ params: { ...params, userId } })
+        : logger.screen({ params });
     }
-  }, [router.isReady]);
+  }, [router.isReady, session]);
 
   return <LogParamsProvider params={params}>{children}</LogParamsProvider>;
 };

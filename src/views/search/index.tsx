@@ -4,7 +4,9 @@ import {
   searchResults,
   validateSearchParams,
 } from '@/features/search/utils/searchUtils';
+import { PAGE_TITLE } from '@/shared/constants/title';
 import { useAppRouter } from '@/shared/hooks/useAppRouter';
+import { LogScreen } from '@/shared/ui/LogScreen';
 
 const SearchContainer = () => {
   const router = useAppRouter();
@@ -14,7 +16,11 @@ const SearchContainer = () => {
     searchResults(searchValues, router.push);
   };
 
-  return <SearchForm onSearch={handleSearch} />;
+  return (
+    <LogScreen params={{ title: PAGE_TITLE.SEARCH }}>
+      <SearchForm onSearch={handleSearch} />
+    </LogScreen>
+  );
 };
 
 export default SearchContainer;

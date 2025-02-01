@@ -1,0 +1,15 @@
+export const PAGE_TITLE = {
+  HOME: 'Home',
+  AUTH_LOGIN: 'Login',
+  EVENT: 'event',
+  EVENT_DETAIL: 'event-detail',
+  EVENT_EDIT: 'event-edit',
+  EVENT_REGISTER: 'event-register',
+  SAVED: 'saved',
+  SEARCH: 'search',
+  SEARCH_RESULT: 'search-result',
+  SETTINGS: 'settings',
+  SETTINGS_ACCOUNT: 'settings-account',
+  SETTINGS_CONTACT: 'settings-contact',
+  SETTINGS_DASHBOARD: 'settings-dashboard',
+};

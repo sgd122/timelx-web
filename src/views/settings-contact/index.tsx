@@ -2,7 +2,9 @@ import toast from 'react-hot-toast';
 import { FaLink } from 'react-icons/fa';
 import { IoCopySharp } from 'react-icons/io5';
 
+import { PAGE_TITLE } from '@/shared/constants/title';
 import ListView from '@/shared/ui/ListView';
+import { LogScreen } from '@/shared/ui/LogScreen';
 import { copyToClipboard } from '@/shared/utils/copyToClipboard';
 
 const ContactContainer = () => {
@@ -27,9 +29,9 @@ const ContactContainer = () => {
   ];
 
   return (
-    <>
+    <LogScreen params={{ title: PAGE_TITLE.SETTINGS_CONTACT }}>
       <ListView items={ITEMS} />
-    </>
+    </LogScreen>
   );
 };
 
