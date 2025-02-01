@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { createContext } from 'react';
 
-import type { LogParameters } from '@/features/log/types/log';
+import type { LogParameters } from '@/shared/types/log';
 
 interface Props {
   children: ReactNode;

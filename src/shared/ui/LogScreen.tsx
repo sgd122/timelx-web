@@ -2,9 +2,9 @@ import { useRouter } from 'next/router';
 import type { PropsWithChildren } from 'react';
 import { useEffect } from 'react';
 
-import { useLogger } from '@/features/log/hooks/useLogger';
-import { LogParamsProvider } from '@/features/log/providers/LogParamsProvider';
-import type { LogParameters } from '@/features/log/types/log';
+import { useLogger } from '@/shared/hooks/useLogger';
+import { LogParamsProvider } from '@/shared/providers/LogParamsProvider';
+import type { LogParameters } from '@/shared/types/log';
 
 interface LogScreenProps {
   params: LogParameters;

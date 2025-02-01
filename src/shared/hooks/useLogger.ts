@@ -1,5 +1,5 @@
-import { useLogParams } from '@/features/log/hooks/useLogParams';
-import type { LogParameters } from '@/features/log/types/log';
+import { useLogParams } from '@/shared/hooks/useLogParams';
+import type { LogParameters } from '@/shared/types/log';
 
 interface LoggerParams {
   params: LogParameters;

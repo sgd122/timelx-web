@@ -2,8 +2,8 @@ import { Button as RadixButton } from '@radix-ui/themes';
 import type { ComponentProps, ForwardedRef } from 'react';
 import { forwardRef } from 'react';
 
-import type { LogParameters } from '@/features/log/types/log';
-import { LogClick } from '@/features/log/ui/LogClick';
+import type { LogParameters } from '@/shared/types/log';
+import { LogClick } from '@/shared/ui/LogClick';
 import { getInnerTextOfReactNode } from '@/shared/utils/getInnerTextOfReactNode';
 
 interface Props extends ComponentProps<typeof RadixButton> {

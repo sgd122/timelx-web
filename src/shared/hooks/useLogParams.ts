@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { LogParamsContext } from '@/features/log/providers/LogParamsProvider';
+import { LogParamsContext } from '@/shared/providers/LogParamsProvider';
 
 export function useLogParams() {
   return useContext(LogParamsContext);

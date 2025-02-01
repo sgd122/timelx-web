@@ -1,8 +1,8 @@
 import type { PropsWithChildren, ReactElement } from 'react';
 import { Children, cloneElement, isValidElement } from 'react';
 
-import { useLogger } from '@/features/log/hooks/useLogger';
-import type { LogParameters } from '@/features/log/types/log';
+import { useLogger } from '@/shared/hooks/useLogger';
+import type { LogParameters } from '@/shared/types/log';
 
 interface LogClickProps {
   params: LogParameters;
