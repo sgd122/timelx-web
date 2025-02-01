@@ -10,7 +10,12 @@ import { copyToClipboard } from '@/shared/utils/copyToClipboard';
 type SetSubmitActionType = Dispatch<SetStateAction<boolean>>;
 
 export const getLoginIcon = (router: NextRouter) => ({
-  icon: <BiLogIn size="24" />,
+  icon: (
+    <>
+      <span className="sr-only">로그인</span>
+      <BiLogIn size="24" />
+    </>
+  ),
   action: () => router.push('/auth/login'),
   label: '로그인',
 });
@@ -22,7 +27,12 @@ export const getRegisterIcon = (setSubmitAction: SetSubmitActionType) => ({
 });
 
 export const getShareIcon = (toaster: ReturnType<typeof useToaster>) => ({
-  icon: <IoMdShareAlt size="24" />,
+  icon: (
+    <>
+      <span className="sr-only">공유하기</span>
+      <IoMdShareAlt size="24" />
+    </>
+  ),
   action: async () => {
     try {
       await copyToClipboard(window.location.href);
@@ -35,7 +45,12 @@ export const getShareIcon = (toaster: ReturnType<typeof useToaster>) => ({
 });
 
 export const getNewEventIcon = (router: NextRouter) => ({
-  icon: <FaPlus size="24" />,
+  icon: (
+    <>
+      <span className="sr-only">새 이벤트 등록</span>
+      <FaPlus size="24" />
+    </>
+  ),
   action: () => router.push('/event/new'),
   label: '새 이벤트 등록',
 });

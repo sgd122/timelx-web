@@ -70,15 +70,18 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({
       className="p-1 shadow-none"
       aria-label="찜하기"
     >
-      <FiHeart
-        size={24}
-        className={cn(
-          'transition-colors',
-          state.favorite
-            ? 'text-red-600 fill-current'
-            : 'text-gray-400 fill-transparent'
-        )}
-      />
+      <>
+        <span className="sr-only">찜하기</span>
+        <FiHeart
+          size={24}
+          className={cn(
+            'transition-colors',
+            state.favorite
+              ? 'text-red-600 fill-current'
+              : 'text-gray-400 fill-transparent'
+          )}
+        />
+      </>
     </Button>
   );
 };
