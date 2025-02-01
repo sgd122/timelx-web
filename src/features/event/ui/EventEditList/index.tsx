@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import EventCard from '@/shared/ui/EventCard';
+import EventCard from '@/features/event/ui/EventCard';
 
 interface EventEditListProps {
   events: {

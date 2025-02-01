@@ -2,11 +2,6 @@ import { Section } from '@radix-ui/themes';
 import { useAtom } from 'jotai/react';
 import { useEffect } from 'react';
 
-import DeleteButton from '@/features/event/components/ui/DeleteButton';
-import EventDateWrapper from '@/features/event/components/ui/EventDateWrapper';
-import EventImage from '@/features/event/components/ui/EventImage';
-import EventTimeWrapper from '@/features/event/components/ui/EventTimeWrapper';
-import URLWrapper from '@/features/event/components/ui/URLWrapper';
 import {
   detailFieldsSection0,
   detailFieldsSection3,
@@ -16,6 +11,11 @@ import { useEventForm } from '@/features/event/hooks/useEventForm';
 import { useEventTimeValidation } from '@/features/event/hooks/useEventTimeValidation';
 import { useFormDirty } from '@/features/event/hooks/useFormDirty';
 import type { FormValues } from '@/features/event/types/form-values';
+import DeleteButton from '@/features/event/ui/DeleteButton';
+import EventDateWrapper from '@/features/event/ui/EventDateWrapper';
+import EventImage from '@/features/event/ui/EventImage';
+import EventTimeWrapper from '@/features/event/ui/EventTimeWrapper';
+import URLWrapper from '@/features/event/ui/URLWrapper';
 import { renderEventDetails } from '@/features/event/utils/renderEventDetails';
 import { RegisterProvider } from '@/shared/providers/RegisterProvider';
 import { submitActionAtom } from '@/shared/store/submitActionAtom';

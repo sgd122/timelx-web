@@ -7,7 +7,7 @@ import type {
   FieldValues,
 } from 'react-hook-form';
 
-import ErrorField from '@/features/event/components/ui/ErrorField';
+import ErrorField from '@/features/event/ui/ErrorField';
 import { useRegister } from '@/shared/providers/RegisterProvider';
 import type { InputType } from '@/shared/types/input-type';
 import ChipList from '@/shared/ui/ChipList';

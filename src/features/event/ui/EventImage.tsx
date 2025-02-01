@@ -8,7 +8,7 @@ import type {
   FieldValues,
 } from 'react-hook-form';
 
-import ErrorField from '@/features/event/components/ui/ErrorField';
+import ErrorField from '@/features/event/ui/ErrorField';
 import PlaceholderImage from '@/shared/assets/icon/placeholder-image.png';
 import { useRegister } from '@/shared/providers/RegisterProvider';
 

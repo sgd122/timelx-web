@@ -1,4 +1,4 @@
-import EventServiceComponent from '@/features/event/components';
+import EventServiceComponent from '@/widgets/EventServiceComponent';
 
 const EventNewContainer = () => {
   return (

@@ -1,5 +1,5 @@
-import EventServiceComponent from '@/features/event/components';
 import type { FormValues } from '@/features/event/types/form-values';
+import EventServiceComponent from '@/widgets/EventServiceComponent';
 
 const TEST_DATA: FormValues = {
   title: 'title',

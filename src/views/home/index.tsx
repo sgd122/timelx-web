@@ -1,5 +1,5 @@
+import EventList from '@/features/event/ui/EventList';
 import { useObserver } from '@/shared/hooks/useObserver';
-import EventList from '@/shared/ui/EventList';
 import { events } from '@/views/home/dummy';
 
 const HomeContainer = () => {

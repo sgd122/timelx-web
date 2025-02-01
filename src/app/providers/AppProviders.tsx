@@ -4,11 +4,11 @@ import type { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
 import type React from 'react';
 
+import GlobalStyles from '@/app/ui/GlobalStyles';
+import Seo from '@/app/ui/Seo';
 import JotaiProvider from '@/shared/providers/Jotai';
 import ReactQueryProvider from '@/shared/providers/ReactQuery';
 import { SessionStorageProvider } from '@/shared/providers/SessionStorageProvider';
-import GlobalStyles from '@/shared/ui/GlobalStyles';
-import Seo from '@/shared/ui/Seo';
 
 import '@/shared/assets/styles/globals.css';
 

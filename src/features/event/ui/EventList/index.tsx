@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-import EventCard from '@/shared/ui/EventCard';
+import EventCard from '@/features/event/ui/EventCard';
 
 interface EventListProps {
   events: {

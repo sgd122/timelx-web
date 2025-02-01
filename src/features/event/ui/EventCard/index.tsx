@@ -3,9 +3,9 @@ import Link from 'next/link';
 import type * as React from 'react';
 import { MdEdit } from 'react-icons/md';
 
+import FavoriteButton from '@/features/favorite/ui/FavoriteButton';
 import { handleFavoriteToggle } from '@/features/favorite/utils/handleFavoriteToggle';
 import { cn } from '@/shared/lib/utils';
-import FavoriteButton from '@/shared/ui/FavoriteButton';
 
 interface EventCardProps {
   id: number;

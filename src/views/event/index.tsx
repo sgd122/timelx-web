@@ -1,6 +1,6 @@
-import EventServiceComponent from '@/features/event/components';
 import type { FormValues } from '@/features/event/types/form-values';
 import { EVENT_DETAILS } from '@/views/event/dummy';
+import EventServiceComponent from '@/widgets/EventServiceComponent';
 
 const EventContainer = () => {
   return (

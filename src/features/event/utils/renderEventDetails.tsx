@@ -1,8 +1,8 @@
 import type { UseFormReturn } from 'react-hook-form';
 
-import EventDetail from '@/features/event/components/ui/EventDetail';
 import type { FieldDefinition } from '@/features/event/types/field-definition';
 import type { FormValues } from '@/features/event/types/form-values';
+import EventDetail from '@/features/event/ui/EventDetail';
 
 interface RenderEventDetailsProps {
   fields: FieldDefinition[];
