@@ -1,14 +1,10 @@
 import type { AppProps } from 'next/app';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import { SessionProvider } from 'next-auth/react';
 
 import useFirebase from '@/app/hooks/useFirebase';
 import Layout from '@/layout';
-import JotaiProvider from '@/shared/providers/Jotai';
-import ReactQueryProvider from '@/shared/providers/ReactQuery';
-import { SessionStorageProvider } from '@/shared/providers/SessionStorageProvider';
-import GlobalStyles from '@/shared/ui/GlobalStyles';
+import AppProviders from '@/shared/providers/AppProviders';
 import Seo from '@/shared/ui/Seo';
 
 import '@/shared/assets/styles/globals.css';
@@ -42,19 +38,11 @@ const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
       <ExternalScript />
       <Seo seo={seo} />
       <Toaster />
-      <JotaiProvider>
-        <ReactQueryProvider dehydratedState={dehydratedState}>
-          <SessionProvider session={session}>
-            <SessionStorageProvider>
-              <GlobalStyles>
-                <Layout>
-                  <Component {...pageProps} />
-                </Layout>
-              </GlobalStyles>
-            </SessionStorageProvider>
-          </SessionProvider>
-        </ReactQueryProvider>
-      </JotaiProvider>
+      <AppProviders session={session} dehydratedState={dehydratedState}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </AppProviders>
     </>
   );
 };
