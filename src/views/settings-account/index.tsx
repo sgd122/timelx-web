@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { signOut } from 'next-auth/react';
 
+import { logUserEvent } from '@/app/utils/firebase';
 import { useToaster } from '@/shared/hooks/useToaster';
 import ListView from '@/shared/ui/ListView';
 
@@ -11,6 +12,7 @@ const AccountContainer = () => {
     {
       label: '로그아웃',
       onClick: () => {
+        logUserEvent();
         signOut({ redirect: false }).then(() => {
           router.push('/');
         });

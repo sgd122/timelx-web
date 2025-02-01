@@ -1,10 +1,10 @@
 import { getApps, initializeApp } from '@firebase/app';
-import { getAnalytics, logEvent as _logEvent } from 'firebase/analytics';
 import { getPerformance } from 'firebase/performance';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 import { firebaseConfig } from '@/app/lib/firebase/config';
+import { logEvent } from '@/app/utils/firebase';
 
 const useFirebase = () => {
   const router = useRouter();
@@ -17,21 +17,20 @@ const useFirebase = () => {
       app = getApps()[0];
     }
 
-    const analytics = getAnalytics(app);
     getPerformance(app);
 
-    const logEvent = () => {
-      _logEvent(analytics, 'page_view');
+    const _logEvent = () => {
+      logEvent('page_view');
       // _logEvent(analytics, 'screen_view');
     };
 
-    router.events.on('routeChangeComplete', logEvent);
+    router.events.on('routeChangeComplete', _logEvent);
 
     // ✅ 최초 로드 시에도 `page_view` 실행
-    logEvent();
+    _logEvent();
 
     return () => {
-      router.events.off('routeChangeComplete', logEvent);
+      router.events.off('routeChangeComplete', _logEvent);
     };
   }, [router]);
 };
