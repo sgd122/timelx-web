@@ -1,15 +1,31 @@
-import type { ButtonProps as RadixButtonProps } from '@radix-ui/themes';
 import { Button as RadixButton } from '@radix-ui/themes';
-import { motion } from 'framer-motion';
-import type { ComponentProps } from 'react';
+import type { ComponentProps, ForwardedRef } from 'react';
+import { forwardRef } from 'react';
 
-type ButtonProps = RadixButtonProps &
-  Omit<ComponentProps<typeof motion.div>, 'ref'>;
+import type { LogParameters } from '@/features/log/types/log';
+import { LogClick } from '@/features/log/ui/LogClick';
+import { getInnerTextOfReactNode } from '@/shared/utils/getInnerTextOfReactNode';
 
-const Button: React.FC<ButtonProps> = ({ children, ...rest }) => {
-  const MotionButton = motion.create(RadixButton);
+interface Props extends ComponentProps<typeof RadixButton> {
+  logParams?: LogParameters;
+}
 
-  return <MotionButton {...rest}>{children}</MotionButton>;
+const ButtonComponent = (
+  { logParams, ...props }: Props,
+  ref: ForwardedRef<HTMLButtonElement>
+) => {
+  return (
+    <LogClick
+      params={{
+        ...logParams,
+        button: getInnerTextOfReactNode(props.children),
+      }}
+    >
+      <RadixButton ref={ref} {...props} />
+    </LogClick>
+  );
 };
+
+const Button = forwardRef(ButtonComponent);
 
 export default Button;
