@@ -52,12 +52,15 @@ const EventDetail = <TFieldValues extends FieldValues>({
     <Box className="flex flex-col gap-1.5 w-full">
       {title && (
         <Text size="2">
-          {title}
-          {isRequired && !isReadOnly && (
-            <span className="text-red-400"> *</span>
-          )}
+          <h3>
+            {title}
+            {isRequired && !isReadOnly && (
+              <span className="text-red-400"> *</span>
+            )}
+          </h3>
         </Text>
       )}
+
       <InputField
         wrapperClassName="w-full"
         label={label}

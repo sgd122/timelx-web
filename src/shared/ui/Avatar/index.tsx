@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { FiEdit2 } from 'react-icons/fi';
 
 interface ProfileAvatarProps {
+  name?: string;
   src?: string; // 초기 아바타 이미지 경로
   isEditing?: boolean; // 편집 여부
   onClick?: (image: File | null) => void; // 이미지 선택 시 호출
@@ -38,6 +39,7 @@ interface ProfileAvatarProps {
  * ```
  */
 const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
+  name = '',
   src = '',
   isEditing = false,
   onClick,
@@ -58,7 +60,14 @@ const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
   return (
     <Box className="relative w-fit">
       {/* Avatar */}
-      <Avatar size="6" radius="full" src={avatarSrc} fallback="A" />
+      <Avatar
+        alt={name}
+        size="6"
+        radius="full"
+        src={avatarSrc}
+        fallback={name.charAt(0)}
+      />
+
       {/* Edit Icon (조건부 렌더링) */}
       {isEditing && (
         <Box className="absolute bottom-0 right-0">

@@ -19,12 +19,14 @@ const EventTimeWrapper: React.FC<EventTimeWrapperProps> = ({
     getValues(field.value as keyof FormValues)
   );
 
-  if (!hasData) return null; // ✅ 값이 없으면 렌더링하지 않음
+  if (isReadOnly && !hasData) return null; // ✅ 값이 없으면 렌더링하지 않음
 
   if (isReadOnly) {
     return (
       <Flex direction="column" className="gap-1">
-        <Text size="2">이벤트 시간</Text>
+        <Text size="2">
+          <h3>이벤트 시간</h3>
+        </Text>
         <Flex className="gap-3.5 justify-between max-w-[87vw]">
           {renderEventDetails({
             fields: detailFieldsSection2,

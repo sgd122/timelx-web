@@ -25,11 +25,13 @@ const URLWrapper: React.FC<URLWrapperProps> = ({ isReadOnly, form }) => {
   const isExternalLink =
     urlValues[1]?.startsWith('http://') || urlValues[1]?.startsWith('https://');
 
-  if (!hasData) return null; // ✅ 값이 없으면 렌더링하지 않음
+  if (isReadOnly && !hasData) return null; // ✅ 값이 없으면 렌더링하지 않음
   if (isReadOnly) {
     return (
       <Flex direction="column" className="gap-1">
-        <Text size="2">링크</Text>
+        <Text size="2">
+          <h3>링크</h3>
+        </Text>
 
         <div className="pl-2 py-2 sm:px-6 border rounded-md bg-accent w-full ">
           {isExternalLink ? (

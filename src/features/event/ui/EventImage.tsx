@@ -91,13 +91,15 @@ const EventImage = <TFieldValues extends FieldValues>({
         onClick={!isReadOnly ? handleImageClick : undefined}
         className={`h-full ${!isReadOnly ? 'cursor-pointer' : 'cursor-default'}`} // ✅ isReadOnly에 따라 커서 변경
       >
-        <Image
-          src={avatarSrc || PlaceholderImage} // 기본 이미지 경로 설정
-          alt="event"
-          layout="responsive"
-          width={16}
-          height={9}
-        />
+        <h3>
+          <Image
+            src={avatarSrc || PlaceholderImage} // 기본 이미지 경로 설정
+            alt="이벤트 이미지"
+            layout="responsive"
+            width={16}
+            height={9}
+          />
+        </h3>
       </div>
       {/* 숨겨진 파일 입력 요소 */}
       <input

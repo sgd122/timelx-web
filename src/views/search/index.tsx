@@ -16,7 +16,12 @@ const SearchContainer = () => {
     searchResults(searchValues, router.push);
   };
 
-  return <SearchForm onSearch={handleSearch} />;
+  return (
+    <>
+      <h2 className="sr-only">검색</h2>
+      <SearchForm onSearch={handleSearch} />
+    </>
+  );
 };
 
 export default SearchContainer;

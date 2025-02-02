@@ -1,5 +1,6 @@
 import { Text } from '@radix-ui/themes';
 import Link from 'next/link';
+import type { JSX } from 'react';
 import React from 'react';
 import { FaChevronRight } from 'react-icons/fa';
 
@@ -7,8 +8,15 @@ import { cn } from '@/shared/lib/utils';
 
 // Union 타입 정의
 type ListViewItemProps =
-  | { label: string; href: string; onClick?: never; icon?: React.ReactNode } // href가 있는 경우
   | {
+      as?: keyof JSX.IntrinsicElements;
+      label: string;
+      href: string;
+      onClick?: never;
+      icon?: React.ReactNode;
+    } // href가 있는 경우
+  | {
+      as?: keyof JSX.IntrinsicElements;
       label: string;
       onClick: () => void;
       href?: never;
@@ -18,6 +26,7 @@ type ListViewItemProps =
 interface ListViewProps {
   items: ListViewItemProps[];
   className?: string;
+  as?: keyof JSX.IntrinsicElements;
 }
 
 const renderWithLineBreaks = (text: string) =>
@@ -29,7 +38,7 @@ const renderWithLineBreaks = (text: string) =>
   ));
 
 const ListViewItem: React.FC<ListViewItemProps> = (props) => {
-  const { label, icon } = props;
+  const { label, icon, as: HeadingTag = 'h3' } = props;
 
   if (props.href !== undefined) {
     const isExternalLink =
@@ -52,7 +61,7 @@ const ListViewItem: React.FC<ListViewItemProps> = (props) => {
           )}
         >
           <Text size="2" className="flex-1">
-            {renderWithLineBreaks(label)}
+            <HeadingTag>{renderWithLineBreaks(label)}</HeadingTag>
           </Text>
           {icon ? icon : <FaChevronRight className="text-tx-white" />}
         </Link>
@@ -75,7 +84,7 @@ const ListViewItem: React.FC<ListViewItemProps> = (props) => {
         )}
       >
         <Text size="2" className="flex-1">
-          {renderWithLineBreaks(label)}
+          <HeadingTag>{renderWithLineBreaks(label)}</HeadingTag>
         </Text>
         {icon ? icon : <FaChevronRight className="text-tx-white" />}
       </li>
@@ -97,12 +106,12 @@ const ListViewItem: React.FC<ListViewItemProps> = (props) => {
  * <ListView items={items} />
  * ```
  */
-const ListView: React.FC<ListViewProps> = ({ items, className }) => {
+const ListView: React.FC<ListViewProps> = ({ items, as, className }) => {
   return (
     <nav className={cn('w-full divide-y divide-gray-700', className)}>
       <ul>
         {items.map((item, index) => (
-          <ListViewItem key={index} {...item} />
+          <ListViewItem key={index} as={as} {...item} />
         ))}
       </ul>
     </nav>

@@ -8,6 +8,7 @@ import { events } from '@/views/search-result/dummy';
 const SearchResultContainer = () => {
   return (
     <>
+      <h2 className="sr-only">검색결과</h2>
       <SearchBar> 2025년 02월 08일 서울의 전시회 시간을 밝혀줘</SearchBar>
 
       <Flex direction="column" className="mt-10 gap-5">

@@ -4,10 +4,13 @@ import EventServiceComponent from '@/widgets/EventServiceComponent';
 
 const EventContainer = () => {
   return (
-    <EventServiceComponent
-      data={EVENT_DETAILS as never as FormValues}
-      isReadOnly={true}
-    />
+    <>
+      <h2 className="sr-only">이벤트 상세</h2>
+      <EventServiceComponent
+        data={EVENT_DETAILS as never as FormValues}
+        isReadOnly={true}
+      />
+    </>
   );
 };
 

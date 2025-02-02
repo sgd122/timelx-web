@@ -18,12 +18,14 @@ const EventDateWrapper: React.FC<EventDateWrapperProps> = ({
     getValues(field.value as keyof FormValues)
   );
 
-  if (!hasData) return null; // ✅ 값이 없으면 렌더링하지 않음
+  if (isReadOnly && !hasData) return null; // ✅ 값이 없으면 렌더링하지 않음
 
   return (
     <Flex direction="column" className="gap-1">
       <Text size="2">
-        이벤트 날짜<span className="text-red-400"> *</span>
+        <h3>
+          이벤트 날짜<span className="text-red-400"> *</span>
+        </h3>
       </Text>
       <Flex className="gap-5" direction="column">
         <Flex className="gap-3.5 justify-between max-w-[87vw]">
