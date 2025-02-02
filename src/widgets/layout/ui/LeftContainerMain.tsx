@@ -59,7 +59,7 @@ const LeftContainerMain = () => {
 
         <Button
           variant="solid"
-          className="h-[77] w-[105]"
+          className="h-[77px] w-[105px]"
           onClick={handleSearch}
         >
           검색

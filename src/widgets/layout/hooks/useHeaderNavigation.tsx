@@ -24,7 +24,7 @@ export const useHeaderNavigation = () => {
 
     return (
       <Link href="/">
-        <FaHome size="24" />
+        <FaHome size="24" aria-label="home" />
       </Link>
     );
   };

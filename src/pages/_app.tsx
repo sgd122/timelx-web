@@ -17,7 +17,7 @@ const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
       <Head>
         <meta
           name="viewport"
-          content="initial-scale=1.0,user-scalable=no,maximum-scale=1,minimum-scale=1,width=device-width,viewport-fit=cover"
+          content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, viewport-fit=cover"
         />
       </Head>
       <AppProviders

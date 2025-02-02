@@ -80,6 +80,7 @@ const Footer = () => {
             value="discover"
             onClick={() => handleTabClick(TabsEnum.Discover)}
             className="before:content-none before:bg-transparent"
+            aria-hidden="true"
           >
             <span className="flex flex-col gap-1">
               <FaLightbulb
@@ -89,6 +90,7 @@ const Footer = () => {
                     : 'text-gray-500'
                 }
                 size={24}
+                aria-hidden="true"
               />
               발견
             </span>
@@ -97,6 +99,7 @@ const Footer = () => {
             value="saved"
             onClick={() => handleTabClick(TabsEnum.Saved)}
             className="before:content-none before:bg-transparent"
+            aria-hidden="true"
           >
             <span className="flex flex-col gap-1">
               <FaHeart
@@ -106,6 +109,7 @@ const Footer = () => {
                     : 'text-gray-500'
                 }
                 size={24}
+                aria-hidden="true"
               />
               저장
             </span>
@@ -114,6 +118,7 @@ const Footer = () => {
             value="settings"
             onClick={() => handleTabClick(TabsEnum.Settings)}
             className="before:content-none before:bg-transparent"
+            aria-hidden="true"
           >
             <span className="flex flex-col gap-1">
               <FaCog
@@ -123,6 +128,7 @@ const Footer = () => {
                     : 'text-gray-500'
                 }
                 size={24}
+                aria-hidden="true"
               />
               설정
             </span>
