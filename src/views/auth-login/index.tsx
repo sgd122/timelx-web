@@ -23,6 +23,7 @@ const AuthLoginContainer = ({ authError }: { authError?: string }) => {
       direction="column"
       gap="8"
     >
+      <h2 className="sr-only">로그인</h2>
       {/* Logo */}
       <Text size="8" weight="bold" className="flex items-center gap-1 mt-6">
         시간상점
@@ -41,7 +42,7 @@ const AuthLoginContainer = ({ authError }: { authError?: string }) => {
         }
       >
         <FcGoogle size="20" />
-        Google로 계속하기
+        <h3>Google로 계속하기</h3>
       </Button>
     </Flex>
   );

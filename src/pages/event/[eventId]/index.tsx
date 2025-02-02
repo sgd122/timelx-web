@@ -22,10 +22,16 @@ const getServerSidePropsFunction: GetServerSideProps = async ({ req }) => {
 
   // NOTE: Example code
   // await queryClient.prefetchQuery(queryKeys.main.list());
+  // const { hotel } = queryClient.getQueryData(queryKeys.main.list().queryKey) as Hotel;
 
   return {
     props: {
       dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+      seo: {
+        nextSeoProps: {
+          title: '이벤트 상세',
+        },
+      },
     },
   };
 };

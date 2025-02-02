@@ -21,7 +21,6 @@ const TEST_DATA: FormValues = {
 const EventEditContainer = () => {
   return (
     <>
-      <h2 className="sr-only">이벤트 편집</h2>
       <EventServiceComponent
         data={TEST_DATA}
         isEdit={true}

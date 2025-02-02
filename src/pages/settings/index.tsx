@@ -26,6 +26,11 @@ const getServerSidePropsFunction: GetServerSideProps = async ({ req }) => {
   return {
     props: {
       dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+      seo: {
+        nextSeoProps: {
+          title: 'Profile',
+        },
+      },
     },
   };
 };
