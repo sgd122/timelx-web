@@ -1,5 +1,6 @@
 import type { SeoProps } from '@seo';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { DefaultSeo, NextSeo } from 'next-seo';
 
 import { DOMAIN_NAME } from '@/shared/constants/url';
@@ -14,12 +15,19 @@ const Seo = ({ seo }: Props) => {
   const defaultSeo = useDefaultSeo();
   const { nextSeoProps, jsonLDProps } = seo ?? {};
   const jsonLD = useJsonLD(jsonLDProps);
+  const { pathname } = useRouter();
 
   return (
     <>
       {seo ? (
         <NextSeo
           {...defaultSeo}
+          titleTemplate={
+            pathname === '/event/[eventId]' ||
+            pathname === '/event/[eventId]/edit'
+              ? nextSeoProps?.title
+              : defaultSeo.titleTemplate
+          }
           title={nextSeoProps?.title}
           description={nextSeoProps?.description || defaultSeo.description}
           openGraph={{
