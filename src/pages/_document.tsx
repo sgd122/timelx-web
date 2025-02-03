@@ -19,6 +19,10 @@ const Document = () => (
         href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap"
         rel="stylesheet"
       />
+      <script
+        type="text/javascript"
+        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS}&libraries=places`}
+      ></script>
     </Head>
     <body>
       <Main />

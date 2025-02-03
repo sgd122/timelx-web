@@ -5,14 +5,15 @@ import { cn } from '@/shared/lib/utils';
 import ChipListInput from '@/shared/ui/ChipListInput';
 import type { FieldWrapperProps } from '@/shared/ui/FieldWrapper';
 import FieldWrapper from '@/shared/ui/FieldWrapper';
+import MapInput from '@/shared/ui/MapInput';
 
-export type FieldType = 'input' | 'chip' | 'textarea';
+export type FieldType = 'input' | 'chip' | 'textarea' | 'maps';
 
 type BaseProps = Omit<FieldWrapperProps, 'children'>;
 
 type InputFieldProps =
   | (BaseProps & {
-      fieldType: 'input';
+      fieldType: 'input' | 'maps';
       inputProps?: React.ComponentProps<typeof TextField.Root>;
     })
   | (BaseProps & {
@@ -95,6 +96,18 @@ const InputField: React.FC<InputFieldProps> = (props) => {
           )}
           placeholder="Reply to comment…"
           {...props.textareaProps}
+        />
+      );
+    } else if (fieldType === 'maps') {
+      return (
+        <MapInput
+          className={cn(
+            variant === 'light' &&
+              `${theme.light.bg} ${theme.light.text} input-text-light`,
+            variant === 'dark' &&
+              `${theme.dark.bg} ${theme.dark.text} input-text-dark`
+          )}
+          inputProps={props.inputProps}
         />
       );
     }

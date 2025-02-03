@@ -62,7 +62,7 @@ const EventServiceComponent: React.FC<EventServiceComponentProps> = ({
   };
 
   return (
-    <RegisterProvider register={register}>
+    <RegisterProvider register={register} watch={watch} setValue={setValue}>
       <div>
         <form
           onSubmit={_onSubmit}

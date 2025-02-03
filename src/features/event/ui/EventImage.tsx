@@ -25,7 +25,7 @@ const EventImage = <TFieldValues extends FieldValues>({
   error,
   isReadOnly,
 }: EventImageProps<TFieldValues>) => {
-  const register = useRegister<TFieldValues>();
+  const { register } = useRegister<TFieldValues>();
   const [avatarSrc, setAvatarSrc] = useState<string>(image); // 현재 아바타 이미지 경로 상태
   const fileInputRef = useRef<HTMLInputElement>(null); // 파일 입력 요소에 대한 참조
 

@@ -39,7 +39,7 @@ const EventDetail = <TFieldValues extends FieldValues>({
   type,
   isReadOnly,
 }: Omit<EventDetailProps<TFieldValues>, 'register'>) => {
-  const register = useRegister<TFieldValues>();
+  const { register } = useRegister<TFieldValues>();
 
   if (isReadOnly && isEmpty(value)) return null;
 

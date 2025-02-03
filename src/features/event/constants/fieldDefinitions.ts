@@ -59,6 +59,7 @@ export const detailFieldsSection3: FieldDefinition[] = [
     title: FIELD_LABELS.address,
     value: 'address',
     placeholder: PLACEHOLDERS.ADDRESS,
+    fieldType: 'maps' as FieldType,
     isRequired: isFieldRequired(baseSchema.shape['address']),
   },
   {
