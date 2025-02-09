@@ -12,12 +12,11 @@ import InputField from '@/shared/ui/InputField';
 const fields: Array<{
   key: string;
   label: string;
-  type: 'date' | 'text' | 'time';
+  type: 'date' | 'text';
   required?: boolean;
 }> = [
   { key: 'date', label: '날짜 선택', type: 'date', required: true },
   { key: 'location', label: '지역 선택', type: 'text', required: true },
-  { key: 'time', label: '시간 선택', type: 'time' },
   { key: 'keyword', label: '키워드 입력', type: 'text' },
 ];
 
@@ -49,7 +48,6 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
                 onChange: searchSetters[setterKey],
                 value: searchValues[key as keyof SearchValues],
               }}
-              wrapperClassName={type === 'time' ? 'w-full' : undefined}
             />
           );
         })}

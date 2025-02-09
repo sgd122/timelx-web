@@ -29,14 +29,6 @@ export const formFields: FieldConfig[] = [
     type: 'text',
   },
   {
-    id: 'time',
-    label: '시간 선택',
-    placeholder: PLACEHOLDERS.TIME,
-    isRequired: false,
-    component: 'input',
-    type: 'time',
-  },
-  {
     id: 'keyword',
     label: '키워드 입력',
     placeholder: PLACEHOLDERS.KEYWORD,

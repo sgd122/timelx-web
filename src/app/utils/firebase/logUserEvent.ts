@@ -21,7 +21,7 @@ const logUserEvent = (user?: IUser) => {
   setUserProperties(analytics, {
     id: userId,
     name: user.name,
-    nick_name: user.nick_name ?? '',
+    nick_name: user.nickname ?? '',
     email: user.email ?? '',
   });
 };

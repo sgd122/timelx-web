@@ -1,26 +1,25 @@
 import { Box, Text } from '@radix-ui/themes';
-import { useSession } from 'next-auth/react';
 
+import { useUserSession } from '@/shared/hooks/useUserSession';
 import Avatar from '@/shared/ui/Avatar';
 import ListView from '@/shared/ui/ListView';
 import { ITEMS } from '@/views/settings/constants/items';
 
 const SettingContainer = () => {
-  const session = useSession();
-  const { email, name, imageUrl } = session?.data?.user || {};
+  const { user: { email, nickname, avatarUrl } = {} } = useUserSession();
 
   return (
     <>
       <Box className="flex flex-col justify-center items-center gap-4">
         <Avatar
-          name={name}
-          src={imageUrl}
+          name={nickname}
+          src={avatarUrl}
           isEditing={true}
           onClick={(image) => console.log('선택된 이미지:', image)}
         />
         <Box className="flex flex-col justify-center items-center">
           <Text>
-            <h3>{name}</h3>
+            <h3>{nickname}</h3>
           </Text>
           <Text size="1">{email}</Text>
         </Box>

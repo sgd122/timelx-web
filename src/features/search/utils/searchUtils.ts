@@ -39,7 +39,6 @@ export const searchResults = (
   const queryParams = new URLSearchParams({
     date: params.date,
     location: params.location,
-    time: params.time || '',
     keyword: params.keyword || '',
   });
 

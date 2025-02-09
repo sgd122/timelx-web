@@ -68,7 +68,7 @@ const LeftContainerMain = () => {
 
       {/* Subtext */}
       <p className="mt-6 text-white font-bold">
-        전국에서 1,241,213 시간이 밝게 빛나고 있습니다 ✨
+        일상 속 숨겨진 1,627개의 이벤트를 발견해보세요 ✨
       </p>
 
       <Image

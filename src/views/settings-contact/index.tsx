@@ -21,8 +21,8 @@ const ContactContainer = () => {
       icon: <IoCopySharp size={16} />,
     },
     {
-      label: 'timelx 홈페이지 바로가기',
-      href: 'https://gmail.com',
+      label: 'timelx 팀 페이지 바로가기',
+      href: 'https://timelx.gitbook.io/home',
       icon: <FaLink size={16} />,
     },
   ];

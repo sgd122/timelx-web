@@ -4,9 +4,8 @@ declare module '@api/user' {
   export interface IUser extends User {
     accessToken: string;
     id: number;
-    name: string;
-    nick_name: string | null;
-    imageUrl: string;
+    nickname: string;
+    avatarUrl: string;
     email: string;
   }
 

@@ -2,10 +2,12 @@ import type { AxiosRequestConfig } from 'axios';
 import axios from 'axios';
 import { getSession } from 'next-auth/react';
 
-import { BASE_URL } from '@/features/api/config';
+import { BASE_URL, VERSION } from '@/features/api/config';
+
+export const BACKEND_API = `${BASE_URL}${VERSION['V1']}`;
 
 const instance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: BACKEND_API,
 });
 
 instance.interceptors.request.use(async (request) => {

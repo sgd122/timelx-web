@@ -11,5 +11,6 @@ export const PAGE_TITLE = {
   SETTINGS: 'settings',
   SETTINGS_ACCOUNT: 'settings-account',
   SETTINGS_CONTACT: 'settings-contact',
+  SETTINGS_POLICY: 'settings-policy',
   SETTINGS_DASHBOARD: 'settings-dashboard',
 };

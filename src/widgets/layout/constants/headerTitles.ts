@@ -5,5 +5,6 @@ export const pageTitles: Record<string, string> = {
   '/settings': 'Profile',
   '/settings/account': '계정 설정',
   '/settings/contact': '문의',
+  '/settings/policy': '정책',
   '/settings/dashboard': '이벤트 대시보드',
 };

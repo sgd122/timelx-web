@@ -1,11 +1,11 @@
 import { Flex, Text } from '@radix-ui/themes';
 import { useSetAtom } from 'jotai';
 import Image from 'next/image';
-import { useSession } from 'next-auth/react';
 
 import LogoTitle from '@/shared/assets/icon/title.png';
 import { useAppRouter } from '@/shared/hooks/useAppRouter';
 import { useToaster } from '@/shared/hooks/useToaster';
+import { useUserSession } from '@/shared/hooks/useUserSession';
 import { submitActionAtom } from '@/shared/store/submitActionAtom';
 import Button from '@/shared/ui/Button';
 import { pageTitles } from '@/widgets/layout/constants/headerTitles';
@@ -25,7 +25,7 @@ interface IconAction {
 
 const Header = () => {
   const router = useAppRouter();
-  const session = useSession();
+  const { isUnAuthenticated } = useUserSession();
   const setSubmitAction = useSetAtom(submitActionAtom);
 
   const { getLeftComponent } = useHeaderNavigation();
@@ -36,14 +36,13 @@ const Header = () => {
   );
 
   const getIconAndAction = (): IconAction => {
-    const isUnauthenticated = session.status === 'unauthenticated';
     const isRegisterPage = ['/event/new', '/event/[eventId]/edit'].includes(
       router.pathname
     );
     const isEventDetailPage = router.pathname === '/event/[eventId]';
     const toaster = useToaster();
 
-    if (isUnauthenticated) {
+    if (isUnAuthenticated) {
       return getLoginIcon(router);
     }
 

@@ -7,27 +7,17 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import KakaoProvider from 'next-auth/providers/kakao';
 
-import { BASE_URL, VERSION } from '@/features/api/config';
+import { BACKEND_API } from '@/features/api';
 import { LOGIN_PROVIDER } from '@/shared/constants/auth';
-
-const BACKEND_API = `${BASE_URL}${VERSION['V2']}`;
 
 interface CustomJWT extends JWT {
   user: { id_token?: string; provider?: string } & IUser;
 }
 
 async function getSocialProviderProfile(token: CustomJWT, provider: string) {
-  const apiUrl = `${BACKEND_API}/login/social/callback/${provider}`;
+  const apiUrl = `${BACKEND_API}/signin`;
 
-  const props =
-    provider === LOGIN_PROVIDER['APPLE']
-      ? {
-          social_token: token?.user?.id_token,
-          fullName: null,
-          email: token.user?.email,
-          path: 'web',
-        }
-      : { social_token: token?.accessToken };
+  const props = { socialType: provider, socialAccessToken: token?.accessToken };
 
   const tokenResponse = await fetch(apiUrl, {
     method: 'POST',
@@ -37,35 +27,36 @@ async function getSocialProviderProfile(token: CustomJWT, provider: string) {
   const tokenData = await tokenResponse.json();
 
   if (tokenResponse.ok && tokenData) {
-    const userResponse = await fetch(`${BACKEND_API}/sanctum/check/user`, {
+    const userResponse = await fetch(`${BACKEND_API}/auth/me`, {
       method: 'POST',
       body: undefined,
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${tokenData?.data.token?.plainTextToken}`,
+        Authorization: `Bearer ${tokenData?.accessToken}`,
       },
     });
-    const {
-      data: { user: userData },
-    }: UserStatus = await userResponse.json();
+    const userData: IUser = await userResponse.json();
 
     if (userResponse.ok && userData) {
       return {
         ...token,
         user: {
           id: userData.id,
-          name: userData.name,
-          nick_name: userData.nick_name,
+          nickname: userData.nickname,
+          avatarUrl: userData.avatarUrl,
           email: userData.email,
-          accessToken: tokenData?.data.token?.plainTextToken,
+          accessToken: tokenData?.accessToken,
         },
       };
     }
   }
-  return token;
+
+  return null;
 }
 
 export default async function auth(req: NextApiRequest, res: NextApiResponse) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   return await NextAuth(req, res, {
     // NOTE: jwt 사용을 위한 임의의 난수를 할당
     secret: process.env.NEXTAUTH_SECRET,
@@ -141,11 +132,10 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
         async authorize(credentials): Promise<IUser | null> {
           return {
             id: 1,
-            name: '홍길동',
-            nick_name: '홍길동',
+            nickname: '홍길동',
             email: 'aaa@gmail.com',
             accessToken: 'plainTextToken',
-            imageUrl: '',
+            avatarUrl: '',
           };
 
           const tokenResponse = await fetch(`${BACKEND_API}/login`, {
@@ -184,11 +174,10 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
             if (userResponse.ok && user) {
               return {
                 id: user.id,
-                name: user.name,
-                nick_name: user.nick_name,
+                nickname: user.nickname,
                 email: user.email,
                 accessToken: token?.data.token?.plainTextToken,
-                imageUrl: '',
+                avatarUrl: '',
               };
             }
           }

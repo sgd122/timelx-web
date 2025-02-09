@@ -34,15 +34,23 @@ const AuthLoginContainer = ({ authError }: { authError?: string }) => {
       <Button
         size="4"
         className="w-full bg-white text-black hover:bg-gray-100"
+        onClick={() => signIn(LOGIN_PROVIDER['GOOGLE'])}
+      >
+        <FcGoogle size="20" />
+        <h3>Google로 계속하기</h3>
+      </Button>
+      <Button
+        size="4"
+        className="w-full bg-white text-black hover:bg-gray-100"
         onClick={() =>
           signIn(LOGIN_PROVIDER['EMAIL'], {
             email: '11',
-            password: '123',
+            password: '123456',
           })
         }
       >
         <FcGoogle size="20" />
-        <h3>Google로 계속하기</h3>
+        <h3>Google로 계속하기(text접속)</h3>
       </Button>
     </Flex>
   );

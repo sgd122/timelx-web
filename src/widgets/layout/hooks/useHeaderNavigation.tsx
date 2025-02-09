@@ -15,6 +15,7 @@ export const useHeaderNavigation = () => {
       '/event/[eventId]/edit',
       '/settings/account',
       '/settings/contact',
+      '/settings/policy',
       '/settings/dashboard',
     ];
 

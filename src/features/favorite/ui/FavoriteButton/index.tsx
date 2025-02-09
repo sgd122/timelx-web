@@ -3,8 +3,8 @@ import type * as React from 'react';
 import { useOptimistic, useState } from 'react';
 import { FiHeart } from 'react-icons/fi';
 
-import { useAuthSession } from '@/shared/hooks/useAuthSession';
 import { useToaster } from '@/shared/hooks/useToaster';
+import { useUserSession } from '@/shared/hooks/useUserSession';
 import { cn } from '@/shared/lib/utils';
 
 interface FavoriteButtonProps {
@@ -18,7 +18,7 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({
   favorite = false,
   onFavoriteToggle,
 }) => {
-  const { isAuthenticated } = useAuthSession();
+  const { isAuthenticated } = useUserSession();
   const [isLoading, setIsLoading] = useState(false);
   const toaster = useToaster();
 

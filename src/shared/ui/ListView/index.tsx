@@ -14,6 +14,7 @@ type ListViewItemProps =
       href: string;
       onClick?: never;
       icon?: React.ReactNode;
+      render?: React.ReactNode;
     } // href가 있는 경우
   | {
       as?: keyof JSX.IntrinsicElements;
@@ -21,6 +22,7 @@ type ListViewItemProps =
       onClick: () => void;
       href?: never;
       icon?: React.ReactNode;
+      render?: React.ReactNode;
     }; // onClick이 있는 경우
 
 interface ListViewProps {
@@ -38,7 +40,27 @@ const renderWithLineBreaks = (text: string) =>
   ));
 
 const ListViewItem: React.FC<ListViewItemProps> = (props) => {
-  const { label, icon, as: HeadingTag = 'h3' } = props;
+  const { label, icon, as: HeadingTag = 'h3', render } = props;
+
+  if (render) {
+    // ✅ render가 존재하면 해당 내용만 렌더링
+    return (
+      <li
+        className={cn(
+          'w-full',
+          'flex items-center justify-between',
+          'px-4 py-4',
+          'border-b border-tx-white',
+          'hover:bg-neutral-800',
+          'transition-colors',
+          'cursor-pointer'
+        )}
+      >
+        <HeadingTag>{render}</HeadingTag>
+        {icon ? icon : <FaChevronRight className="text-tx-white" />}
+      </li>
+    );
+  }
 
   if (props.href !== undefined) {
     const isExternalLink =
